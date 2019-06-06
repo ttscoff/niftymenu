@@ -1,0 +1,461 @@
+@import "compass/reset";
+@import "include/colors";
+@import 'custom/variables';
+
+// A bunch of variables that control *all* the colors
+
+////// Light Mode //////
+
+// background gradient and default image
+$color-desktop-gradient-1: rgb(86, 118, 127) !default;
+$color-desktop-gradient-2: rgb(120, 156, 165) !default;
+$desktop-image: '../images/background.jpg' !default;
+
+// base colors
+$color-foreground: #000 !default;
+$color-foreground-inverted: #fff !default;
+// system accent color (menu item hover state) Can be any of
+// $accent-blue, $accent-purple, $accent-pink, $accent-red,
+// $accent-orange, $accent-yellow, $accent-green, $accent-grey
+$color-accent: #1d7bf0 !default;
+// Top level toolbar background
+$color-background-toolbar: #ededed !default;
+// Slightly different color for submenu backgrounds
+$color-background-submenu: darken($color-background-toolbar,20) !default;
+// The accent color used for borders and dividers
+$color-divider: #dedfdc !default;
+// glow around item when double clicking to color-accent
+$color-callout: rgb(221, 60, 163) !default;
+
+// for the help menu item search field
+$color-background-help: rgb(189, 189, 190) !default;
+$color-background-help-search: rgb(168, 170, 171) !default;
+
+////// Dark Mode //////
+
+// Same as above but with "dark-" prefix
+$dark-color-desktop-gradient-1: darken(adjust_hue($color-desktop-gradient-1,90deg),15) !default;
+$dark-color-desktop-gradient-2: #333 !default;
+$dark-desktop-image: 'images/darkbackground.jpg' !default;
+
+$dark-color-foreground: #fff !default;
+$dark-color-foreground-inverted: #000 !default;
+$dark-color-accent: $accent-purple !default;
+$dark-color-background-toolbar: rgba(29, 28, 28, .85) !default;
+$dark-color-background-submenu: rgba(104, 106, 107, .4) !default;
+$dark-color-divider: rgba(38, 39, 37, 1) !default;
+$dark-color-callout: adjust_hue($color-callout, 120deg) !default;
+
+$dark-color-background-help: rgba(74, 75, 74, .95) !default;
+$dark-color-background-help-search: rgba(87, 89, 89, .95) !default;
+
+
+
+html {
+  width: 2400px;
+  height: 1000px;
+}
+
+body {
+  background: $color-desktop-gradient-1;
+  background: linear-gradient(180deg, $color-desktop-gradient-1 0%, $color-desktop-gradient-2 50%);
+  color: $color-foreground;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 15px;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  width: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+
+  >ul {
+    clear: right;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0!important;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      background: transparentize($color-background-toolbar,.1);
+      border-bottom: solid 1px $color-background-submenu;
+      box-shadow: 0 0 4px transparentize($color-foreground,.75);
+      content: ' ';
+      display: block;
+      height: 1.4rem;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    >li {
+      display: block;
+      float: left;
+      font-size: 14px;
+      height: 1rem;
+      line-height: 1;
+      margin: 0 .3em;
+      padding: 4px;
+
+      >strong {
+        padding: 4px 8px;
+      }
+
+      &:nth-of-type(1) {
+        width: 2em;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: 1;
+        margin-top: -.1rem;
+      }
+
+      &:nth-of-type(2)>strong {
+        font-weight: 700;
+      }
+
+      &:hover,
+      &.clicked,
+      &.persist {
+        background: $color-accent;
+        color: $color-foreground-inverted;
+
+        >ul {
+          color: $color-foreground;
+        }
+      }
+
+      &:hover > ul,
+      &.clicked > ul,
+      &.persist > ul {
+        display: block;
+      }
+
+      &:hover > ul {
+        z-index: 1000;
+      }
+
+
+      > ul {
+        background: transparentize($color-divider,.1);
+        border-radius: 0 0 6px 6px;
+        display: none;
+        font-size: 15px;
+        line-height: 1.4;
+        position: absolute;
+        top: 1.2rem;
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 4px 0 .3rem;
+  }
+
+  li {
+    position: relative;
+    white-space: nowrap;
+  }
+}
+
+body>ul ul {
+  box-shadow: transparentize($color-foreground,.8) 0 5px 9px;
+  margin-left: -4px;
+  margin-top: 4px;
+  border: solid 1px $color-background-submenu;
+  background: transparentize($color-divider,.1);
+
+  ul {
+    border-radius: 6px;
+    display: none;
+    left: 100%;
+    position: absolute;
+    top: -5px;
+    width: auto;
+    z-index: 10;
+    margin: 0;
+  }
+
+  li {
+    box-sizing: border-box;
+    text-indent: 1.6em;
+    margin: 0 1.2em 0 0;
+    width: 100%;
+    line-height: 1.4rem;
+
+    &:hover,
+    &.clicked,
+    &.persist {
+      background: $color-accent;
+      color: $color-foreground-inverted;
+
+      >strong em::after {
+        border-left-color: $color-foreground-inverted;
+      }
+
+      >ul {
+        display: block;
+        color: $color-foreground;
+      }
+    }
+  }
+}
+li.lastclicked {
+  outline: 2px solid $color-callout;
+  outline-offset: -1px;
+  box-shadow: 0 0 14px $color-callout;
+}
+
+
+.divider {
+  border-bottom: 2px solid $color-background-submenu;
+  display: block;
+  margin: 4px 0;
+  position: relative;
+}
+
+.helpsearch {
+  background: $color-background-help;
+  display: block;
+  margin-top: -.3rem;
+  padding: .2rem 0 .4rem;
+  width: 100%;
+
+  label {
+    color: $color-foreground;
+  }
+
+  input {
+    background: $color-background-help-search;
+    border: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-right: -13px;
+    outline: 0;
+    padding: 4px;
+    width: 200px;
+  }
+
+  .dark & {
+    background: $dark-color-background-help;
+
+    label {
+      color: $dark-color-foreground;
+    }
+
+    input {
+      background: $dark-color-background-help-search;
+      color: $dark-color-foreground;
+    }
+  }
+}
+
+strong {
+  font-weight: normal;
+  position: relative;
+
+  em {
+    font-style: normal;
+
+    &::after {
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid $color-foreground;
+      border-top: 5px solid transparent;
+      content: ' ';
+      display: block;
+      float: right;
+      height: 0;
+      margin: 5px 4px 0 0;
+      text-align: right;
+      width: 0;
+    }
+  }
+
+}
+
+// Dark mode
+
+body.dark {
+  background: $dark-color-desktop-gradient-1;
+  background: linear-gradient(180deg, $dark-color-desktop-gradient-1 0%, $dark-color-desktop-gradient-2 50%);
+  color: $dark-color-foreground;
+
+  >ul {
+    &::before {
+      background: transparentize($dark-color-background-toolbar,.1);
+      border-bottom: 0;
+      box-shadow: 0;
+    }
+
+    >li {
+      &:hover,
+      &.clicked,
+      &.persist {
+        background: $dark-color-accent;
+        color: $dark-color-foreground;
+
+        ul {
+          color: $dark-color-foreground;
+        }
+      }
+      > ul {
+        background: transparentize($dark-color-divider,.1);
+      }
+    }
+  }
+
+
+  &>ul ul {
+    box-shadow: 0;
+    border: solid 1px $dark-color-background-submenu;
+    background: transparentize($dark-color-divider,.1);
+
+    li {
+      &:hover,
+      &.clicked,
+      &.persist {
+        background: $dark-color-accent;
+        color: $dark-color-foreground;
+
+        >strong em::after {
+          border-left-color: $dark-color-foreground;
+        }
+
+        >ul {
+          display: block;
+          color: $dark-color-foreground;
+        }
+      }
+    }
+  }
+
+  li.lastclicked {
+    outline-color: $dark-color-callout;
+    box-shadow: 0 0 6px $dark-color-callout;
+  }
+
+
+  .divider {
+    border-bottom-color: $dark-color-background-submenu;
+  }
+
+  strong em {
+    &::after {
+      border-left-color: $dark-color-foreground;
+    }
+  }
+}
+
+// controls
+
+.controls {
+  background-color: transparentize($color-foreground,.75);
+  border-radius: 5px 0 5px 5px;
+  bottom: -87px;
+  color: $color-foreground-inverted;
+  font-size: 12px;
+  padding: 10px 10px 30px 10px;
+  position: fixed;
+  right: 20px;
+  width: 200px;
+  transition: all .2s ease-out;
+
+  &::before {
+    content: '\2699';
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: transparentize($color-foreground,.75);
+    top: -37px;
+    right: 0px;
+    font-size: 2em;
+    padding: 6px;
+    border-radius: 9px 9px 0 0;
+  }
+
+  &:hover {
+    bottom: 0;
+  }
+
+  span {
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    line-height: 1;
+    padding: 2px 5px 2px 10px;
+    position: relative;
+
+    &::before {
+      display: block;
+      content: '\25CF';
+      position: absolute;
+      left: -5px;
+    }
+
+    &:hover {
+      background: lighten(transparentize($color-foreground,.75),65);
+    }
+  }
+
+  #darkModeToggle::before {
+    color: $inactive;
+
+    .dark & {
+      color: $active;
+    }
+  }
+
+  #exposeToggle::before {
+    color: $inactive;
+
+    .expose & {
+      color: $active;
+    }
+  }
+
+  #backgroundToggle::before {
+    color: $inactive;
+
+    .bgimage & {
+      color: $active;
+    }
+  }
+}
+
+body.bgimage {
+  background-image: url($desktop-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.dark {
+    background-image: url($dark-desktop-image);
+  }
+}
+
+body.expose {
+  >ul >li {
+    height: 100%;
+    background: rgba(222,223,220,0.5);
+    background-clip: content-box;
+    margin-bottom: 2em;
+
+    >ul {
+      display: block;
+      position: relative;
+      margin-top: -1rem;
+    }
+  }
+  &.dark {
+    >ul >li {
+      background: none;
+    }
+  }
+}
+
+@import 'custom/custom';

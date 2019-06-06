@@ -1,0 +1,3 @@
+#!/bin/bash
+
+jsdoc -r javascript/README.md -c scripts/jsdoc.conf.json -d javascript/out/ javascript/*.js

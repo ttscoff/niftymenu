@@ -1,0 +1,46 @@
+// Modify all of the colors used in both dark and light layouts here
+
+////// Light Mode //////
+
+// background gradient and default image
+$color-desktop-gradient-1: rgb(86, 118, 127);
+$color-desktop-gradient-2: rgb(120, 156, 165);
+$desktop-image: '../images/background.jpg';
+
+// base colors
+$color-foreground: #000;
+$color-foreground-inverted: #fff;
+// system accent color (menu item hover state) Can be any of
+// $accent-blue, $accent-purple, $accent-pink, $accent-red,
+// $accent-orange, $accent-yellow, $accent-green, $accent-grey
+$color-accent: #1d7bf0;
+// Top level toolbar background
+$color-background-toolbar: #ededed;
+// Slightly different color for submenu backgrounds
+$color-background-submenu: darken($color-background-toolbar,20);
+// The accent color used for borders and dividers
+$color-divider: #dedfdc;
+// glow around item when double clicking to color-accent
+$color-callout: rgb(221, 60, 163);
+
+// for the help menu item search field
+$color-background-help: rgb(189, 189, 190);
+$color-background-help-search: rgb(168, 170, 171);
+
+////// Dark Mode //////
+
+// Same as above but with "dark-" prefix
+$dark-color-desktop-gradient-1: darken(adjust_hue($color-desktop-gradient-1,90deg),15);
+$dark-color-desktop-gradient-2: #333;
+$dark-desktop-image: 'images/darkbackground.jpg';
+
+$dark-color-foreground: #fff;
+$dark-color-foreground-inverted: #000;
+$dark-color-accent: $accent-purple;
+$dark-color-background-toolbar: rgba(29, 28, 28, .85);
+$dark-color-background-submenu: rgba(104, 106, 107, .4);
+$dark-color-divider: rgba(38, 39, 37, 1);
+$dark-color-callout: adjust_hue($color-callout, 120deg);
+
+$dark-color-background-help: rgba(74, 75, 74, .95);
+$dark-color-background-help-search: rgba(87, 89, 89, .95);
