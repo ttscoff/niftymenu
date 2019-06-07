@@ -83,7 +83,7 @@ def menus_to_markdown(input)
   input.gsub!(/[‘’]/,"'")
 
   # remove Services menu
-  input.sub!(/\t- Services.*?Services Preferences...\n/m,"\t- **_Services_**\n\t\t- Empty\n")
+  input.sub!(/\t- Services.*?Services Preferences...\n/m,"\t- Services\n\t\t- Empty\n")
   # highlight menu items with submenus
   input.gsub!( /^(\t+)(?:- (.+?)\n)(?=\1\t-)/, "\\1- **_\\2_**\n" )
 

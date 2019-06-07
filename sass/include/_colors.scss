@@ -11,3 +11,54 @@ $accent-grey: rgb(147, 147, 147);
 
 $active: rgb(41, 182, 220);
 $inactive: rgb(188, 216, 224);
+$disabled: rgba(150,150,150,.5);
+
+// A bunch of variables that control *all* the colors
+
+////// Light Mode //////
+
+// background gradient and default image
+$color-desktop-gradient-1: rgb(86, 118, 127) !default;
+$color-desktop-gradient-2: rgb(120, 156, 165) !default;
+$desktop-image: '../images/background.jpg' !default;
+
+// base colors
+$color-foreground: #000 !default;
+$color-foreground-inverted: #fff !default;
+// system accent color (menu item hover state) Can be any of
+// $accent-blue, $accent-purple, $accent-pink, $accent-red,
+// $accent-orange, $accent-yellow, $accent-green, $accent-grey
+$color-accent: #1d7bf0 !default;
+// Top level toolbar background
+$color-background-toolbar: #ededed !default;
+// Slightly different color for submenu backgrounds
+$color-background-submenu: rgb(220, 224, 224) !default;
+// Color for menu dividers
+$color-divider: rgb(198, 198, 198) !default;
+// Color used for menu borders
+$color-border: rgb(168, 168, 168) !default;
+// glow around item when double clicking to color-accent
+$color-callout: rgb(98, 186, 70) !default;
+
+// for the help menu item search field
+$color-background-help: rgb(189, 189, 190) !default;
+$color-background-help-search: rgb(168, 170, 171) !default;
+
+////// Dark Mode //////
+
+// Same as above but with "dark-" prefix
+$dark-color-desktop-gradient-1: darken(adjust_hue($color-desktop-gradient-1,90deg),15) !default;
+$dark-color-desktop-gradient-2: #333 !default;
+$dark-desktop-image: '../images/darkbackground.jpg' !default;
+
+$dark-color-foreground: #fff !default;
+$dark-color-foreground-inverted: #000 !default;
+$dark-color-accent: $accent-purple !default;
+$dark-color-background-toolbar: rgba(29, 28, 28, .85) !default;
+$dark-color-background-submenu: rgba(104, 106, 107, .4) !default;
+$dark-color-divider: rgba(38, 39, 37, 1) !default;
+$dark-color-border: rgba(38, 39, 37, 1) !default;
+$dark-color-callout: adjust_hue($color-callout, 120deg) !default;
+
+$dark-color-background-help: rgba(74, 75, 74, .95) !default;
+$dark-color-background-help-search: rgba(87, 89, 89, .95) !default;

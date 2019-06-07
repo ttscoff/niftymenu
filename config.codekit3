@@ -90,7 +90,9 @@
 		"oF": 0
 		},
 	"/config.rb": {
-		"ft": 131072,
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
 		"oA": 0,
 		"oAP": "/config.rb",
 		"oF": 0
@@ -353,6 +355,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/dist/css/_colors.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"/sass/include/_settings.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/dist/css/_settings.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

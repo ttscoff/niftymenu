@@ -5,6 +5,33 @@
 const Prefs = (function() {
   'use strict';
 
+  const CONFIG_KEY = 'niftyPrefs';
+
+  const defaults = {
+    'arrowStyle' : 'arrow',
+    'bgimage' : 1,
+    'expose' : 0,
+    'darkmode' : 0
+  };
+
+  let config = null;
+
+  const getConfig = () => {
+    if (!config) {
+      let storedConfig = JSON.parse(localStorage.getItem(CONFIG_KEY));
+
+      if (storedConfig) {
+        config = $.extend({}, defaults, storedConfig);
+      } else {
+        config = defaults;
+      }
+
+      localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+    }
+
+    return config;
+  };
+
   /**
    * Retrieve preference key as a boolean value
    * @memberof   Prefs
@@ -13,7 +40,7 @@ const Prefs = (function() {
    * @return     {boolean}  True for positive integer or truthy string
    */
   const getBool = (key) => {
-    let value = Prefs.get(key);
+    let value = get(key);
     if (Number(value)) {
       return Boolean(Number(value));
     } else {
@@ -28,25 +55,41 @@ const Prefs = (function() {
    * Set a preference value
    * @memberof   Prefs
    *
-   * @param      {string}  key     The localStorage key
+   * @param      {string}  key     The config item's key
    * @param      {string}  value   Value to set for key
    */
   const set = (key, value) => {
-    localStorage.setItem(key, value);
+    config = get();
+    config[key] = value;
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
   };
 
   /**
    * Retrive the raw preference for a key
    * @memberof   Prefs
    *
-   * @param      {string}  key     The localStorage key
+   * @param      {string}  key     The config item's key
    * @return     {string}  raw string from preferences, not decoded or JSONified
    */
   const get = (key) => {
-    return localStorage.getItem(key);
+
+    let _config = getConfig();
+
+    if (_config && key) {
+      if (_config.hasOwnProperty(key)) {
+        return config[key];
+      } else {
+        return null;
+      }
+      return ;
+    } else {
+      return _config;
+    }
+
   };
 
   const Prefs = {
+    config,
     set,
     get,
     getBool
@@ -62,15 +105,7 @@ const Prefs = (function() {
 const Nifty = (function() {
   'use strict';
 
-  const init = () => {
-    getMenuItemTitles();
-  };
-
-  /**
-   * @namespace Nifty.util
-   * @memberof  Nifty
-   * @description DOM/interface utilities
-   */
+  let config;
 
   /**
    * search for a menu item by string and click
@@ -125,69 +160,207 @@ const Nifty = (function() {
     }
   };
 
+  const itemForPath = (path) => {
+    return $('li').filter(function(i,n) {
+      if ($(n).data('path') === path) {
+        return true;
+      }
+      return false;
+    }).first();
+  };
+
   /**
-   * Case insensitive string match for menu item search. Tries: 1. Match from
-   * the first word in a menu item 2. Match the beginning of any word in a menu
-   * item 3. Match the full string anywhere in a menu item
+   * Case insensitive string match for menu item search. Use / to separate
+   * heirarchical menu search items
    * @memberof   Nifty
+   * @example  Nifty.fuzzyFind('insert/toc/section')
    *
-   * @param      {string}  str     The string to search for
+   * @param      {string}  query   The string to search for
    * @return     {jQuery}  single jQuery element or null
    */
-  const fuzzyFind = (str) => {
-    if (/^\s*$/.test(str)) {
+  const fuzzyFind = (query) => {
+    if (/^\s*$/.test(query)) {
       return null;
     }
 
-    let menuItems = $('ul ul li'),
-        rxs = [
-          new RegExp('^'+str,'i'),
-          new RegExp('\\b'+str,'i'),
-          new RegExp(str,'i')
-          ],
-        test;
+    query = query.replace(/>/g,"/");
 
-
-    for (let rx in rxs) {
-      test = menuItems.filter(function(i,n) {
-        let comp = n.innerText.split("\n")[0].toLowerCase();
-
-        if (rxs[rx].test(comp)) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      if (test.length > 0) {
-        return test.first();
-      }
+    let titles = getOrderedMenuItemTitles();
+    let results = fuzzysort.go(query, titles);
+    if (results.length) {
+      return itemForPath(results[0].target);
+    } else {
+      return null;
     }
-
-    return null;
   };
 
-
   /**
-   * Get an array of all submenu item titles
+   * Get an array of all item tiles with hierarchy
    * @private
    *
    * @return     {array}  The menu item titles.
    */
-  const getMenuItemTitles = () => {
-    if (Nifty.menuItemTitles.length > 0) {
-      return Nifty.menuItemTitles;
+  const getOrderedMenuItemTitles = () => {
+    if (Nifty.orderedMenuItemTitles.length > 0) {
+      return Nifty.orderedMenuItemTitles;
     }
-    Nifty.menuItemTitles = [];
-    $('ul ul li').each(function(i,n) {
-      Nifty.menuItemTitles.push($(n).text().split(/\n/)[0]);
+    let titles = [];
+
+    $('li').each(function(i,n) {
+      let thisTitle = n.innerText.split(/\n/)[0].trim();
+      $(n).parents('li').each(function(i,n) {
+        if (n.innerText.length) {
+          thisTitle = n.innerText.split(/\n/)[0].trim() + "/" + thisTitle;
+        }
+      });
+      $(n).data('path',thisTitle);
+      titles.push(thisTitle);
     });
-    return Nifty.menuItemTitles;
+    Nifty.orderedMenuItemTitles = titles;
+    return Nifty.orderedMenuItemTitles;
+  };
+
+  /**
+   * @namespace Nifty.callout
+   * @memberof  Nifty
+   * @description Methods for adding callouts to items
+   */
+
+  /**
+   * Sets the arrow callout
+   * @memberof   Nifty.callout
+   *
+   * @param      {boolean}  bool    Add or remove arrow
+   * @param      {element}   el     DOM element or jQuery object, applies to all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const setArrow = (bool, el) => {
+    if (!el && !bool) {
+      $('.arrow').each(function(i,n) {
+        setArrow(false,$(n));
+      });
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (bool) {
+      setArrow(false);
+      const style = Prefs.get('arrowStyle') || 'arrow';
+      $('.clicked').removeClass('clicked');
+      el.addClass('arrow arrow-'+style+' clicked').append('<b><i></i></b>');
+      el.parents('li').addClass('clicked');
+    } else {
+      el.removeClass('arrow arrow-arrow arrow-circle').find('b').remove();
+    }
+  };
+
+  /**
+   * Toggles the arrow callout
+   * @memberof   Nifty.callout
+   *
+   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const toggleArrow = (el) => {
+    if (!el) {
+      setArrow(false);
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.hasClass('arrow')) {
+      setArrow(false, el);
+    } else {
+      setArrow(false);
+      setArrow(true, el);
+    }
+  };
+
+  /**
+   * Toggles a checkmark on the clicked menu item
+   * @memberof   Nifty.callout
+   *
+   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const toggleCheckmark = (el) => {
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.hasClass('checked')) {
+      el.removeClass('checked');
+    } else {
+      el.addClass('checked');
+    }
+  };
+
+  /**
+   * @namespace Nifty.handlers
+   * @memberof  Nifty
+   * @description Event handlers
+   */
+
+  /**
+   * live search for the help menu, function ~ macOS
+   * @private
+   * @memberof   Nifty.handlers
+   *
+   * @param      {event}    e       Event
+   */
+  const liveSearch = (e) => {
+
+    let $field = $('.helpsearch input'),
+        string = $field.val(),
+        shouldScroll = false;
+
+    if (e.code === 'Escape') {
+      e.preventDefault();
+      $field.val('').blur();
+      clearClicks(true);
+      return true;
+    }
+
+    if (e.code === 'Enter' || e.code === 'Return') {
+      e.preventDefault();
+      $('.persist').removeClass('persist');
+      shouldScroll = true;
+      // return true;
+    }
+
+    if (string.length < 2) {
+      clearClicks(false);
+      return true;
+    }
+
+    let $item = fuzzyFind(string);
+
+    if ($item) {
+      clearClicks(false);
+      $item.parents('li').addClass('clicked');
+      $item.addClass('clicked');
+
+      if (shouldScroll) {
+        $field.blur();
+        $item.get(0).scrollIntoView({behavior: "smooth", block: "end", inline: "center"});
+      }
+    } else {
+      clearClicks(false);
+    }
+
+    return true;
   };
 
   /**
    * click handler for menu items
    * @private
+   * @memberof   Nifty.handlers
    * @param      {event}   e       Event
    * @return     {boolean}  continue handling event
    */
@@ -196,23 +369,38 @@ const Nifty = (function() {
 
     let $this = $(e.target);
 
-    $('li.lastclicked').removeClass('lastclicked');
+    if (e.metaKey) {
+      toggleCheckmark($this);
+      return false;
+    } else if (e.altKey) {
+      toggleArrow($this);
+      return false;
+    }
+
+    $('li.callout').removeClass('callout');
     $('.persist').removeClass('persist');
 
     if (e.target.tagName === 'BODY') {
       $('.clicked').removeClass('clicked');
+      setArrow(false);
     } else {
       if ($this.hasClass('clicked')) {
         $('.clicked').removeClass('clicked');
+        setArrow(false);
         return false;
       } else {
+        setArrow(false);
+        setArrow(false);
         $('li.clicked').removeClass('clicked');
         $this.parents('li').addClass('clicked');
+        if (e.altKey) {
+          setArrow(true, $this);
+        }
         $this.addClass('clicked');
       }
 
       if (e.type === 'dblclick') {
-        $this.addClass('lastclicked');
+        $this.addClass('callout');
       }
     }
 
@@ -221,6 +409,7 @@ const Nifty = (function() {
   /**
    * handler for all clicks within the .controls element
    * @private
+   * @memberof   Nifty.handlers
    * @param      {event}   e       Event
    * @return     {boolean}  continue handling event
    */
@@ -238,11 +427,53 @@ const Nifty = (function() {
       case 'backgroundToggle':
         toggleBG();
         break;
+      case 'arrowStyle':
+        toggleArrowStyle();
+        break;
       default:
         console.info('Element ID unrecognized');
     }
 
     return false;
+  };
+
+  /**
+   * @namespace Nifty.util
+   * @memberof  Nifty
+   * @description DOM/interface utilities
+   */
+
+  /**
+  * Sets the style of the callout arrow
+  * @memberof   Nifty.util
+  * @param      {string}  style    'circle' or 'arrow'
+  */
+  const setArrowStyle = (style) => {
+    let newStyle = 'arrow';
+    if (style && style === 'circle') {
+      newStyle = 'circle';
+      $('.arrow-arrow').removeClass('arrow-arrow').addClass('arrow-circle');
+    } else {
+      $('.arrow-circle').removeClass('arrow-circle').addClass('arrow-arrow');
+    }
+    Prefs.set('arrowStyle', newStyle);
+  };
+
+  /**
+   * Toggles arrow style between circle and arrow.
+   * @memberof   Nifty.util
+   */
+  const toggleArrowStyle = () => {
+    let newStyle;
+    const current = Prefs.get('arrowStyle');
+    if (current === 'circle') {
+      newStyle = 'arrow';
+      $('#arrowStyle','.controls').text('Arrow style: Arrow');
+    } else {
+      newStyle = 'circle';
+      $('#arrowStyle','.controls').text('Arrow style: Circle');
+    }
+    setArrowStyle(newStyle);
   };
 
   /**
@@ -354,8 +585,9 @@ const Nifty = (function() {
    */
   const focusSearch = (e) => {
     e.preventDefault();
-    $('li.lastclicked').removeClass('lastclicked');
+    $('li.callout').removeClass('callout');
     $('.clicked').removeClass('clicked');
+    clearClicks();
     let $search = $('.helpsearch').first();
     $search.parents('li').addClass('clicked persist');
     $search.get(0).scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
@@ -373,78 +605,32 @@ const Nifty = (function() {
    *                                 removes that class as well.
    */
   const clearClicks = (persist) => {
-    $('li.lastclicked').removeClass('lastclicked');
+    $('li.callout').removeClass('callout');
     $('.clicked').removeClass('clicked');
+    setArrow(false);
     if (persist) {
       $('.persist').removeClass('persist');
     }
   };
 
-  /**
-   * live search for the help menu, function ~ macOS
-   * @private
-   *
-   * @param      {event}    e       Event
-   */
-  const liveSearch = (e) => {
-
-    let $field = $('.helpsearch input'),
-        string = $field.val(),
-        titles, results, title,
-        shouldScroll = false;
-
-    if (e.code === 'Escape') {
-      e.preventDefault();
-      $field.val('').blur();
-      clearClicks(true);
-      return true;
-    }
-
-    if (e.code === 'Enter' || e.code === 'Return') {
-      e.preventDefault();
-      $('.persist').removeClass('persist');
-      shouldScroll = true;
-      // return true;
-    }
-
-    if (string.length < 2) {
-      clearClicks(false);
-      return true;
-    }
-
-    titles = getMenuItemTitles();
-    results = fuzzysort.go(string, titles);
-
-    if (results.length) {
-      title = results[0].target;
-    } else {
-      title = string;
-    }
-
-    let $item = fuzzyFind(title);
-
-    if ($item) {
-      clearClicks(false);
-      $item.parents('li').addClass('clicked');
-      $item.addClass('clicked');
-
-      if (shouldScroll) {
-        $field.blur();
-        $item.get(0).scrollIntoView({behavior: "smooth", block: "end", inline: "center"});
-      }
-    } else {
-      clearClicks(false);
-    }
-
-    return true;
+  const init = () => {
+    getOrderedMenuItemTitles();
+    config = Prefs.get();
   };
 
   const Nifty = {
-    menuItemTitles: [],
+    orderedMenuItemTitles: [],
     init,
     click,
     dblClick,
     fuzzyFind,
+    callout: {
+      setArrow,
+      setArrowStyle,
+      toggleArrowStyle,
+      toggleArrow,
+      toggleCheckmark
+    },
     // handlers
     handlers: {
       itemClick,
@@ -459,7 +645,7 @@ const Nifty = (function() {
       setBG,
       toggleBG,
       focusSearch,
-      clearClicks
+      clearClicks,
       }
   };
 
@@ -480,6 +666,7 @@ $(function() {
   if (Prefs.getBool('bgimage')) {
     Nifty.util.toggleBG();
   }
+  Nifty.callout.setArrowStyle(Prefs.get('arrowStyle'));
 
   // set up handlers
 

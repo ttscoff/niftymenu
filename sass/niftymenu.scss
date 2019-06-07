@@ -2,54 +2,8 @@
 @import "include/colors";
 @import 'custom/variables';
 
-// A bunch of variables that control *all* the colors
-
-////// Light Mode //////
-
-// background gradient and default image
-$color-desktop-gradient-1: rgb(86, 118, 127) !default;
-$color-desktop-gradient-2: rgb(120, 156, 165) !default;
-$desktop-image: '../images/background.jpg' !default;
-
-// base colors
-$color-foreground: #000 !default;
-$color-foreground-inverted: #fff !default;
-// system accent color (menu item hover state) Can be any of
-// $accent-blue, $accent-purple, $accent-pink, $accent-red,
-// $accent-orange, $accent-yellow, $accent-green, $accent-grey
-$color-accent: #1d7bf0 !default;
-// Top level toolbar background
-$color-background-toolbar: #ededed !default;
-// Slightly different color for submenu backgrounds
-$color-background-submenu: darken($color-background-toolbar,20) !default;
-// The accent color used for borders and dividers
-$color-divider: #dedfdc !default;
-// glow around item when double clicking to color-accent
-$color-callout: rgb(221, 60, 163) !default;
-
-// for the help menu item search field
-$color-background-help: rgb(189, 189, 190) !default;
-$color-background-help-search: rgb(168, 170, 171) !default;
-
-////// Dark Mode //////
-
-// Same as above but with "dark-" prefix
-$dark-color-desktop-gradient-1: darken(adjust_hue($color-desktop-gradient-1,90deg),15) !default;
-$dark-color-desktop-gradient-2: #333 !default;
-$dark-desktop-image: 'images/darkbackground.jpg' !default;
-
-$dark-color-foreground: #fff !default;
-$dark-color-foreground-inverted: #000 !default;
-$dark-color-accent: $accent-purple !default;
-$dark-color-background-toolbar: rgba(29, 28, 28, .85) !default;
-$dark-color-background-submenu: rgba(104, 106, 107, .4) !default;
-$dark-color-divider: rgba(38, 39, 37, 1) !default;
-$dark-color-callout: adjust_hue($color-callout, 120deg) !default;
-
-$dark-color-background-help: rgba(74, 75, 74, .95) !default;
-$dark-color-background-help-search: rgba(87, 89, 89, .95) !default;
-
-
+$checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAVFJREFUOBGtlDFLA0EQhU+jCAmCndgESSRBIViIjZ2dv8HSMiktBO1MpU3A0lZBUExnZ6VWiiSNjSAqiqUQEEREzTeQgeHIHVl3Bx77dvfNt8ked1EUroZA1dAxKofDRtEmsL+eLkKBK4C+QoNHAbYM9Bu/iLxrG4JegYx1byKABSS/UMFtvPwDrxqj+w4pVO543ovYa941UIFvhYAuAfkx4Gt8xhecBXBvoJ/4WV+o9O8hvVcZ12XRt5YB/CIFX+KHk6BzbBygjbQQe+PoCSn0A19EiXXDjoYP8UkPYd/kJF9FqXXFroJlPEIjsY6VWOacuXzNUks+cW/Iwk+YK3wC/2r2O/g8GqhKpGyzHNJE8nrK/dtD15g71QzpF2Qht7H5mRPRhAv45xhMD3pnfcpkne00HY9IgTquOpP6NMjDeTDw0z6Zfy9N0tlAOyjnSukCoDVsyZZDCJAAAAAASUVORK5CYII=);
+$dark-checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAV9JREFUOBGtlDFLA0EQhS/GIEQCdmITxIghgliIjZ2dvyGlZSwtBO200kawtFUQFO3srNRKEdPYCBKDYhkICCKi5zfRhWGzdxzsDjz2zc68j+UCiaJAFcdxDq2gY1QNhI0iYOvI1GUQMLQZ9GmonP5gIAV0r6Bf+HnvFwPZVFCxWyGgc4DkhaaamIIXGMAQejBETvnGs15QCQPZUVCxGyGgC4C+FfgGn/cCAyiiRwX9wNe8oBIGsqegYldDQBcB/SjwFX7ACWYwjQ7QWuLS30tLzJ+RqXdMxQmVS4a3ZpPzEDl/BO731Z7YRiL0H3xtBY7oB3WIfsnauaDP6Z0+z0IVvVnBE/oenHMEvap5F1/uA7kuWJyywsI5Q/IHI99f17KLkXhHchK9aAL+zurPEwFpAyATqG3BTNvBjKXlU2eEx1EL2VVPDWYZQiyjJ0U+zZLLtAN0FO2ibTScKaSWfgExxT8T22KA2gAAAABJRU5ErkJggg==);
 
 html {
   width: 2400px;
@@ -139,7 +93,7 @@ body {
 
 
       > ul {
-        background: transparentize($color-divider,.1);
+        background: transparentize($color-background-submenu,.1);
         border-radius: 0 0 6px 6px;
         display: none;
         font-size: 15px;
@@ -166,8 +120,8 @@ body>ul ul {
   box-shadow: transparentize($color-foreground,.8) 0 5px 9px;
   margin-left: -4px;
   margin-top: 4px;
-  border: solid 1px $color-background-submenu;
-  background: transparentize($color-divider,.1);
+  border: solid 1px $color-border;
+  background: transparentize($color-background-submenu,.1);
 
   ul {
     border-radius: 6px;
@@ -204,15 +158,15 @@ body>ul ul {
     }
   }
 }
-li.lastclicked {
+li.callout {
   outline: 2px solid $color-callout;
   outline-offset: -1px;
-  box-shadow: 0 0 14px $color-callout;
+  box-shadow: 0 0 8px $color-callout;
 }
 
 
 .divider {
-  border-bottom: 2px solid $color-background-submenu;
+  border-bottom: 2px solid $color-divider;
   display: block;
   margin: 4px 0;
   position: relative;
@@ -275,7 +229,67 @@ strong {
       width: 0;
     }
   }
+}
 
+.arrow-circle b {
+  background: $color-callout;
+  border-radius: 50px;
+  display: block;
+  height: 46px;
+  position: absolute;
+  right: -55px;
+  top: -13px;
+  width: 46px;
+
+  i {
+    border: solid #fff;
+    border-width: 6px 0 0 6px;
+    display: inline-block;
+    padding: 5px;
+    transform: rotate(-45deg) translate(-15px, 5px);
+  }
+}
+
+.arrow-arrow b {
+  background:$color-callout;
+  border-radius: 1px;
+  display: block;
+  height: 7px;
+  position: absolute;
+  right: -59px;
+  top: 0;
+  transform: rotate(-14deg);
+  width: 46px;
+
+  i {
+    border-bottom: 10px solid transparent;
+    border-left: 0;
+    border-right: 16px solid $color-callout;
+    border-top: 10px solid transparent;
+    display: block;
+    left: -9px;
+    padding: 0px;
+    position: absolute;
+    top: -6px;
+  }
+}
+
+li.checked {
+  &:before {
+    background-image: $checkmark;
+    background-size: contain;
+    content: ' ';
+    display: block;
+    height: 11px;
+    left: 7px;
+    position: absolute;
+    top: .4em;
+    width: 11px;
+
+    .dark & {
+      background-image: $dark-checkmark;
+    }
+  }
 }
 
 // Dark mode
@@ -304,7 +318,7 @@ body.dark {
         }
       }
       > ul {
-        background: transparentize($dark-color-divider,.1);
+        background: transparentize($dark-color-background-submenu,.1);
       }
     }
   }
@@ -313,7 +327,7 @@ body.dark {
   &>ul ul {
     box-shadow: 0;
     border: solid 1px $dark-color-background-submenu;
-    background: transparentize($dark-color-divider,.1);
+    background: transparentize($dark-color-background-submenu,.1);
 
     li {
       &:hover,
@@ -334,7 +348,7 @@ body.dark {
     }
   }
 
-  li.lastclicked {
+  li.callout {
     outline-color: $dark-color-callout;
     box-shadow: 0 0 6px $dark-color-callout;
   }
@@ -354,33 +368,33 @@ body.dark {
 // controls
 
 .controls {
-  background-color: transparentize($color-foreground,.75);
-  border-radius: 5px 0 5px 5px;
-  bottom: -87px;
+  background-color: transparentize($color-foreground, .75);
+  border-radius: 0 5px 0;
+  bottom: 27px;
   color: $color-foreground-inverted;
   font-size: 12px;
   padding: 10px 10px 30px 10px;
   position: fixed;
-  right: 20px;
-  width: 200px;
+  right: -167px;
   transition: all .2s ease-out;
+  width: 147px;
 
   &::before {
+    background: transparentize($color-foreground, .75);
+    border-radius: 9px 0 0 9px;
     content: '\2699';
     display: block;
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: transparentize($color-foreground,.75);
-    top: -37px;
-    right: 0px;
     font-size: 2em;
+    height: 25px;
+    left: -37px;
     padding: 6px;
-    border-radius: 9px 9px 0 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
   }
 
   &:hover {
-    bottom: 0;
+    right: 0;
   }
 
   span {
@@ -396,6 +410,7 @@ body.dark {
       content: '\25CF';
       position: absolute;
       left: -5px;
+      color: $disabled;
     }
 
     &:hover {
