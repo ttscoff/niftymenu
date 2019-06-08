@@ -1,6 +1,11 @@
 [demo]: https://ttscoff.github.io/niftymenu/Pages.html
 [mmd]: https://github.com/fletcher/MultiMarkdown-6/releases
 [jsapi]: https://ttscoff.github.io/niftymenu/jsapi/index.html
+[fake]: http://fakeapp.com/
+[Retrobatch]: https://flyingmeat.com/retrobatch/
+[macscripter]: http://macscripter.net/viewtopic.php?id=37674
+[repo]: https://github.com/ttscoff/niftymenu
+[issues]: https://github.com/ttscoff/niftymenu/issues
 
 NiftyMenu copies the entire menu hierarchy from any Mac application, turning it into an HTML playground. It's designed to make taking screenshots of menus for software documentation easier. And it does that. If that's what you need right now, that's amazing, this will be super useful. If you don't fall into that microscopic niche, it's just a neat trick that might be worth seeing...
 
@@ -101,7 +106,7 @@ tell application "Safari"
         do JavaScript "Nifty.dblClick('Highlight Selection for CriticMarkup')"
     end tell
 end tell
-``` 
+```
 
 Some web testing tools (with automation and screenshot capability) have some potential for this. I could see a workflow with [Fake][] and [Retrobatch][] making this work. I'll leave that part up to you, but I'll add some of my AppleScript examples to the repository.
 
