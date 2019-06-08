@@ -1,6 +1,12 @@
 [demo]: https://ttscoff.github.io/niftymenu/Pages.html
 [mmd]: https://github.com/fletcher/MultiMarkdown-6/releases
 [jsapi]: https://ttscoff.github.io/niftymenu/jsapi/index.html
+[fake]: http://fakeapp.com/
+[Retrobatch]: https://flyingmeat.com/retrobatch/
+[macscripter]: http://macscripter.net/viewtopic.php?id=37674
+[repo]: https://github.com/ttscoff/niftymenu
+[issues]: https://github.com/ttscoff/niftymenu/issues
+[releases]: https://github.com/ttscoff/niftymenu/releases
 
 NiftyMenu copies the entire menu hierarchy from any Mac application, turning it into an HTML playground. It's designed to make taking screenshots of menus for software documentation easier. And it does that. If that's what you need right now, that's amazing, this will be super useful. If you don't fall into that microscopic niche, it's just a neat trick that might be worth seeing...
 
@@ -26,6 +32,8 @@ The only requirement is the MultiMarkdown CLI. You can install this with Homebre
 
 ## Getting Started
 
+You can clone the repository if you think you'll want updates, or you can just download the [latest release][releases].
+
 You need the entire package, and the script runs inside of the root folder. If this were a more useful project I'd bundle it up as a gem, but for now, just clone or download the zip and switch into the niftymenu folder.
 
 Run the script with the name of a running application as the argument.
@@ -37,6 +45,23 @@ To duplicate Pages menus to a browser playground, launch Pages and run this from
 When it finishes, it will offer to launch the page in a browser. You can choose that, or cancel and open the HTML from the `dist` folder. All pages will be built to that folder, and will only work from that location.
 
 You can play with [a hosted demo from the above command][demo].
+
+### Using the Playground
+
+Load the page in any browser. The menus work exactly like what you're used to, expanding on hover as you navigate. But when you click an item, you lock the expanded menus in position. Clicking again (or clicking anywhere else) releases them.
+
+Add callouts by double clicking to highlight an item, or hold Option and click to add an arrow. AppleScript didn't provide NiftyMenu with any indications about whether the element had a checkmark originally, so if you need to add those in for your screenshot, use Command-click to toggle them.
+
+There are settings available in a slide-in menu in the lower right.
+
+Use keyboard shortcuts for quick toggles:
+
+| Key   | Function  | 
+| ---   | --------  | 
+| Shift-D   | Toggle Dark Mode  | 
+| Shift-E   | Toggle Expos&eacute;  | 
+| ? | Toggle the Help Search    | 
+
 
 ## Features
 
@@ -101,7 +126,7 @@ tell application "Safari"
         do JavaScript "Nifty.dblClick('Highlight Selection for CriticMarkup')"
     end tell
 end tell
-``` 
+```
 
 Some web testing tools (with automation and screenshot capability) have some potential for this. I could see a workflow with [Fake][] and [Retrobatch][] making this work. I'll leave that part up to you, but I'll add some of my AppleScript examples to the repository.
 
