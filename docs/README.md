@@ -10,6 +10,16 @@ NiftyMenu copies the entire menu hierarchy from any Mac application, turning it 
 
 I got annoyed for five minutes while taking a screenshot one time. So I'm obviously going to spend a couple hours finding a workaround.
 
+To elaborate...
+
+### The Problems With Menu Bar Screenshots
+
+1. Menus disappear as soon as you move your mouse away. Assuming best case scenario and your screenshot app has a hotkey, you can hover over it and grab the image, but if anything is wrong you have to relocate and hover the item again. Not a huge deal, but the time adds up.
+2. It's a difficult process to automate. Dealing with System Events and accessibility scripting alone is exceedingly painful, but for people writing documentation you can be sure that menu items will move and even change names over time, rendering careful menu scripting moot.
+3. You can only shoot image sizes up to the resolution of your screen, and the images won't zoom without pixelation.
+4. If you want to add callouts you need to do it in post with an image editor. Which is also impossible to automate if you can't guarantee the items location in the shot with 100% accuracy.
+5. Tasks like setting up the right Desktop image and Dark Mode settings are more time consuming than I'd like.
+
 ## Requirements
 
 The only requirement is the MultiMarkdown CLI. You can install this with Homebrew (`brew install multimarkdown`) or download a package from the [MultiMarkdown releases][mmd].
