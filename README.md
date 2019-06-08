@@ -28,40 +28,49 @@ When it finishes, it will offer to launch the page in a browser. You can choose 
 
 You can play with [a hosted demo from the above command][demo].
 
-### Features
+## Features
 
-(Nearly) Perfect recreations
-: Generate a fully-functioning duplicate of any app's menu bar in your browser, with features designed for writing documentation and walkthroughs.
+### (Nearly) Perfect recreations
 
-Click any item to freeze the menu
-: Hovering will open up submenus, but once you click an item the submenu will stay open, and all of the proper highlights up the chain to the top level will stick. Now you have time to set up your screenshot.
+Generate a fully-functioning duplicate of any app's menu bar in your browser, with features designed for writing documentation and walkthroughs.
 
-Double click an item to add a callout
-: If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it.
+### Click any item to freeze the menu
 
-Add additional callouts
-: You can add an arrow to the right of the selected item by Option-clicking it. You can also toggle the standard OS checkmark on the left of the item using Command-click. The arrow style (circle or arrow) can be toggled using the preference controls.
+Hovering will open up submenus, but once you click an item the submenu will stay open, and all of the proper highlights up the chain to the top level will stick. Now you have time to set up your screenshot.
 
-Zoomable
-: Using the browser's standard zoom functions, you can zoom the menus in until they fill your screen. Better quality images than a 3x display, even on a 1x...
+### Add Callouts
 
-Dark mode
-: Yes, there's a utility menu at the bottom that lets you switch to Dark Mode, and even changes the Desktop background for you. You can also get to it by pressing __Shift-D__.
+If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it.
 
-Expos&eacute;
-: Pressing __Shift-E__ or selecting Expos&eacute; from the utility menu will open all of the menus at once, spreading them out for easy visibility and scanning.
+You can add an arrow to the right of the selected item by Option-clicking it. You can also toggle the standard OS checkmark on the left of the item using Command-click. The arrow style (circle or arrow) can be toggled using the preference controls.
 
-JS functions for automating
-: Search and select menu items with simple API methods. Any automation method  that can interact with a web browser (AppleScript, browser testing platform...) will make it possible to script and capture a dozen screenshots with the click of a button. Even if those menu items move around. See the [API documentation.][jsapi]
+### Zoomable
 
-Customizable colors and Desktop images
-: Every color in the menu bars is customizeable without modifying the original files. Desktop gradients and optional wallpaper images, too.
+Using the browser's standard zoom functions, you can zoom the menus in until they fill your screen. Better quality images than a 3x display, even on a 1x...
 
-Fully functioning menu search
-: On your Mac you probably use ⌘? to open the Help menu's search field when looking for menu items. I do too, so I made it work in NiftyMenus. Just press the question mark (__Shift-/__) to focus the field and start typing. It's a _fully_ fuzzy search with weighted mathing, so it will generally nail what you're looking for with a random string of letters.
-: Escape will clear your search and hide the Help menu. Pressing return while a match is highlighted will scroll the screen to that match.
+### Light and Dark mode
 
-### Customizing
+Yes, there's a utility menu at the bottom that lets you switch to Dark Mode, and even changes the Desktop background for you. You can also get to it by pressing __Shift-D__.
+
+### Expos&eacute;
+
+Pressing __Shift-E__ or selecting Expos&eacute; from the utility menu will open all of the menus at once, spreading them out for easy visibility and scanning.
+
+### JavaScript API for automating
+
+Search and select menu items with simple API methods. Any automation method  that can interact with a web browser (AppleScript, browser testing platform...) will make it possible to script and capture a dozen screenshots with the click of a button. Even if those menu items move around. See the [API documentation.][jsapi]
+
+### Customizable colors and Desktop images
+
+Every color in the menu bars is customizeable without modifying the original files. Desktop gradients and optional wallpaper images, too.
+
+### Fully functioning menu search
+
+On your Mac you probably use ⌘? to open the Help menu's search field when looking for menu items. I do too, so I made it work in NiftyMenus. Just press the question mark (__Shift-/__) to focus the field and start typing. It's a _fully_ fuzzy search with weighted mathing, so it will generally nail what you're looking for with a random string of letters.
+
+Escape will clear your search and hide the Help menu. Pressing return while a match is highlighted will scroll the screen to that match.
+
+## Customizing
 
 The project uses Sass/Compass for styling and is configured to output your modifications to the right place, so styling is pretty easy.
 
@@ -71,13 +80,29 @@ Editing the JavaScript is more difficult. I'm using CodeKit for development, so 
 
 Feel free to post questions, ideas, and corrections in the [Issues section][issues].
 
-### Shortcomings
+## Automating
+
+NiftyMenus is scriptable using JavaScript in the browser, so it can be automated with various tools. I use straight up AppleScript with a bunch of routines I've written for exactly this purpose. Focusing a menu item is as easy as:
+
+```applescript
+tell application "Safari"
+    tell current tab of window 1
+        do JavaScript "Nifty.util.clearClicks()"
+        do JavaScript "Nifty.dblClick('Highlight Selection for CriticMarkup')"
+    end tell
+end tell
+``` 
+
+Some web testing tools (with automation and screenshot capability) have some potential for this. I could see a workflow with [Fake][] and [Retrobatch][] making this work. I'll leave that part up to you, but I'll add some of my AppleScript examples to the repository.
+
+
+## Shortcomings
 
 - Occasionally disabled menu items don't make it to the final output (yet they do on the next run... mysteries)
 - I can't easily blur the background of the menus, so my attempts to mimick Apple's interface transparency fall a bit short
 - Probably a ton of minor styling tweaks that I'll get to over time
 
-### Credits
+## Credits
 
 I adapted an AppleScript from the [Macscripter formus][macscripter], originally credited to squaline, emendelson, and Nigel Garvey. I stripped it down a bit and tweaked the output to aid in my conversion to Markdown, but by and large this whole system is heavily dependent on their work. It would have taken me months to figure that one out on my own.
 
