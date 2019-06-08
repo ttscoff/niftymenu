@@ -43,7 +43,7 @@ $dark-color-background-toolbar: rgba(29, 28, 28, .85);
 $dark-color-background-submenu: rgba(104, 106, 107, .4);
 $dark-color-divider: rgba(38, 39, 37, 1);
 $dark-color-border: rgba(38, 39, 37, 1) !default;
-$dark-color-callout: adjust_hue($color-callout, 120deg);
+$dark-color-callout: lighten(adjust_hue($color-callout, 85deg),10);
 
 $dark-color-background-help: rgba(74, 75, 74, .95);
 $dark-color-background-help-search: rgba(87, 89, 89, .95);

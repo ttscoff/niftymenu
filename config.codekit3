@@ -89,6 +89,14 @@
 		"oAP": "/.sass-cache/ea0ef95cc13e558b0de9411eadf530ba0fb2cded/_variables.scssc",
 		"oF": 0
 		},
+	"/_config.yml": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/_config.yml",
+		"oF": 0
+		},
 	"/config.rb": {
 		"ft": 131072,
 		"oA": 0,
@@ -411,9 +419,9 @@
 		"eSQ": 1,
 		"ft": 4096,
 		"hM": 0,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/README.html",
-		"oF": 0,
+		"oF": 1,
 		"oFM": 0,
 		"oS": 0,
 		"pHT": 0,
@@ -456,19 +464,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/dist/css/_colors.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/sass/include/_settings.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/dist/css/_settings.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1

@@ -84,6 +84,8 @@ def menus_to_markdown(input)
 
   # remove Services menu
   input.sub!(/\t- Services.*?Services Preferences...\n/m,"\t- Services\n\t\t- Empty\n")
+  # remove Recent Items menu
+  input.sub!(/\t- Open Recent.*?Clear Menu\n/m,"\t- Open Recent\n\t\t- Empty\n")
   # highlight menu items with submenus
   input.gsub!( /^(\t+)(?:- (.+?)\n)(?=\1\t-)/, "\\1- **_\\2_**\n" )
 
@@ -146,6 +148,7 @@ __CONTENT__
   <span id="darkModeToggle">Dark Mode</span>
   <span id="exposeToggle">Expos&eacute;</span>
   <span id="backgroundToggle">Background Image</span>
+  <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
 <script src="js/jquery.min.js"></script>
 <script src="js/fuzzysort.min.js"></script>
@@ -170,9 +173,9 @@ target = File.join('dist',target)
 File.open(target,'w') do |f|
   f.puts template.sub(/__CONTENT__/,output)
   $stdout.puts "HTML written to #{target}"
-  _browser = browser
-  if (_browser)
-    %x{open -a "#{_browser}" "#{target}"}
+
+  if (yn('Open in default browser?', 'Y'))
+    %x{open "#{target}"}
   end
 end
 # Everything below is the AppleScript used to get the menu items. It is
