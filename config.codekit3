@@ -90,9 +90,7 @@
 		"oF": 0
 		},
 	"/config.rb": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
+		"ft": 131072,
 		"oA": 0,
 		"oAP": "/config.rb",
 		"oF": 0
@@ -206,6 +204,109 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/dist/testMenu.html",
+		"oF": 0
+		},
+	"/docs/css/niftymenu.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/docs/css/niftymenu-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/docs/images/background.jpg": {
+		"ft": 16384,
+		"iS": 280875,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/docs/images/background.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/docs/images/background2.jpg": {
+		"ft": 16384,
+		"iS": 2168742,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/docs/images/background2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/docs/images/darkbackground.jpg": {
+		"ft": 16384,
+		"iS": 2701840,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/docs/images/darkbackground.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/docs/index.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/docs/index.html",
+		"oF": 0
+		},
+	"/docs/js/fuzzysort.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/fuzzysort.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/docs/js/jquery.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/jquery.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/docs/js/mousetrap.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/mousetrap.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/docs/js/nifty.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/nifty.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/docs/testMenu.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/docs/testMenu.html",
 		"oF": 0
 		},
 	"/get nvUltra menus.applescript": {
