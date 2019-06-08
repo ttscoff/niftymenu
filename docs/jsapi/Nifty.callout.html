@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: Prefs</title>
+    <title>JSDoc: Namespace: callout</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: Prefs</h1>
+    <h1 class="page-title">Namespace: callout</h1>
 
     
 
@@ -28,7 +28,8 @@
 
 <header>
     
-        <h2>Prefs</h2>
+        <h2>
+            <span class="ancestors"><a href="Nifty.html">Nifty</a>.</span>callout</h2>
         
     
 </header>
@@ -37,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Utility methods for storing/retrieving preferences</p></div>
+            <div class="description"><p>Methods for adding callouts to items</p></div>
         
 
         
@@ -106,7 +107,7 @@
     
 
     
-    <h4 class="name" id=".get"><span class="type-signature">(static) </span>get<span class="signature">(key)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id=".setArrow"><span class="type-signature">(static) </span>setArrow<span class="signature">(bool, el)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -114,7 +115,7 @@
 
 
 <div class="description">
-    <p>Retrive the raw preference for a key</p>
+    <p>Sets the arrow callout</p>
 </div>
 
 
@@ -150,13 +151,13 @@
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>bool</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -166,7 +167,30 @@
 
             
 
-            <td class="description last"><p>The localStorage key</p></td>
+            <td class="description last"><p>Add or remove arrow</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>DOM element or jQuery object, applies to all .arrow if empty</p></td>
         </tr>
 
     
@@ -229,159 +253,7 @@
 
         
 <div class="param-desc">
-    <p>raw string from preferences, not decoded or JSONified</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".getBool"><span class="type-signature">(static) </span>getBool<span class="signature">(key)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Retrieve preference key as a boolean value</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>key</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The key</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>True for positive integer or truthy string</p>
+    <p>Result</p>
 </div>
 
 
@@ -410,7 +282,7 @@
     
 
     
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(key, value)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".toggleArrow"><span class="type-signature">(static) </span>toggleArrow<span class="signature">(el)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -418,7 +290,7 @@
 
 
 <div class="description">
-    <p>Set a preference value</p>
+    <p>Toggles the arrow callout</p>
 </div>
 
 
@@ -454,13 +326,13 @@
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>el</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">jquery</span>
 
 
             
@@ -470,30 +342,7 @@
 
             
 
-            <td class="description last"><p>The localStorage key</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Value to set for key</p></td>
+            <td class="description last"><p>jQuery object, all .arrow if empty</p></td>
         </tr>
 
     
@@ -552,6 +401,180 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Result</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".toggleCheckmark"><span class="type-signature">(static) </span>toggleCheckmark<span class="signature">(el)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Toggles a checkmark on the clicked menu item</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">jquery</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>jQuery object, all .arrow if empty</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Result</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -573,13 +596,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Nifty.html">Nifty</a></li><li><a href="Nifty.util.html">util</a></li><li><a href="Prefs.html">Prefs</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Nifty.html">Nifty</a></li><li><a href="Nifty.callout.html">callout</a></li><li><a href="Nifty.handlers.html">handlers</a></li><li><a href="Nifty.util.html">util</a></li><li><a href="Prefs.html">Prefs</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jun 06 2019 17:04:30 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 07 2019 23:30:17 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
