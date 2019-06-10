@@ -97,6 +97,28 @@
 		"oAP": "/_config.yml",
 		"oF": 0
 		},
+	"/checkmark-dark.png": {
+		"ft": 32768,
+		"iS": 424,
+		"oA": 0,
+		"oAP": "/checkmark-dark.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/checkmark.png": {
+		"ft": 32768,
+		"iS": 410,
+		"oA": 0,
+		"oAP": "/checkmark.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/config.rb": {
 		"ft": 131072,
 		"oA": 0,
@@ -213,6 +235,16 @@
 		"oA": 0,
 		"oAP": "/dist/testMenu.html",
 		"oF": 0
+		},
+	"/docs/css/niftymenu-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/docs/css/niftymenu-min-min.css",
+		"oF": 0,
+		"oS": 3
 		},
 	"/docs/css/niftymenu.css": {
 		"aP": 1,
