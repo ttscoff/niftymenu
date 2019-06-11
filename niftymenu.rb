@@ -144,6 +144,19 @@ template =<<ENDTEMPLATE
 </head>
 <body>
 __CONTENT__
+<div id="demotut">
+  <h1>Tutorial</h1>
+  <ul>
+    <li>Hover to reveal menus</li>
+    <li>Click to lock in place</li>
+    <li>Double click to highlight</li>
+    <li>Hold shift and double click to highlight hierarchy</li>
+    <li>Option-click to add arrow</li>
+    <li>Use the help menu to (fuzzy) search menu items</li>
+    <li>See the settings menu (lower right)</li>
+  </ul>
+  <!-- <span class="hidetut">Hide</span> -->
+</div>
 <aside class="status">
   <span id="statusLocked"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" width="48"><circle cx="24" cy="30" r="2"/><path d="M24 38c-0.6 0-1-0.4-1-1v-6c0-0.6 0.4-1 1-1s1 0.4 1 1v6C25 37.6 24.6 38 24 38z"/><path d="M42 48H6V18h36V48zM8 46h32V20H8V46z"/><path d="M36 19h-2v-7c0-5.5-4.5-10-10-10S14 6.5 14 12v7h-2v-7c0-6.6 5.4-12 12-12s12 5.4 12 12V19z"/></svg>
 </span>

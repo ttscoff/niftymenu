@@ -246,11 +246,16 @@ const Nifty = (function() {
       el = $(el);
     }
 
+    if (el.get(0).tagName !== 'LI') {
+      el = el.parents('li').first();
+    }
+
     if (bool) {
       setArrow(false);
       const style = Prefs.get('arrowStyle') || 'arrow';
+      const direction = el.find('ul').length ? 'left' : 'right';
       $('.clicked').removeClass('clicked');
-      el.addClass('arrow arrow-'+style+' clicked').append('<b><i></i></b>');
+      el.addClass('arrow arrow-'+style+' clicked '+direction).append('<b><i></i></b>');
       el.parents('li').addClass('clicked');
     } else {
       el.removeClass('arrow arrow-arrow arrow-circle').find('b').remove();
@@ -394,8 +399,15 @@ const Nifty = (function() {
           $this.parents('li').addClass('clicked');
           $this.addClass('clicked last');
         } else {
-          $('.clicked').removeClass('clicked');
           $('.last').removeClass('last');
+          if ($this.parents('.clicked').length) {
+            $this.removeClass('clicked');
+            $this.siblings('.clicked').removeClass('clicked');
+            $this.parents('.clicked').first().addClass('last');
+          } else {
+            $('.clicked').removeClass('clicked');
+          }
+
           setArrow(false);
           updateStatus();
         }
@@ -413,6 +425,9 @@ const Nifty = (function() {
 
       if (e.type === 'dblclick') {
         $this.addClass('callout');
+        if (e.shiftKey) {
+          $this.parents('.clicked').addClass('callout');
+        }
       }
     }
     updateStatus();
@@ -716,9 +731,15 @@ $(function() {
 
   $('.helpsearch').on('click', Nifty.util.focusSearch);
 
-  $('.helpsearch').on('blur', function() {
+  $('.helpsearch').on('blur', () => {
     $('.persist').removeClass('persist');
   });
+
+  // $('.hidetut').on('click', (e) => {
+  //   e.preventDefault();
+  //   $('#demotut').hide();
+  //   return false;
+  // });
 
   // bind some keys
 

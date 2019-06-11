@@ -75,7 +75,7 @@ Hovering will open up submenus, but once you click an item the submenu will stay
 
 ### Add Callouts
 
-If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it.
+If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it. Shift-double-click to highlight the entire hierarchy of clicks to that menu item.
 
 You can add an arrow to the right of the selected item by Option-clicking it. You can also toggle the standard OS checkmark on the left of the item using Command-click. The arrow style (circle or arrow) can be toggled using the preference controls.
 

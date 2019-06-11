@@ -81,14 +81,13 @@ body {
         color: $color-foreground-inverted;
 
         >ul {
+          display: block;
           color: $color-foreground;
-        }
-      }
 
-      &:hover > ul,
-      &.clicked > ul,
-      &.persist > ul {
-        display: block;
+          ul {
+            opacity: .5;
+          }
+        }
       }
 
       &:hover > ul {
@@ -112,6 +111,18 @@ body {
     list-style-type: none;
     margin-left: 0;
     padding: 4px 0 .3rem;
+
+
+    li.clicked,
+    li.persist {
+      >ul {
+        opacity: 1!important;
+      }
+    }
+
+    &:hover {
+      opacity: 1!important;
+    }
   }
 
   li {
@@ -256,6 +267,14 @@ strong {
   .dark & {
     background: $dark-color-callout;
   }
+}
+
+.left.arrow-arrow b {
+  transform: rotate(180deg) translateX(358px) translateY(-10px);
+}
+
+.left.arrow-circle b {
+  transform: rotate(180deg) translateX(349px) translateY(-3px);
 }
 
 .arrow-arrow b {
@@ -420,7 +439,7 @@ body.dark {
 // controls
 
 .controls {
-  background-color: transparentize($color-foreground, .75);
+  background-color: transparentize($color-foreground, .5);
   border-radius: 5px 0 0;
   bottom: 15px;
   color: $color-foreground-inverted;
@@ -432,7 +451,7 @@ body.dark {
   width: 147px;
 
   &::before {
-    background: transparentize($color-foreground, .75);
+    background: transparentize($color-foreground, .5);
     border-radius: 9px 0 0 9px;
     content: '\2699';
     display: block;
@@ -534,6 +553,69 @@ body.expose {
   &.dark {
     >ul >li {
       background: none;
+    }
+  }
+}
+
+#demotut {
+  display: none;
+}
+
+.demo #demotut {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 480px;
+  background: transparentize($color-foreground,.7);
+  color: transparentize($color-foreground-inverted,.3);
+  padding: 20px 40px;
+  box-sizing: border-box;
+  border-radius: 0 10px 0 0;
+  border-top: 1px solid transparentize($color-foreground-inverted,.3);
+  border-right: 1px solid transparentize($color-foreground-inverted,.3);
+  left: 0;
+  bottom: 0;
+  font-size: 18px;
+  font-weight: 300;
+  opacity: .5;
+
+  h1 {
+    font-weight: 600;
+    margin-bottom: .5em;
+    text-align: center;
+  }
+
+  .hidetut {
+    cursor: pointer;
+    display: block;
+    margin: 1em auto 0;
+    width: 150px;
+    height: 1.5em;
+    text-align: center;
+    border: 1px solid transparentize($color-foreground-inverted,.75);
+    line-height: 1.5;
+    border-radius: 8px;
+    transition: background .1s linear;
+
+    &:hover {
+      background: transparentize($color-foreground-inverted,.75);
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    line-height: 1.5;
+    margin-left: 1em;
+
+    li {
+      position: relative;
+
+      &:before {
+        content: '>';
+        position: absolute;
+        left: -1em;
+        font-weight: 600;
+      }
     }
   }
 }
