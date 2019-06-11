@@ -10,7 +10,7 @@
 
 NiftyMenu copies the entire menu hierarchy from any Mac application, turning it into an HTML playground. It's designed to make taking screenshots of menus for software documentation easier. And it does that. If that's what you need right now, that's amazing, this will be super useful. If you don't fall into that microscopic niche, it's just a neat trick that might be worth seeing...
 
-[Check out the demo][demo] to see what's up.
+[Check out the demo][demo] to see what's up. Find the latest release [in the repository][releases].
 
 ## Why did you do this. Why.
 
