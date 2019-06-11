@@ -62,3 +62,6 @@ $dark-color-callout: lighten(adjust_hue($color-callout, 85deg),10) !default;
 
 $dark-color-background-help: rgba(74, 75, 74, .95) !default;
 $dark-color-background-help-search: rgba(87, 89, 89, .95) !default;
+
+$color-status: rgba(255,255,255,.5);
+$color-status-background: rgba(0,0,0,.2);

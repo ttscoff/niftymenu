@@ -120,7 +120,9 @@
 		"q": 100
 		},
 	"/config.rb": {
-		"ft": 131072,
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
 		"oA": 0,
 		"oAP": "/config.rb",
 		"oF": 0
@@ -175,6 +177,16 @@
 		"oIPL": 0,
 		"opt": 0,
 		"q": 100
+		},
+	"/dist/images/locked.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/dist/images/locked.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"/dist/js/fuzzysort.min.js": {
 		"bF": 0,
@@ -236,411 +248,10 @@
 		"oAP": "/dist/testMenu.html",
 		"oF": 0
 		},
-	"/docs/css/niftymenu-min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/docs/css/niftymenu-min-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/docs/css/niftymenu.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/docs/css/niftymenu-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/docs/images/background.jpg": {
-		"ft": 16384,
-		"iS": 280875,
-		"jF": 0,
-		"oA": 0,
-		"oAP": "/docs/images/background.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"/docs/images/background2.jpg": {
-		"ft": 16384,
-		"iS": 2168742,
-		"jF": 0,
-		"oA": 0,
-		"oAP": "/docs/images/background2.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"/docs/images/darkbackground.jpg": {
-		"ft": 16384,
-		"iS": 2701840,
-		"jF": 0,
-		"oA": 0,
-		"oAP": "/docs/images/darkbackground.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"q": 100
-		},
-	"/docs/js/fuzzysort.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/fuzzysort.min.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/js/jquery.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/jquery.min.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/js/mousetrap.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/mousetrap.min.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/js/nifty.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/nifty.min.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Bold-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Bold-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Bold-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Bold-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Bold-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Bold-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-BoldItalic-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Italic-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Italic-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Italic-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Italic-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Italic-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Italic-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Light-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Light-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Light-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Light-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Light-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Light-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-LightItalic-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-LightItalic-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-LightItalic-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-LightItalic-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-LightItalic-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-LightItalic-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Regular-webfont.eot": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Regular-webfont.eot",
-		"oF": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Regular-webfont.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Regular-webfont.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/docs/jsapi/fonts/OpenSans-Regular-webfont.woff": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/fonts/OpenSans-Regular-webfont.woff",
-		"oF": 0
-		},
-	"/docs/jsapi/index.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/index.html",
-		"oF": 0
-		},
-	"/docs/jsapi/Nifty.callout.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/Nifty.callout.html",
-		"oF": 0
-		},
-	"/docs/jsapi/Nifty.handlers.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/Nifty.handlers.html",
-		"oF": 0
-		},
-	"/docs/jsapi/Nifty.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/Nifty.html",
-		"oF": 0
-		},
-	"/docs/jsapi/Nifty.util.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/Nifty.util.html",
-		"oF": 0
-		},
-	"/docs/jsapi/Prefs.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/Prefs.html",
-		"oF": 0
-		},
-	"/docs/jsapi/scripts/linenumber.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/linenumber.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/jsapi/scripts/prettify/Apache-License-2.0.txt": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/scripts/prettify/Apache-License-2.0.txt",
-		"oF": 0
-		},
-	"/docs/jsapi/scripts/prettify/lang-css.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/lang-css.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/jsapi/scripts/prettify/prettify.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/prettify.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/docs/jsapi/styles/jsdoc-default.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/styles/jsdoc-default-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/docs/jsapi/styles/prettify-jsdoc.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/styles/prettify-jsdoc-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/docs/jsapi/styles/prettify-tomorrow.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/docs/jsapi/styles/prettify-tomorrow-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/docs/Pages.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/Pages.html",
-		"oF": 0
-		},
-	"/docs/README.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"hM": 0,
+	"/docs": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "/docs/README.html",
-		"oF": 1,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
-	"/docs/testMenu.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/docs/testMenu.html",
+		"oAP": "/build/docs",
 		"oF": 0
 		},
 	"/get nvUltra menus.applescript": {
@@ -2870,7 +2481,7 @@
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
-	"skippedFoldersString": "log, _logs, logs, _cache, cache, .idea, /storage/framework/sessions, node_modules, /javascript/out",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, .idea, /storage/framework/sessions, node_modules, /javascript/out, /docs",
 	"sourceFolderName": "source",
 	"susyVersion": 3,
 	"tsAllowSyntheticDefaultImports": 0,

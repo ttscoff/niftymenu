@@ -344,7 +344,7 @@ const Nifty = (function() {
     if ($item) {
       clearClicks(false);
       $item.parents('li').addClass('clicked');
-      $item.addClass('clicked');
+      $item.addClass('clicked last');
 
       if (shouldScroll) {
         $field.blur();
@@ -369,41 +369,53 @@ const Nifty = (function() {
 
     let $this = $(e.target);
 
-    if (e.metaKey) {
-      toggleCheckmark($this);
-      return false;
-    } else if (e.altKey) {
-      toggleArrow($this);
+    if (e.metaKey || e.altKey) {
+      if (e.metaKey) {
+        toggleCheckmark($this);
+      } else if (e.altKey) {
+        toggleArrow($this);
+      }
+      updateStatus();
       return false;
     }
+
 
     $('li.callout').removeClass('callout');
     $('.persist').removeClass('persist');
 
     if (e.target.tagName === 'BODY') {
       $('.clicked').removeClass('clicked');
+      $('.last').removeClass('last');
       setArrow(false);
     } else {
       if ($this.hasClass('clicked')) {
-        $('.clicked').removeClass('clicked');
-        setArrow(false);
+        if ($this.find('.last').length) {
+          clearClicks();
+          $this.parents('li').addClass('clicked');
+          $this.addClass('clicked last');
+        } else {
+          $('.clicked').removeClass('clicked');
+          $('.last').removeClass('last');
+          setArrow(false);
+          updateStatus();
+        }
         return false;
       } else {
         setArrow(false);
-        setArrow(false);
         $('li.clicked').removeClass('clicked');
+        $('.last').removeClass('last');
         $this.parents('li').addClass('clicked');
         if (e.altKey) {
           setArrow(true, $this);
         }
-        $this.addClass('clicked');
+        $this.addClass('clicked last');
       }
 
       if (e.type === 'dblclick') {
         $this.addClass('callout');
       }
     }
-
+    updateStatus();
     return false;
   };
   /**
@@ -435,6 +447,24 @@ const Nifty = (function() {
     }
 
     return false;
+  };
+
+  /**
+   * Update the status bar
+   * @private
+   * @memberof   Nifty.handlers
+   * @param      {event}   e       Event
+   * @return     {boolean}  continue handling event
+   */
+  const updateStatus = () => {
+    setTimeout(() => {
+      if ($('.last').length) {
+        $('body').addClass('locked');
+      } else {
+        $('body').removeClass('locked');
+      }
+    }, 50);
+    return true;
   };
 
   /**
@@ -607,12 +637,17 @@ const Nifty = (function() {
   const clearClicks = (persist) => {
     $('li.callout').removeClass('callout');
     $('.clicked').removeClass('clicked');
+    $('.last').removeClass('last');
     setArrow(false);
     if (persist) {
       $('.persist').removeClass('persist');
     }
   };
 
+  /**
+   * Setup function, cache menu items and init preferences
+   * @memberof   Nifty
+   */
   const init = () => {
     getOrderedMenuItemTitles();
     config = Prefs.get();
@@ -635,7 +670,8 @@ const Nifty = (function() {
     handlers: {
       itemClick,
       controlsClick,
-      liveSearch
+      liveSearch,
+      updateStatus
       },
     util: {
       setDarkMode,
@@ -670,7 +706,9 @@ $(function() {
 
   // set up handlers
 
+
   $('body,li').on('click dblclick', Nifty.handlers.itemClick);
+  // $('body,li').on('mouseup', Nifty.handlers.updateStatus);
 
   $('span','.controls').on('click', Nifty.handlers.controlsClick);
 
