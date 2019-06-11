@@ -120,9 +120,7 @@
 		"q": 100
 		},
 	"/config.rb": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
+		"ft": 131072,
 		"oA": 0,
 		"oAP": "/config.rb",
 		"oF": 0
@@ -136,14 +134,6 @@
 		"oAP": "/dist/css/niftymenu-min.css",
 		"oF": 0,
 		"oS": 3
-		},
-	"/dist/Google-Chrome.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/Google-Chrome.html",
-		"oF": 0
 		},
 	"/dist/images/background.jpg": {
 		"ft": 16384,
