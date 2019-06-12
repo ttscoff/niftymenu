@@ -270,11 +270,13 @@ strong {
 }
 
 .left.arrow-arrow b {
-  transform: rotate(180deg) translateX(358px) translateY(-10px);
+  transform: rotate(180deg) translateY(-9px);
+  left: -60px;
 }
 
 .left.arrow-circle b {
-  transform: rotate(180deg) translateX(349px) translateY(-3px);
+  transform: rotate(180deg) translateY(-1px);
+  left: -53px;
 }
 
 .arrow-arrow b {
