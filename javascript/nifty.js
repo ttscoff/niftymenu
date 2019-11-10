@@ -490,7 +490,7 @@ const Nifty = (function() {
 
   /**
   * Sets the style of the callout arrow
-  * @memberof   Nifty.util
+  * @memberof   Nifty.callout
   * @param      {string}  style    'circle' or 'arrow'
   */
   const setArrowStyle = (style) => {
@@ -506,7 +506,7 @@ const Nifty = (function() {
 
   /**
    * Toggles arrow style between circle and arrow.
-   * @memberof   Nifty.util
+   * @memberof   Nifty.callout
    */
   const toggleArrowStyle = () => {
     let newStyle;
@@ -623,7 +623,7 @@ const Nifty = (function() {
 
   /**
    * reveal and focus the help search field
-   * @memberof   Nifty.util
+   * @memberof   Nifty.handlers
    *
    * @param      {event}    e       Event
    * @return     {boolean}  continue handling event
@@ -686,6 +686,7 @@ const Nifty = (function() {
       itemClick,
       controlsClick,
       liveSearch,
+      focusSearch,
       updateStatus
       },
     util: {
@@ -695,7 +696,6 @@ const Nifty = (function() {
       toggleExpose,
       setBG,
       toggleBG,
-      focusSearch,
       clearClicks,
       }
   };
@@ -729,7 +729,7 @@ $(function() {
 
   $('.helpsearch input').on('keydown', Nifty.handlers.liveSearch);
 
-  $('.helpsearch').on('click', Nifty.util.focusSearch);
+  $('.helpsearch').on('click', Nifty.handlers.focusSearch);
 
   $('.helpsearch').on('blur', () => {
     $('.persist').removeClass('persist');
@@ -743,7 +743,7 @@ $(function() {
 
   // bind some keys
 
-  Mousetrap.bind('shift+/', Nifty.util.focusSearch);
+  Mousetrap.bind('shift+/', Nifty.handlers.focusSearch);
   Mousetrap.bind('shift+d', Nifty.util.toggleDarkMode);
   Mousetrap.bind('shift+e', Nifty.util.toggleExpose);
 });
