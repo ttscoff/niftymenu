@@ -50,7 +50,7 @@ You can play with [a hosted demo from the above command][demo].
 
 Load the page in any browser. The menus work exactly like what you're used to, expanding on hover as you navigate. But when you click an item, you lock the expanded menus in position. Clicking again (or clicking anywhere else) releases them.
 
-Add callouts by double clicking to highlight an item, or hold Option and click to add an arrow. AppleScript didn't provide NiftyMenu with any indications about whether the element had a checkmark originally, so if you need to add those in for your screenshot, use Command-click to toggle them.
+Add callouts by double clicking to highlight an item, or hold Option and click to add an arrow. If you option-click on a keyboard shortcut instead of the menu title, it will add a callout to the shortcut instead of an arrow. AppleScript didn't provide NiftyMenu with any indications about whether the element had a checkmark originally, so if you need to add those in for your screenshot, use Command-click to toggle them.
 
 There are settings available in a slide-in menu in the lower right.
 
