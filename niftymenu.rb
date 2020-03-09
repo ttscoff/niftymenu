@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'shellwords'
 
-DEFAULT_APP = "nvUltra Beta"
+DEFAULT_APP = "Marked 2"
 
 $appname = DEFAULT_APP
 if ARGV[0] && ARGV[0].length > 1

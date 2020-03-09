@@ -288,15 +288,25 @@ const Nifty = (function() {
   };
 
   /**
-   * Toggles a checkmark on the clicked menu item
+   * Toggles a checkmark on the clicked menu item.
    * @memberof   Nifty.callout
-   *
-   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @param      {jquery}   el      jQuery object, all .arrow if empty. If el
+   *                                is a string it will perform a fuzzy search
+   *                                for a matching element
    * @return     {boolean}  Result
    */
   const toggleCheckmark = (el) => {
     if (!(el instanceof jQuery)) {
-      el = $(el);
+      if (typeof el === 'string') {
+        let match = Nifty.fuzzyFind(el);
+        if (match) {
+          el = match;
+        } else {
+          return false;
+        }
+      } else {
+        el = $(el);
+      }
     }
 
     if (el.hasClass('checked')) {
@@ -304,6 +314,7 @@ const Nifty = (function() {
     } else {
       el.addClass('checked');
     }
+    return true;
   };
 
   /**
