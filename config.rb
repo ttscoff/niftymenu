@@ -1,5 +1,5 @@
 # Require any additional compass plugins here.
-
+sass_options = { :cache_location => '/tmp/sass_cache' }
 # Set this to the root of your project when deployed:
 http_path = "dist"
 css_dir = "dist/css"

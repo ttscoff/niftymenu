@@ -113,8 +113,8 @@ body {
     padding: 4px 0 .3rem;
 
 
-    li.clicked,
-    li.persist {
+    .clicked,
+    .persist {
       >ul {
         opacity: 1!important;
       }
@@ -128,6 +128,30 @@ body {
   li {
     position: relative;
     white-space: nowrap;
+
+    .shortcut {
+      position: absolute;
+      right: 8px;
+
+      &.shortcut-callout {
+        background: $color-shortcut-callout;
+        border: solid 2px $color-shortcut-callout-border;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px $color-drop-shadow;
+        box-sizing: border-box;
+        color: $color-foreground-inverted;
+        left: 90%;
+        line-height: 1;
+        padding: 5px;
+        right: auto;
+        text-align: center;
+        text-indent: 0;
+        top: -.5em;
+        transform: scale(1.5);
+        width: auto;
+        z-index: 1;
+      }
+    }
   }
 }
 
@@ -152,7 +176,7 @@ body>ul ul {
   li {
     box-sizing: border-box;
     text-indent: 1.6em;
-    margin: 0 1.2em 0 0;
+    margin: 0 5.2em 0 0;
     width: 100%;
     line-height: 1.4rem;
 
@@ -173,10 +197,11 @@ body>ul ul {
     }
   }
 }
-li.callout {
+
+.callout {
+  box-shadow: 0 0 8px $color-callout;
   outline: 2px solid $color-callout;
   outline-offset: -1px;
-  box-shadow: 0 0 8px $color-callout;
 }
 
 
@@ -246,73 +271,81 @@ strong {
   }
 }
 
-.arrow-circle b {
-  background: $color-callout;
-  border-radius: 50px;
-  display: block;
-  height: 46px;
-  position: absolute;
-  right: -55px;
-  top: -13px;
-  width: 46px;
-
-  i {
-    border: solid #fff;
-    border-width: 6px 0 0 6px;
-    display: inline-block;
-    padding: 5px;
-    transform: rotate(-45deg) translate(-15px, 5px);
-  }
-
-  .dark & {
-    background: $dark-color-callout;
-  }
-}
-
-.left.arrow-arrow b {
-  transform: rotate(180deg) translateY(-9px);
-  left: -60px;
-}
-
-.left.arrow-circle b {
-  transform: rotate(180deg) translateY(-1px);
-  left: -53px;
-}
-
-.arrow-arrow b {
-  background:$color-callout;
-  border-radius: 1px;
-  display: block;
-  height: 7px;
-  position: absolute;
-  right: -59px;
-  top: 0;
-  transform: rotate(-14deg);
-  width: 46px;
-
-  i {
-    border-bottom: 10px solid transparent;
-    border-left: 0;
-    border-right: 16px solid $color-callout;
-    border-top: 10px solid transparent;
+.arrow-circle {
+  b {
+    background: $color-callout;
+    border-radius: 50px;
     display: block;
-    left: -9px;
-    padding: 0px;
+    height: 46px;
     position: absolute;
-    top: -6px;
-  }
-
-  .dark & {
-    background:$dark-color-callout;
+    right: -55px;
+    top: -13px;
+    width: 46px;
 
     i {
-      border-right-color: $dark-color-callout;
+      border: solid #fff;
+      border-width: 6px 0 0 6px;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(-45deg) translate(-15px, 5px);
+    }
+
+    .dark & {
+      background: $dark-color-callout;
     }
   }
 }
 
-li.checked {
-  &:before {
+.left.arrow-arrow {
+  b {
+    left: -60px;
+    transform: rotate(180deg) translateY(-9px);
+  }
+}
+
+.left.arrow-circle {
+  b {
+    left: -53px;
+    transform: rotate(180deg) translateY(-1px);
+  }
+}
+
+.arrow-arrow {
+  b {
+    background: $color-callout;
+    border-radius: 1px;
+    display: block;
+    height: 7px;
+    position: absolute;
+    right: -59px;
+    top: 0;
+    transform: rotate(-14deg);
+    width: 46px;
+
+    i {
+      border-bottom: 10px solid transparent;
+      border-left: 0;
+      border-right: 16px solid $color-callout;
+      border-top: 10px solid transparent;
+      display: block;
+      left: -9px;
+      padding: 0;
+      position: absolute;
+      top: -6px;
+    }
+
+    .dark & {
+      background:$dark-color-callout;
+
+      i {
+        border-right-color: $dark-color-callout;
+      }
+    }
+  }
+}
+
+.checked {
+  &::before {
     background-image: $checkmark;
     background-size: contain;
     content: ' ';
@@ -354,6 +387,7 @@ body.dark {
           color: $dark-color-foreground;
         }
       }
+
       > ul {
         background: transparentize($dark-color-background-submenu,.1);
       }
@@ -431,6 +465,7 @@ body.dark {
     }
   }
 }
+
 .locked {
   #statusLocked {
     opacity: 1;

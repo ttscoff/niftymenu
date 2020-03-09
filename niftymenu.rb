@@ -8,6 +8,91 @@ if ARGV[0] && ARGV[0].length > 1
   $appname = ARGV.join(' ')
 end
 
+def replace_with_entity(char)
+  case char.downcase
+  when /apple/
+    "&#63743;"
+  when /(comm(and)?|cmd|clover)/
+    "&#8984;"
+  when /(cont(rol)?|ctl|ctrl)/
+    "&#8963;"
+  when /(opt(ion)?|alt)/
+    "&#8997;"
+  when /shift/
+    "&#8679;"
+  when /tab/
+    "&#8677;"
+  when /caps(lock)?/
+    "&#8682;"
+  when /eject/
+    "&#9167;"
+  when /return/
+    "&#9166;"
+  when /enter/
+    "&#8996;"
+  when /(del(ete)?|back(space)?)/
+    "&#9003;"
+  when /fwddel(ete)?/
+    "&#8998;"
+  when /(esc(ape)?)/
+    "&#9099;"
+  when /right/
+    "&#8594;"
+  when /left/
+    "&#8592;"
+  when /up/
+    "&#8593;"
+  when /down/
+    "&#8595;"
+  when /pgup/
+    "&#8670;"
+  when /pgdn/
+    "&#8671;"
+  when /home/
+    "&#8598;"
+  when /end/
+    "&#8600;"
+  when /clear/
+    "&#8999;"
+  when /gear/
+    "&#9881;"
+  else
+    char
+  end
+end
+
+def render_mods(string)
+  # Replace {{insertions}}
+  string.gsub(/\{(.*?)\}/) {|mtch|
+    m = Regexp.last_match
+    replace_with_entity(m[1].strip)
+  }
+end
+
+def bitwise_to_html(int)
+  mod_string = case int
+  when 0
+    "{cmd}"
+  when 1
+    "{shift}{cmd}"
+  when 2
+    "{opt}{cmd}"
+  when 3
+    "{opt}{shift}{cmd}"
+  when 4
+    "{ctrl}{cmd}"
+  when 5
+    "{ctrl}{shift}{cmd}"
+  when 12
+    "{ctrl}"
+  when 15
+    "{ctrl}{opt}{shift}"
+  else
+    int.to_s
+  end
+  render_mods(mod_string)
+end
+
 def get_menus
   scpt = DATA.read.force_encoding('utf-8')
 
@@ -23,6 +108,7 @@ def menus_to_markdown(input)
   # Replace entire Apple menu with just Apple logo
   input.sub!(/^menu bar 1 of application process.*?\tmenu bar item "Apple".*?(?=\tmenu bar item)/mi, "- &#63743;\n" )
   # input.sub!(/(?mi)menu bar 1 of application process "[\s\S]*?"[\s\S]*(?=\tmenu bar item)/,"- &#63743;\n")
+
   # replace Help Search Item
   input.gsub!( /(?mi)(?<=menu "Help"\n)(\s+)[\s\S]*?(\s+)(?=menu item)/, '\1- <span class="helpsearch"><label>Search <input type="text"></label></span>\2' )
   # reduce indent
@@ -35,6 +121,14 @@ def menus_to_markdown(input)
   input.gsub!(/\\"/,"''")
   # replace divider items
   input.gsub!(/menu item \d+/,'- <span class="divider"></span>')
+
+  # Extract keyboard shortcuts
+  input.gsub!(/>>(?<mod>\d+)\|(?<key>\S)<< menu item "(?<name>.*?)"/) {|match|
+    m = Regexp.last_match
+    key_string = bitwise_to_html(m['mod'].to_i) + m['key']
+
+    %Q{menu item "<span class='menuitem'>#{m['name']}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
+  }
   input.gsub!(/menu bar item ".*?"/,'')
   # format menu items
   input.gsub!(/menu item "(.*?)"/,'- \1')
@@ -257,6 +351,25 @@ on listToText(entireContents)
   end if
   set AppleScript's text item delimiters to "\"System Events\", "
   set stuff to stuff's text items
+  set newStuff to {}
+  repeat with _item in stuff
+    if _item does not contain "of menu \"Apple\"" and _item does not contain "of menu \"Open Recent\"" then
+      set AppleScript's text item delimiters to "of application process"
+      set anItem to text item 1 of _item
+      try
+        set _char to run script "tell application \"System Events\" to get value of attribute \"AXMenuItemCmdChar\" of " & anItem & " of application process \"_APPNAME_\""
+        if _char is not missing value then
+          set _mod to run script "tell application \"System Events\" to get value of attribute \"AXMenuItemCmdModifiers\" of " & anItem & " of application process \"_APPNAME_\""
+          set end of newStuff to ">>" & (_mod as string) & "|" & (_char as string) & "<< " & (_item as string)
+        else
+          set end of newStuff to (_item as string)
+        end if
+      on error
+        set end of newStuff to (_item as string)
+      end try
+    end if
+  end repeat
+  set stuff to newStuff
   set AppleScript's text item delimiters to " of "
   set beginning of stuff to (text from text item 2 to -1 of item 1 of stuff) & "\"System Events\""
   set tabs to tab & tab & tab & tab & tab & tab & tab & tab

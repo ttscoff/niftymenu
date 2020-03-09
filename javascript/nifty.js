@@ -252,6 +252,7 @@ const Nifty = (function() {
 
     if (bool) {
       setArrow(false);
+      setShortcut(false);
       const style = Prefs.get('arrowStyle') || 'arrow';
       const direction = el.find('ul').length ? 'left' : 'right';
       $('.clicked').removeClass('clicked');
@@ -283,7 +284,69 @@ const Nifty = (function() {
       setArrow(false, el);
     } else {
       setArrow(false);
+      setShortcut(false);
       setArrow(true, el);
+    }
+  };
+
+  /**
+   * Sets the shortcut callout
+   * @memberof   Nifty.callout
+   *
+   * @param      {boolean}  bool    Add or remove shortcut callout
+   * @param      {element}   el     DOM element or jQuery object containing shortcut,
+   *                                applies to all .shortcut-callout if empty
+   * @return     {boolean}  Result
+   */
+  const setShortcut = (bool, el) => {
+    if (!el && !bool) {
+      $('.shortcut-callout').each(function(i,n) {
+        setShortcut(false,$(n));
+      });
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.get(0).tagName !== 'LI') {
+      el = el.parents('li').first();
+    }
+
+    if (bool) {
+      setShortcut(false);
+      setArrow(false);
+      $('.clicked').removeClass('clicked');
+      el.addClass('clicked').find('.shortcut').addClass('shortcut-callout');
+      el.parents('li').addClass('clicked');
+    } else {
+      el.find('.shortcut').removeClass('shortcut-callout');
+    }
+  };
+
+  /**
+   * Toggles the shortcut callout
+   * @memberof   Nifty.callout
+   *
+   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const toggleShortcut = (el) => {
+    if (!el) {
+      setShortcut(false);
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.has('.shortcut-callout').length) {
+      setShortcut(false, el);
+    } else {
+      setShortcut(false);
+      setShortcut(true, el);
     }
   };
 
@@ -383,26 +446,41 @@ const Nifty = (function() {
   const itemClick = (e) => {
     e.preventDefault();
 
-    let $this = $(e.target);
+    let $this,
+        shortcutClicked = false;
+
+    if (e.target.tagName === 'SPAN') {
+      $this = $(e.target).closest('li');
+      if ($(e.target).hasClass('shortcut')) {
+        shortcutClicked = true;
+      }
+    } else {
+      $this = $(e.target);
+    }
 
     if (e.metaKey || e.altKey) {
       if (e.metaKey) {
         toggleCheckmark($this);
       } else if (e.altKey) {
-        toggleArrow($this);
+        if (shortcutClicked) {
+          toggleShortcut($this);
+        } else {
+          toggleArrow($this);
+        }
       }
       updateStatus();
       return false;
     }
 
 
-    $('li.callout').removeClass('callout');
+    $('.callout').removeClass('callout');
     $('.persist').removeClass('persist');
 
     if (e.target.tagName === 'BODY') {
       $('.clicked').removeClass('clicked');
       $('.last').removeClass('last');
       setArrow(false);
+      setShortcut(false);
     } else {
       if ($this.hasClass('clicked')) {
         if ($this.find('.last').length) {
@@ -420,11 +498,13 @@ const Nifty = (function() {
           }
 
           setArrow(false);
+          setShortcut(false);
           updateStatus();
         }
         return false;
       } else {
         setArrow(false);
+        setShortcut(false);
         $('li.clicked').removeClass('clicked');
         $('.last').removeClass('last');
         $this.parents('li').addClass('clicked');
@@ -665,6 +745,7 @@ const Nifty = (function() {
     $('.clicked').removeClass('clicked');
     $('.last').removeClass('last');
     setArrow(false);
+    setShortcut(false);
     if (persist) {
       $('.persist').removeClass('persist');
     }
@@ -690,7 +771,9 @@ const Nifty = (function() {
       setArrowStyle,
       toggleArrowStyle,
       toggleArrow,
-      toggleCheckmark
+      toggleCheckmark,
+      setShortcut,
+      toggleShortcut
     },
     // handlers
     handlers: {
