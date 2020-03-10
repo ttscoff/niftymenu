@@ -1,5 +1,6 @@
 /**
  * @namespace Prefs
+ * @private
  * @description Utility methods for storing/retrieving preferences
  */
 const Prefs = (function() {
@@ -9,9 +10,10 @@ const Prefs = (function() {
 
   const defaults = {
     'arrowStyle' : 'arrow',
-    'bgimage' : 1,
+    'bgImage' : 1,
     'expose' : 0,
-    'darkmode' : 0
+    'darkMode' : 0,
+    'wallpaper' : 'default'
   };
 
   let config = null;
@@ -41,6 +43,20 @@ const Prefs = (function() {
    */
   const getBool = (key) => {
     let value = get(key);
+    return truthy(value);
+  };
+
+
+  /**
+   * Determine truthiness of value
+   *
+   * @param      {any}      value   The value: boolean, integer, or string
+   * @return     {boolean}  determined value
+   */
+  const truthy = (value) => {
+    if (typeof value === 'boolean') {
+      return value;
+    }
     if (Number(value)) {
       return Boolean(Number(value));
     } else {
@@ -92,7 +108,8 @@ const Prefs = (function() {
     config,
     set,
     get,
-    getBool
+    getBool,
+    truthy
   };
 
   return Prefs;
@@ -100,12 +117,47 @@ const Prefs = (function() {
 
 /**
  * @namespace Nifty
+ * @private
  * @description Automation API and event handlers
  */
 const Nifty = (function() {
   'use strict';
 
   let config;
+
+  const itemForPath = (path) => {
+    return $('li').filter(function(i,n) {
+      if ($(n).data('path') === path) {
+        return true;
+      }
+      return false;
+    }).first();
+  };
+
+  /**
+   * Case insensitive string match for menu item search. Use / to separate
+   * heirarchical menu search items
+   * @memberof   Nifty
+   * @example  Nifty.find('insert/toc/section')
+   *
+   * @param      {string}  query   The string to search for
+   * @return     {jQuery}  single jQuery element or null
+   */
+  const find = (query) => {
+    if (/^\s*$/.test(query)) {
+      return null;
+    }
+
+    query = query.replace(/>/g,"/");
+
+    let titles = getOrderedMenuItemTitles();
+    let results = fuzzysort.go(query, titles);
+    if (results.length) {
+      return itemForPath(results[0].target);
+    } else {
+      return null;
+    }
+  };
 
   /**
    * search for a menu item by string and click
@@ -126,7 +178,7 @@ const Nifty = (function() {
       Nifty.util.clearClicks(true);
       return;
     }
-    let match = Nifty.fuzzyFind(str);
+    let match = Nifty.find(str);
     if (match) {
       match.click();
       match.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
@@ -153,44 +205,10 @@ const Nifty = (function() {
       Nifty.util.clearClicks(true);
       return;
     }
-    let match = Nifty.fuzzyFind(str);
+    let match = Nifty.find(str);
     if (match) {
       match.dblclick();
       match.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
-    }
-  };
-
-  const itemForPath = (path) => {
-    return $('li').filter(function(i,n) {
-      if ($(n).data('path') === path) {
-        return true;
-      }
-      return false;
-    }).first();
-  };
-
-  /**
-   * Case insensitive string match for menu item search. Use / to separate
-   * heirarchical menu search items
-   * @memberof   Nifty
-   * @example  Nifty.fuzzyFind('insert/toc/section')
-   *
-   * @param      {string}  query   The string to search for
-   * @return     {jQuery}  single jQuery element or null
-   */
-  const fuzzyFind = (query) => {
-    if (/^\s*$/.test(query)) {
-      return null;
-    }
-
-    query = query.replace(/>/g,"/");
-
-    let titles = getOrderedMenuItemTitles();
-    let results = fuzzysort.go(query, titles);
-    if (results.length) {
-      return itemForPath(results[0].target);
-    } else {
-      return null;
     }
   };
 
@@ -222,6 +240,7 @@ const Nifty = (function() {
 
   /**
    * @namespace Nifty.callout
+   * @private
    * @memberof  Nifty
    * @description Methods for adding callouts to items
    */
@@ -361,7 +380,7 @@ const Nifty = (function() {
   const toggleCheckmark = (el) => {
     if (!(el instanceof jQuery)) {
       if (typeof el === 'string') {
-        let match = Nifty.fuzzyFind(el);
+        let match = Nifty.find(el);
         if (match) {
           el = match;
         } else {
@@ -382,6 +401,7 @@ const Nifty = (function() {
 
   /**
    * @namespace Nifty.handlers
+   * @private
    * @memberof  Nifty
    * @description Event handlers
    */
@@ -418,7 +438,7 @@ const Nifty = (function() {
       return true;
     }
 
-    let $item = fuzzyFind(string);
+    let $item = find(string);
 
     if ($item) {
       clearClicks(false);
@@ -545,6 +565,12 @@ const Nifty = (function() {
       case 'backgroundToggle':
         toggleBG();
         break;
+      case 'chooseWallpaper':
+        chooseWallpaper();
+        break;
+      case 'resetWallpaper':
+        setWallpaper(false);
+        break;
       case 'arrowStyle':
         toggleArrowStyle();
         break;
@@ -575,6 +601,7 @@ const Nifty = (function() {
 
   /**
    * @namespace Nifty.util
+   * @private
    * @memberof  Nifty
    * @description DOM/interface utilities
    */
@@ -613,6 +640,53 @@ const Nifty = (function() {
   };
 
   /**
+   * Allow entry of a url to load as wallpaper
+   * @private
+   */
+  const chooseWallpaper = () => {
+    var url = prompt("Enter URL for background image");
+    Prefs.set('wallpaper', url);
+    loadWallpaper();
+  };
+
+  /**
+   * Sets the wallpaper image to use when bgImage is enabled
+   * @memberof   Nifty.util
+   * @param      {string}  url    URL for background image
+   */
+  const setWallpaper = (url) => {
+    Prefs.set('wallpaper', url);
+    loadWallpaper();
+  };
+
+  const loadWallpaper = () => {
+    let url = Prefs.get('wallpaper');
+    if (!url || url === 'default') {
+      if (Prefs.getBool('darkMode')) {
+        url = 'images/darkbackground.jpg';
+      } else {
+        url = 'images/background.jpg';
+      }
+    }
+    addStyleRule('body.bgimage {background-image: url('+url+')}');
+  };
+
+  /**
+   * Add a style rule to main stylesheet
+   * @private
+   * @memberof Nifty.util
+   */
+  const addStyleRule = (rule) => {
+    var sheet = (function() {
+      var style = document.createElement("style");
+      style.appendChild(document.createTextNode(""));
+      document.head.appendChild(style);
+      return style.sheet;
+    })();
+    sheet.insertRule(rule);
+  };
+
+  /**
    * Sets the background image on or off. Use the boolean paramater to
    * determine which.
    * @memberof   Nifty.util
@@ -623,92 +697,84 @@ const Nifty = (function() {
     let $body = $('body');
     if (bool) {
       $body.addClass('bgimage');
+      Prefs.set('bgImage',1);
+      loadWallpaper();
     } else {
       $body.removeClass('bgimage');
+      Prefs.set('bgImage',0);
     }
   };
 
   /**
    * Toggle background image
    * @memberof   Nifty.util
-   *
-   * @return     {null}  Nothing
    */
   const toggleBG = () => {
     let $body = $('body');
     if ($body.hasClass('bgimage')) {
-      $body.removeClass('bgimage');
-      Prefs.set('bgimage',0);
+      setBG(false);
     } else {
-      $body.addClass('bgimage');
-      Prefs.set('bgimage',1);
-    }
-  };
-
-  /**
-   * Sets Dark Mode on or off. Use the boolean paramater to determine which.
-   * @memberof   Nifty.util
-   *
-   * @param      {boolean}  bool    true turns Dark Mode on, false for off
-   */
-  const setDarkMode = (bool) => {
-    let $body = $('body');
-    if (bool) {
-      $body.addClass('dark');
-    } else {
-      $body.removeClass('dark');
+      setBG(true);
     }
   };
 
   /**
    * Toggle Dark Mode
    * @memberof   Nifty.util
-   *
-   * @return     {null}  Nothing
    */
   const toggleDarkMode = () => {
     let $body = $('body');
     let test = $('body').hasClass('dark');
 
     if (test) {
-      $body.removeClass('dark');
-      Prefs.set('darkmode',0);
+      setDarkMode(false);
     } else {
-      $body.addClass('dark');
-      Prefs.set('darkmode',1);
+      setDarkMode(true);
     }
   };
 
   /**
-   * Force Expose on or off. Use the boolean paramater to
-   * determine which.
+   * Set Dark Mode
    * @memberof   Nifty.util
-   * @param      {boolean}  bool    true turns Expose on,
-   *                                false for off
+   * @param {boolean} [bool=true] Dark Mode on or off
+   */
+  const setDarkMode = (bool=true) => {
+    let $body = $('body');
+    if (!bool) {
+      $body.removeClass('dark');
+      Prefs.set('darkMode',0);
+    } else {
+      $body.addClass('dark');
+      Prefs.set('darkMode',1);
+    }
+  };
+
+  /**
+   * Force Expose on or off. Use the boolean paramater to determine which.
+   * @memberof   Nifty.util
+   * @param      {boolean}  [bool=true]    true turns Expose on, false for off
    */
   const setExpose = (bool) => {
     let $body = $('body');
     if (bool) {
       $body.addClass('expose');
+      Prefs.set('expose',1);
     } else {
       $body.removeClass('expose');
+      Prefs.set('expose',0);
     }
   };
 
   /**
    * Toggle Expose
    * @memberof   Nifty.util
-   *
-   * @return     {null}  Nothing
    */
   const toggleExpose = () => {
     let $body = $('body');
     if ($body.hasClass('expose')) {
-      $body.removeClass('expose');
-      Prefs.set('expose',0);
+      setExpose(false);
     } else {
-      $body.addClass('expose');
-      Prefs.set('expose',1);
+      setExpose(true);
     }
   };
 
@@ -765,7 +831,7 @@ const Nifty = (function() {
     init,
     click,
     dblClick,
-    fuzzyFind,
+    find,
     callout: {
       setArrow,
       setArrowStyle,
@@ -789,6 +855,8 @@ const Nifty = (function() {
       setExpose,
       toggleExpose,
       setBG,
+      setWallpaper,
+      loadWallpaper,
       toggleBG,
       clearClicks,
       }
@@ -797,19 +865,196 @@ const Nifty = (function() {
   return Nifty;
 }());
 
+/**
+ * @namespace NiftyAPI
+ * @description Chainable automation API. All chains that affect a menu item
+ * should start with a .find('search string') call.
+ *
+ * @example NiftyAPI.find('file/save').arrow(); // locate File->Save menu item and add an arrow callout
+ */
+const NiftyAPI = {
+  targetEl: null,
+
+  /**
+   * Set multiple display options via a configuration object
+   * @param      {Object}  options  object containing settings
+   * @example NiftyAPI.config({
+   *   'arrowStyle': 'arrow',
+   *   'bgImage': true,
+   *   'expose': false,
+   *   'darkMode': false,
+   *   'wallpaper': 'default'
+   * })
+   */
+  config: function(options={}) {
+    let defaults = Prefs.config;
+
+    let config = $.extend({}, defaults, options);
+
+    Nifty.util.setDarkMode(Prefs.truthy(config.darkMode));
+    Nifty.util.setExpose(Prefs.truthy(config.expose));
+    Nifty.util.setBG(Prefs.truthy(config.bgImage));
+    Nifty.util.setWallpaper(config.wallpaper);
+    Nifty.callout.setArrowStyle(config.arrowStyle);
+    return this;
+  },
+
+  /**
+   * Case insensitive string match for menu item search. Use / to separate
+   * heirarchical menu search items. This function can be chained for use with
+   * other functions.
+   * @memberof   NiftyAPI
+   * @example
+   *   NiftyAPI.find('insert/toc/section')
+   * @example
+   *   NiftyAPI.find('insert/toc/section').arrow()
+   *
+   * @param      {string}  str     The string to search for
+   * @return     {jQuery}  single jQuery element or null
+   */
+  find: function(str) {
+    this.targetEl = Nifty.find(str);
+    return this;
+  },
+
+  /**
+   * Clear all clicks, callouts, and arrows
+   * @memberof   NiftyAPI
+   * @example
+   *  NiftyAPI.clear();
+   */
+  clear: function() {
+    Nifty.util.clearClicks(true);
+    return this;
+  },
+
+  /**
+   * Lock menu item. Removes any existing locks.
+   * @memberof   NiftyAPI
+   * @example
+   *  NiftyAPI.find('file/save').lock();
+   */
+  lock: function() {
+    Nifty.util.clearClicks(true);
+    this.targetEl.click();
+    this.targetEl.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
+    return this;
+  },
+
+  /**
+   * Add callout to menu item
+   * @memberof   NiftyAPI
+   *
+   * @param      {boolean}  [bool=true]      Callout on or off (default: true)
+   * @param      {boolean}  [recurse=false]  Call out parent items (default:
+   *                                         false)
+   * @example
+   *  NiftyAPI.find('file/open').callout();
+   * @example
+   *  NiftyAPI.find('file/open').callout(false); // remove callout
+   */
+  callout: function(bool, recurse=false) {
+    if (bool === undefined) {
+      bool = true;
+    }
+
+    Nifty.util.clearClicks(true);
+    this.targetEl.dblclick();
+    this.targetEl.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
+
+    if (recurse) {
+      this.targetEl.parents('.clicked').addClass('callout');
+    }
+    return this;
+  },
+
+  /**
+   * Set callout arrow for menu item
+   * @memberof   NiftyAPI
+   *
+   * @param      {boolean}  [bool=true]  Arrow on or off
+   * @example
+   *  NiftyAPI.find('view/merge').arrow();
+   * @example
+   *  NiftyAPI.find('view/merge').arrow(false); // remove arrow
+   */
+  arrow: function(bool) {
+    if (bool === undefined) {
+      bool = true;
+    }
+    Nifty.callout.setArrow(bool, this.targetEl);
+    return this;
+  },
+
+  /**
+   * Set shortcut callout for menu item
+   * @memberof   NiftyAPI
+   *
+   * @param      {boolean}  [bool=true]  Shortcut callout on or off
+   * @example
+   *  NiftyAPI.find('file/save').shortcut();
+   * @example
+   *  NiftyAPI.find('file/save').shortcut(false); // remove arrow
+   */
+  shortcut: function(bool) {
+    if (bool === undefined) {
+      bool = true;
+    }
+    Nifty.callout.setShortcut(bool, this.targetEl);
+    return this;
+  },
+
+  /**
+   * Turn Dark Mode on or off
+   * @memberof   NiftyAPI
+   *
+   * @param      {boolean}  [bool=true]  Dark Mode on or off
+   * @example
+   *  NiftyAPI.darkMode() // turn dark mode on
+   * @example
+   *  NiftyAPI.darkMode(false) // turn dark mode off
+   */
+  darkMode: function(bool) {
+    if (bool === undefined) {
+      bool = true;
+    }
+    Nifty.util.setDarkMode(bool);
+    return this;
+  },
+
+  /**
+   * Turn Expose on or off
+   * @memberof   NiftyAPI
+   *
+   * @param      {boolean}  [bool=true]  Expose on or off
+   * @example
+   *  NiftyAPI.expose(); // turn expose on
+   * @example
+   *  NiftyAPI.expose(false); // turn expose off
+   */
+  expose: function(bool) {
+    if (bool === undefined) {
+      bool = true;
+    }
+    Nifty.util.setExpose(bool);
+    return this;
+  }
+};
+
 $(function() {
   Nifty.init();
 
   // restore preferences
 
-  if (Prefs.getBool('darkmode')) {
-    Nifty.util.toggleDarkMode();
+  if (Prefs.getBool('darkMode')) {
+    Nifty.util.setDarkMode(true);
   }
   if (Prefs.getBool('expose')) {
-    Nifty.util.toggleExpose();
+    Nifty.util.setExpose(true);
   }
-  if (Prefs.getBool('bgimage')) {
-    Nifty.util.toggleBG();
+  Nifty.util.loadWallpaper();
+  if (Prefs.getBool('bgImage')) {
+    Nifty.util.setBG(true);
   }
   Nifty.callout.setArrowStyle(Prefs.get('arrowStyle'));
 
