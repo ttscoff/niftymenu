@@ -6,8 +6,8 @@ $checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtG
 $dark-checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAV9JREFUOBGtlDFLA0EQhS/GIEQCdmITxIghgliIjZ2dvyGlZSwtBO200kawtFUQFO3srNRKEdPYCBKDYhkICCKi5zfRhWGzdxzsDjz2zc68j+UCiaJAFcdxDq2gY1QNhI0iYOvI1GUQMLQZ9GmonP5gIAV0r6Bf+HnvFwPZVFCxWyGgc4DkhaaamIIXGMAQejBETvnGs15QCQPZUVCxGyGgC4C+FfgGn/cCAyiiRwX9wNe8oBIGsqegYldDQBcB/SjwFX7ACWYwjQ7QWuLS30tLzJ+RqXdMxQmVS4a3ZpPzEDl/BO731Z7YRiL0H3xtBY7oB3WIfsnauaDP6Z0+z0IVvVnBE/oenHMEvap5F1/uA7kuWJyywsI5Q/IHI99f17KLkXhHchK9aAL+zurPEwFpAyATqG3BTNvBjKXlU2eEx1EL2VVPDWYZQiyjJ0U+zZLLtAN0FO2ibTScKaSWfgExxT8T22KA2gAAAABJRU5ErkJggg==);
 
 html {
-  width: 2400px;
-  height: 1000px;
+  width: auto;
+  height: 100%;
 }
 
 body {
@@ -29,12 +29,13 @@ body {
 
   >ul {
     clear: right;
-    display: block;
+    display: flex;
     float: left;
     margin: 0;
+    min-width: 100%;
     padding: 0!important;
     position: relative;
-    width: 100%;
+    width: auto;
 
     &::before {
       background: transparentize($color-background-toolbar,.1);
@@ -128,29 +129,33 @@ body {
   li {
     position: relative;
     white-space: nowrap;
+  }
+}
 
-    .shortcut {
-      position: absolute;
-      right: 8px;
+.shortcut {
+  position: absolute;
+  right: 8px;
 
-      &.shortcut-callout {
-        background: $color-shortcut-callout;
-        border: solid 2px $color-shortcut-callout-border;
-        border-radius: 50px;
-        box-shadow: 2px 2px 2px $color-drop-shadow;
-        box-sizing: border-box;
-        color: $color-foreground-inverted;
-        left: 90%;
-        line-height: 1;
-        padding: 5px;
-        right: auto;
-        text-align: center;
-        text-indent: 0;
-        top: -.5em;
-        transform: scale(1.5);
-        width: auto;
-        z-index: 1;
-      }
+  &.shortcut-callout {
+    background: $color-shortcut-callout;
+    border: solid 1px $color-shortcut-callout-border;
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px $color-drop-shadow;
+    box-sizing: border-box;
+    color: $color-foreground-inverted;
+    padding: 1px 5px;
+    right: 5px;
+    text-align: center;
+    text-indent: 0;
+    top: -2px;
+    transform: scale(1.3);
+    width: auto;
+    z-index: 1;
+
+    .dark & {
+      background: $dark-color-shortcut-callout;
+      border: solid 1px $dark-color-shortcut-callout-border;
+      color: $dark-color-foreground;
     }
   }
 }

@@ -25,6 +25,7 @@ $desktop-image: '../images/background.jpg' !default;
 // base colors
 $color-foreground: #000 !default;
 $color-foreground-inverted: #fff !default;
+$color-drop-shadow: rgba(0, 0, 0, .25) !default;
 // system accent color (menu item hover state) Can be any of
 // $accent-blue, $accent-purple, $accent-pink, $accent-red,
 // $accent-orange, $accent-yellow, $accent-green, $accent-grey
@@ -66,6 +67,8 @@ $dark-color-background-help-search: rgba(87, 89, 89, .95) !default;
 $color-status: rgba(255, 255, 255, .5);
 $color-status-background: rgba(0, 0, 0, .2);
 
-$color-shortcut-callout: #666 !default;
-$color-shortcut-callout-border: lighten($color-shortcut-callout, 25%) !default;
-$color-drop-shadow: rgba(0, 0, 0, .25) !default;
+$color-shortcut-callout: $color-accent !default;
+$color-shortcut-callout-border: $color-foreground-inverted !default;
+
+$dark-color-shortcut-callout: $dark-color-accent !default;
+$dark-color-shortcut-callout-border: $dark-color-foreground !default;

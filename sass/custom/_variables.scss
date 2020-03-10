@@ -10,6 +10,7 @@ $desktop-image: '../images/background.jpg';
 // base colors
 $color-foreground: #000;
 $color-foreground-inverted: #fff;
+$color-drop-shadow: rgba(0, 0, 0, .25);
 // system accent color (menu item hover state) Can be any of
 // $accent-blue, $accent-purple, $accent-pink, $accent-red,
 // $accent-orange, $accent-yellow, $accent-green, $accent-grey
@@ -48,6 +49,8 @@ $dark-color-callout: lighten(adjust_hue($color-callout, 85deg),10);
 $dark-color-background-help: rgba(74, 75, 74, .95);
 $dark-color-background-help-search: rgba(87, 89, 89, .95);
 
-$color-shortcut-callout: #666;
-$color-shortcut-callout-border: lighten($color-shortcut-callout, 25%);
-$color-drop-shadow: rgba(0, 0, 0, .25);
+$color-shortcut-callout: $color-accent;
+$color-shortcut-callout-border: $color-foreground-inverted;
+
+$dark-color-shortcut-callout: $dark-color-accent;
+$dark-color-shortcut-callout-border: $dark-color-foreground;
