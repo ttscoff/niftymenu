@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>NiftyMenu Index</title>
+	<title>NiftyMenu Namespaces</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,52 +65,95 @@
 		<div id="main">
 			
 
+	<h1 class="page-title">Namespaces</h1>
+<section>
+
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+<dl class="details">
+    
+
 	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
 	
 
 
 
-
-
-
-
-
-
-
-
-	
 	
 
+	
+
+	
+
+	
+</dl>
 
 
+        
+    
+    </div>
 
+    
 
-    <section class="readme-section">
-        <article><h3>The NiftyMenu API</h3><p>The primary namespace is <code>NiftyAPI</code>, which is a chainable set of functions covering searching, clicking, and callouts.</p>
-<h3>Configuration functions</h3><p>Methods that adjust the display do not require an element to be passed, but can still be chained in with other functions. The primary display command is <code>config()</code>, which accepts an object containing keys for any/all of the display options. Example:</p>
-<pre class="prettyprint source"><code>NiftyAPI.config({
-  'arrowStyle': 'arrow',
-  'bgImage': true,
-  'expose': false,
-  'darkMode': false,
-  'wallpaper': 'default'
-});</code></pre><p>There are shorcuts for Dark Mode (<code>NiftyAPI.darkMode()</code>) and Exposé (<code>NiftyAPI.expose()</code>).</p>
-<h3>Chainable functions</h3><p>All chainable functions should start with <code>find</code> (or a variable containing the result of a <code>find</code>). The found element can then have one or more callout functions applied: </p>
-<ul>
-<li><code>lock()</code> (equivalent to a click)</li>
-<li><code>callout()</code> (equivalent to a double click)</li>
-<li><code>arrow()</code> (equivalent to an Option-click)</li>
-<li><code>shortcut()</code> (equivalent to Option-clicking a keyboard shortcut)</li>
-</ul>
-<p>Example:</p>
-<pre class="prettyprint source"><code>// Find the File->Save menu item and apply a callout ring to it 
-// and all parent elements up the chain
-NiftyAPI.find('file/save').callout(true, true);</code></pre><p>All callout functions can be passed a boolean parameter to enable/disable the callout. Running <code>NiftyAPI.clear()</code> will disable all callouts and clicks.</p>
-<p>In the case of <code>callout()</code> a second boolean parameter determines whether parent items of the selected menu item will also receive callouts. This defaults to <code>false</code>.</p></article>
-    </section>
+    
 
+    
 
+    
 
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="namespaces.html#NiftyAPI"><a href="NiftyAPI.html">NiftyAPI</a></a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

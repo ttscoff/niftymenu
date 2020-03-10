@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>NiftyMenu Source: callout.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.spacelab.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">NiftyMenu</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="NiftyAPI.html">NiftyAPI</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: callout.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript ">import Prefs from 'prefs.js'
+
+/**
+ * @namespace Callout
+ * @private
+ * @memberof  Nifty
+ * @description Methods for adding callouts to items
+ */
+const Callout = (function() {
+  /**
+   * Sets the arrow callout
+   * @memberof   Callout
+   *
+   * @param      {boolean}  bool    Add or remove arrow
+   * @param      {element}   el     DOM element or jQuery object, applies to all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const setArrow = (bool, el) => {
+    if (!el &amp;&amp; !bool) {
+      $('.arrow').each(function(i,n) {
+        setArrow(false,$(n));
+      });
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.get(0).tagName !== 'LI') {
+      el = el.parents('li').first();
+    }
+
+    if (bool) {
+      setArrow(false);
+      setShortcut(false);
+      const style = Prefs.get('arrowStyle') || 'arrow';
+      const direction = el.find('ul').length ? 'left' : 'right';
+      $('.clicked').removeClass('clicked');
+      el.addClass('arrow arrow-'+style+' clicked '+direction).append('&lt;b>&lt;i>&lt;/i>&lt;/b>');
+      el.parents('li').addClass('clicked');
+    } else {
+      el.removeClass('arrow arrow-arrow arrow-circle').find('b').remove();
+    }
+  };
+
+  /**
+   * Toggles the arrow callout
+   * @memberof   Callout
+   *
+   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const toggleArrow = (el) => {
+    if (!el) {
+      setArrow(false);
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.hasClass('arrow')) {
+      setArrow(false, el);
+    } else {
+      setArrow(false);
+      setShortcut(false);
+      setArrow(true, el);
+    }
+  };
+
+  /**
+   * Sets the shortcut callout
+   * @memberof   Callout
+   *
+   * @param      {boolean}  bool    Add or remove shortcut callout
+   * @param      {element}   el     DOM element or jQuery object containing shortcut,
+   *                                applies to all .shortcut-callout if empty
+   * @return     {boolean}  Result
+   */
+  const setShortcut = (bool, el) => {
+    if (!el &amp;&amp; !bool) {
+      $('.shortcut-callout').each(function(i,n) {
+        setShortcut(false,$(n));
+      });
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.get(0).tagName !== 'LI') {
+      el = el.parents('li').first();
+    }
+
+    if (bool) {
+      setShortcut(false);
+      setArrow(false);
+      $('.clicked').removeClass('clicked');
+      el.addClass('clicked').find('.shortcut').addClass('shortcut-callout');
+      el.parents('li').addClass('clicked');
+    } else {
+      el.find('.shortcut').removeClass('shortcut-callout');
+    }
+  };
+
+  /**
+   * Toggles the shortcut callout
+   * @memberof   Callout
+   *
+   * @param      {jquery}   el      jQuery object, all .arrow if empty
+   * @return     {boolean}  Result
+   */
+  const toggleShortcut = (el) => {
+    if (!el) {
+      setShortcut(false);
+      return;
+    }
+
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.has('.shortcut-callout').length) {
+      setShortcut(false, el);
+    } else {
+      setShortcut(false);
+      setShortcut(true, el);
+    }
+  };
+
+  /**
+   * Toggles a checkmark on the clicked menu item.
+   * @memberof   Callout
+   * @param      {jquery}   el      jQuery object, all .arrow if empty.
+   * @return     {boolean}  Result
+   */
+  const toggleCheckmark = (el) => {
+    if (!(el instanceof jQuery)) {
+      el = $(el);
+    }
+
+    if (el.hasClass('checked')) {
+      el.removeClass('checked');
+    } else {
+      el.addClass('checked');
+    }
+    return true;
+  };
+
+  /**
+  * Sets the style of the callout arrow
+  * @memberof   Callout
+  * @param      {string}  style    'circle' or 'arrow'
+  */
+  const setArrowStyle = (style) => {
+    let newStyle = 'arrow';
+    if (style &amp;&amp; style === 'circle') {
+      newStyle = 'circle';
+      $('.arrow-arrow').removeClass('arrow-arrow').addClass('arrow-circle');
+    } else {
+      $('.arrow-circle').removeClass('arrow-circle').addClass('arrow-arrow');
+    }
+    Prefs.set('arrowStyle', newStyle);
+  };
+
+  /**
+   * Toggles arrow style between circle and arrow.
+   * @memberof   Callout
+   */
+  const toggleArrowStyle = () => {
+    let newStyle;
+    const current = Prefs.get('arrowStyle');
+    if (current === 'circle') {
+      newStyle = 'arrow';
+      $('#arrowStyle','.controls').text('Arrow style: Arrow');
+    } else {
+      newStyle = 'circle';
+      $('#arrowStyle','.controls').text('Arrow style: Circle');
+    }
+    setArrowStyle(newStyle);
+  };
+
+  return {
+    setArrow,
+    setArrowStyle,
+    toggleArrowStyle,
+    toggleArrow,
+    toggleCheckmark,
+    setShortcut,
+    toggleShortcut
+  }
+})();
+
+export default Callout;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	&copy; Brett Terpstra 2020
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2020-03-10T18:03:38-05:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

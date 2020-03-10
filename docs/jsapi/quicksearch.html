@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"namespaces.list.html":{"id":"namespaces.list.html","title":"Namespaces","body":" NiftyMenu Namespaces NiftyAPI Namespaces Namespaces NiftyAPI × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" NiftyMenu Namespaces NiftyAPI The NiftyMenu APIThe primary namespace is NiftyAPI, which is a chainable set of functions covering searching, clicking, and callouts. Configuration functionsMethods that adjust the display do not require an element to be passed, but can still be chained in with other functions. The primary display command is config(), which accepts an object containing keys for any/all of the display options. Example: NiftyAPI.config({ 'arrowStyle': 'arrow', 'bgImage': true, 'expose': false, 'darkMode': false, 'wallpaper': 'default' });There are shorcuts for Dark Mode (NiftyAPI.darkMode()) and Exposé (NiftyAPI.expose()). Chainable functionsAll chainable functions should start with find (or a variable containing the result of a find). The found element can then have one or more callout functions applied: lock() (equivalent to a click) callout() (equivalent to a double click) arrow() (equivalent to an Option-click) shortcut() (equivalent to Option-clicking a keyboard shortcut) Example: // Find the File-&gt;Save menu item and apply a callout ring to it // and all parent elements up the chain NiftyAPI.find('file/save').callout(true, true);All callout functions can be passed a boolean parameter to enable/disable the callout. Running NiftyAPI.clear() will disable all callouts and clicks. In the case of callout() a second boolean parameter determines whether parent items of the selected menu item will also receive callouts. This defaults to false. × Search results Close "},"NiftyAPI.html":{"id":"NiftyAPI.html","title":"Namespace: NiftyAPI","body":" NiftyMenu Namespaces NiftyAPI Namespace: NiftyAPI NiftyAPI Chainable automation API. All chains that affect a menu item should start with a .find('search string') call. Example NiftyAPI.find('file/save').arrow(); // locate File-&gt;Save menu item and add an arrow callout Methods &lt;static&gt; arrow( [bool]) Set callout arrow for menu item Parameters: Name Type Argument Default Description bool boolean &lt;optional&gt; true Arrow on or off Examples NiftyAPI.find('view/merge').arrow(); NiftyAPI.find('view/merge').arrow(false); // remove arrow &lt;static&gt; callout( [bool] [, recurse]) Add callout to menu item Parameters: Name Type Argument Default Description bool boolean &lt;optional&gt; true Callout on or off (default: true) recurse boolean &lt;optional&gt; false Call out parent items (default: false) Examples NiftyAPI.find('file/open').callout(); NiftyAPI.find('file/open').callout(false); // remove callout &lt;static&gt; clear() Clear all clicks, callouts, and arrows Example NiftyAPI.clear(); &lt;static&gt; config(options) Set multiple display options via a configuration object Parameters: Name Type Description options Object object containing settings Example NiftyAPI.config({ 'arrowStyle': 'arrow', 'bgImage': true, 'expose': false, 'darkMode': false, 'wallpaper': 'default' }) &lt;static&gt; darkMode( [bool]) Turn Dark Mode on or off Parameters: Name Type Argument Default Description bool boolean &lt;optional&gt; true Dark Mode on or off Examples NiftyAPI.darkMode() // turn dark mode on NiftyAPI.darkMode(false) // turn dark mode off &lt;static&gt; expose( [bool]) Turn Expose on or off Parameters: Name Type Argument Default Description bool boolean &lt;optional&gt; true Expose on or off Examples NiftyAPI.expose(); // turn expose on NiftyAPI.expose(false); // turn expose off &lt;static&gt; find(str) Case insensitive string match for menu item search. Use / to separate heirarchical menu search items. This function can be chained for use with other functions. Parameters: Name Type Description str string The string to search for Returns: single jQuery element or null Type jQuery Examples NiftyAPI.find('insert/toc/section') NiftyAPI.find('insert/toc/section').arrow() &lt;static&gt; lock() Lock menu item. Removes any existing locks. Example NiftyAPI.find('file/save').lock(); &lt;static&gt; shortcut( [bool]) Set shortcut callout for menu item Parameters: Name Type Argument Default Description bool boolean &lt;optional&gt; true Shortcut callout on or off Examples NiftyAPI.find('file/save').shortcut(); NiftyAPI.find('file/save').shortcut(false); // remove arrow × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>

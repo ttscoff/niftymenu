@@ -36,7 +36,6 @@ const Prefs = (function() {
 
   /**
    * Retrieve preference key as a boolean value
-   * @memberof   Prefs
    *
    * @param      {string}   key     The key
    * @return     {boolean}  True for positive integer or truthy string
@@ -69,7 +68,6 @@ const Prefs = (function() {
 
   /**
    * Set a preference value
-   * @memberof   Prefs
    *
    * @param      {string}  key     The config item's key
    * @param      {string}  value   Value to set for key
@@ -82,7 +80,6 @@ const Prefs = (function() {
 
   /**
    * Retrive the raw preference for a key
-   * @memberof   Prefs
    *
    * @param      {string}  key     The config item's key
    * @return     {string}  raw string from preferences, not decoded or JSONified

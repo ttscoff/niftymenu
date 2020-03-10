@@ -34,7 +34,3 @@ Example:
 All callout functions can be passed a boolean parameter to enable/disable the callout. Running `NiftyAPI.clear()` will disable all callouts and clicks.
 
 In the case of `callout()` a second boolean parameter determines whether parent items of the selected menu item will also receive callouts. This defaults to `false`.
-
-### Other functions
-
-The rest of the API is exposed, but you shouldn't need to use anything from the Nifty or Prefs namespaces. They're all encapsulated by the NiftyAPI functions.

@@ -16,6 +16,17 @@
         "cleverLinks": false,
         "monospaceLinks": false,
         "default": {"outputSourceFiles": false},
-        "methodHeadingReturns": false
+        "methodHeadingReturns": false,
+        "systemName"            : "NiftyMenu",
+        "copyright"             :  "&copy; Brett Terpstra 2020",
+        "navType"               : "inline",
+        "theme"                 : "spacelab",
+        "linenums"              : false,
+        "collapseSymbols"       : false,
+        "inverseNav"            : true,
+        "outputSourceFiles"     : false,
+        "outputSourcePath"      : false,
+        "syntaxTheme"           : "default",
+        "search"                : true
     }
 }

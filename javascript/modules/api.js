@@ -41,7 +41,6 @@ const NiftyAPI = {
    * Case insensitive string match for menu item search. Use / to separate
    * heirarchical menu search items. This function can be chained for use with
    * other functions.
-   * @memberof   NiftyAPI
    * @example
    *   NiftyAPI.find('insert/toc/section')
    * @example
@@ -57,7 +56,6 @@ const NiftyAPI = {
 
   /**
    * Clear all clicks, callouts, and arrows
-   * @memberof   NiftyAPI
    * @example
    *  NiftyAPI.clear();
    */
@@ -68,7 +66,6 @@ const NiftyAPI = {
 
   /**
    * Lock menu item. Removes any existing locks.
-   * @memberof   NiftyAPI
    * @example
    *  NiftyAPI.find('file/save').lock();
    */
@@ -81,7 +78,6 @@ const NiftyAPI = {
 
   /**
    * Add callout to menu item
-   * @memberof   NiftyAPI
    *
    * @param      {boolean}  [bool=true]      Callout on or off (default: true)
    * @param      {boolean}  [recurse=false]  Call out parent items (default:
@@ -108,7 +104,6 @@ const NiftyAPI = {
 
   /**
    * Set callout arrow for menu item
-   * @memberof   NiftyAPI
    *
    * @param      {boolean}  [bool=true]  Arrow on or off
    * @example
@@ -126,7 +121,6 @@ const NiftyAPI = {
 
   /**
    * Set shortcut callout for menu item
-   * @memberof   NiftyAPI
    *
    * @param      {boolean}  [bool=true]  Shortcut callout on or off
    * @example
@@ -144,7 +138,6 @@ const NiftyAPI = {
 
   /**
    * Turn Dark Mode on or off
-   * @memberof   NiftyAPI
    *
    * @param      {boolean}  [bool=true]  Dark Mode on or off
    * @example
@@ -162,7 +155,6 @@ const NiftyAPI = {
 
   /**
    * Turn Expose on or off
-   * @memberof   NiftyAPI
    *
    * @param      {boolean}  [bool=true]  Expose on or off
    * @example

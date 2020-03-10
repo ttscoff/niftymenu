@@ -1,3 +1,4 @@
 /get nvUltra menus.applescript
 /osatest.applescript
 dist/*.html
+node_modules
