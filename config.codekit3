@@ -248,12 +248,36 @@
 		"oAP": "/dist/Pages.html",
 		"oF": 0
 		},
+	"/dist/Script-Debugger.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/dist/Script-Debugger.html",
+		"oF": 0
+		},
+	"/dist/Sublime-Text.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/dist/Sublime-Text.html",
+		"oF": 0
+		},
 	"/dist/testMenu.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/dist/testMenu.html",
+		"oF": 0
+		},
+	"/dist/Tower.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/dist/Tower.html",
 		"oF": 0
 		},
 	"/docs": {
@@ -445,8 +469,8 @@
 	"creationDate": 581521645.610834,
 	"displayValue": "niftymenu",
 	"displayValueWasSetByUser": 0,
-	"iconImageName": "meme-maroney",
-	"iconImageWasSetByUser": 0
+	"iconImageName": "brackets_teal",
+	"iconImageWasSetByUser": 1
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
@@ -2206,7 +2230,7 @@
 			"flagValue": -1
 			},
 		"unused": {
-			"active": 1,
+			"active": 0,
 			"flagValue": -1
 			},
 		"varstmt": {

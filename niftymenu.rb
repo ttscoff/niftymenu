@@ -121,6 +121,8 @@ def menus_to_markdown(input)
   input.gsub!(/\\"/,"''")
   # replace divider items
   input.gsub!(/menu item \d+/,'- <span class="divider"></span>')
+  # remove double dividers
+  input.gsub!(/(- <span class="divider"><\/span>\n)+/,"- <span class=\"divider\"></span>\n")
 
   # Extract keyboard shortcuts
   input.gsub!(/>>(?<mod>\d+)\|(?<key>\S)<< menu item "(?<name>.*?)"/) {|match|
@@ -129,6 +131,9 @@ def menus_to_markdown(input)
 
     %Q{menu item "<span class='menuitem'>#{m['name']}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
   }
+  # Clean up botched shortcuts
+  input.gsub!(/<<.*?>>/,'')
+
   input.gsub!(/menu bar item ".*?"/,'')
   # format menu items
   input.gsub!(/menu item "(.*?)"/,'- \1')
@@ -187,10 +192,20 @@ def menus_to_markdown(input)
 end
 
 def get_stdin(message)
-  print message
-  mystdin = IO.open("/dev/tty") rescue IO.for_fd(2)
-  mystdin.gets.chomp
+  if ARGV.length
+    ARGV.length.times do
+      ARGV.shift
+    end
+  end
+  system 'stty cbreak'
+  $stdout.syswrite message
+  res = $stdin.sysread 1
+  puts
+  system 'stty cooked'
+
+  return res.chomp
 end
+
 
 def browser
   question = "Open in Browser?\n(c)hrome, (s)afari, (f)irefox, Enter to cancel: "
@@ -259,6 +274,8 @@ __CONTENT__
   <span id="darkModeToggle">Dark Mode (D)</span>
   <span id="exposeToggle">Expos&eacute; (E)</span>
   <span id="backgroundToggle">Background Image</span>
+  <span id="chooseWallpaper">Choose Wallpaper</span>
+  <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
 <script src="js/jquery.min.js"></script>

@@ -124,8 +124,8 @@ NiftyMenus is scriptable using JavaScript in the browser, so it can be automated
 ```applescript
 tell application "Safari"
     tell current tab of window 1
-        do JavaScript "Nifty.util.clearClicks()"
-        do JavaScript "Nifty.dblClick('Highlight Selection for CriticMarkup')"
+        do JavaScript "NiftyAPI.clear()"
+        do JavaScript "NiftyAPI.find('file/open').callout(true, true)"
     end tell
 end tell
 ```
