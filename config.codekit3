@@ -233,22 +233,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/dist/Marked-2.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/Marked-2.html",
-		"oF": 0
-		},
-	"/dist/nvUltra-Beta.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/nvUltra-Beta.html",
-		"oF": 0
-		},
 	"/dist/Pages.html": {
 		"cB": 0,
 		"ft": 8192,
@@ -257,36 +241,12 @@
 		"oAP": "/dist/Pages.html",
 		"oF": 0
 		},
-	"/dist/Script-Debugger.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/Script-Debugger.html",
-		"oF": 0
-		},
-	"/dist/Sublime-Text.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/Sublime-Text.html",
-		"oF": 0
-		},
 	"/dist/testMenu.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/dist/testMenu.html",
-		"oF": 0
-		},
-	"/dist/Tower.html": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/dist/Tower.html",
 		"oF": 0
 		},
 	"/docs": {

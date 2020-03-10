@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <link type="text/css" rel="stylesheet" href="css/niftymenu.css"/>
 </head>
-<body class="demo">
+<body>
 <ul>
 <li>&#63743;</li>
 <li><strong>Pages</strong>
@@ -273,8 +273,20 @@ menu &#8220;Open Recent&#8221;</li>
 <li><span class='menuitem'>Comment</span> <span class='shortcut'>&#8679;&#8984;K</span></li>
 <li><span class='menuitem'>Bookmark</span> <span class='shortcut'>&#8997;&#8984;B</span></li>
 <li>Image Gallery</li>
-<li>Import From Device
-menu &#8220;Import From Device&#8221;</li>
+<li><strong><em>Import from iPhone or iPad</em></strong>
+
+<ul>
+<li>Brett&#8217;s iPhone</li>
+<li>Take Photo</li>
+<li>Scan Documents</li>
+<li>Add Sketch</li>
+<li><span class="divider"></span></li>
+<li>Brett&#8217;s iPad</li>
+<li>Take Photo</li>
+<li>Scan Documents</li>
+<li>Add Sketch</li>
+<li><span class="divider"></span></li>
+</ul></li>
 <li>Record Audio</li>
 <li><span class="divider"></span></li>
 <li><strong><em>Formula</em></strong>
@@ -544,8 +556,8 @@ menu &#8220;Import From Device&#8221;</li>
 <li><span class="divider"></span></li>
 <li>Create Master from Current Page</li>
 <li><span class="divider"></span></li>
-<li><span class='menuitem'>Define as Placeholder Text</span> <span class='shortcut'>6T</span></li>
-<li><span class='menuitem'>Define as Media Placeholder</span> <span class='shortcut'>6I</span></li>
+<li><span class='menuitem'>Define as Placeholder Text</span> <span class='shortcut'>&#8963;&#8997;&#8984;T</span></li>
+<li><span class='menuitem'>Define as Media Placeholder</span> <span class='shortcut'>&#8963;&#8997;&#8984;I</span></li>
 <li><span class="divider"></span></li>
 <li>Set as Default Text Box Appearance</li>
 </ul></li>
@@ -606,7 +618,7 @@ menu &#8220;Import From Device&#8221;</li>
 <li>Document Setup</li>
 <li><span class="divider"></span></li>
 <li><span class='menuitem'>Show Next Inspector Tab</span> <span class='shortcut'>&#8963;`</span></li>
-<li><span class='menuitem'>Show Previous Inspector Tab</span> <span class='shortcut'>13`</span></li>
+<li><span class='menuitem'>Show Previous Inspector Tab</span> <span class='shortcut'>&#8963;&#8679;`</span></li>
 <li><span class="divider"></span></li>
 <li><span class='menuitem'>Hide Inspector</span> <span class='shortcut'>&#8997;&#8984;I</span></li>
 </ul></li>
@@ -718,7 +730,7 @@ menu &#8220;Import From Device&#8221;</li>
 <li><span class='menuitem'>Minimize</span> <span class='shortcut'>&#8984;M</span></li>
 <li><span class='menuitem'>Minimize All</span> <span class='shortcut'>&#8997;&#8984;M</span></li>
 <li><span class='menuitem'>Zoom</span> <span class='shortcut'>&#8963;&#8984;=</span></li>
-<li><span class='menuitem'>Zoom All</span> <span class='shortcut'>6=</span></li>
+<li><span class='menuitem'>Zoom All</span> <span class='shortcut'>&#8963;&#8997;&#8984;=</span></li>
 <li>Tile Window to Left of Screen</li>
 <li>Move Window to Left Side of Screen</li>
 <li>Tile Window to Right of Screen</li>
@@ -732,7 +744,6 @@ menu &#8220;Import From Device&#8221;</li>
 <li>Move Tab to New Window</li>
 <li>Merge All Windows</li>
 <li><span class="divider"></span></li>
-<li><span class="divider"></span></li>
 <li>Bring All to Front</li>
 <li>Arrange in Front</li>
 <li><span class="divider"></span></li>
@@ -745,6 +756,7 @@ menu &#8220;Import From Device&#8221;</li>
 
 <ul>
 <li><span class="helpsearch"><label>Search <input type="text"></label></span></li>
+<li>Pages Help</li>
 <li>Keyboard Shortcuts</li>
 <li>Formulas and Functions Help</li>
 <li><span class="divider"></span></li>
@@ -761,7 +773,8 @@ menu &#8220;Import From Device&#8221;</li>
     <li>Click to lock in place</li>
     <li>Double click to highlight</li>
     <li>Hold shift and double click to highlight hierarchy</li>
-    <li>Option-click to add arrow</li>
+    <li>Option-click item to add arrow</li>
+    <li>Option-click shortcut to highlight</li>
     <li>Use the help menu to (fuzzy) search menu items</li>
     <li>See the settings menu (lower right)</li>
   </ul>
@@ -779,9 +792,9 @@ menu &#8220;Import From Device&#8221;</li>
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
-<script src="js/jquery.min.js"></script>
-<script src="js/fuzzysort.min.js"></script>
-<script src="js/mousetrap.min.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/fuzzysort.min.js"></script>
+<script src="js/lib/mousetrap.min.js"></script>
 <script src="js/nifty.min.js"></script>
 </body>
 </html>
