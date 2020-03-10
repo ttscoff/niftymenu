@@ -120,9 +120,7 @@
 		"q": 100
 		},
 	"/config.rb": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
+		"ft": 131072,
 		"oA": 0,
 		"oAP": "/config.rb",
 		"oF": 0
@@ -180,7 +178,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/dist/js/fuzzysort.min.js": {
+	"/dist/js/lib/fuzzysort.min.js": {
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
@@ -191,18 +189,18 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/dist/js/jquery.min.js": {
+	"/dist/js/lib/jquery.min.min.js": {
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "/dist/js/jquery.min.min.js",
+		"oAP": "/dist/js/jquery.min.min.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},
-	"/dist/js/mousetrap.min.js": {
+	"/dist/js/lib/mousetrap.min.js": {
 		"bF": 0,
 		"ft": 64,
 		"ma": 0,
@@ -294,41 +292,16 @@
 		"oAP": "/get nvUltra menus.applescript",
 		"oF": 1
 		},
-	"/javascript/fuzzysort.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/fuzzysort.min.js",
-		"oF": 2,
-		"sC": 0,
-		"tS": 0
+	"/javascript/.jshintrc": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/javascript/.jshintrc",
+		"oF": 1
 		},
-	"/javascript/jquery.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 2,
-		"oAP": "/dist/js/jquery.min.js",
-		"oF": 3,
-		"sC": 0,
-		"tS": 0
-		},
-	"/javascript/mousetrap.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "/dist/js/mousetrap.min.js",
-		"oF": 2,
-		"sC": 0,
-		"tS": 0
-		},
-	"/javascript/nifty.js": {
-		"bF": 0,
+	"/javascript/app.js": {
+		"bF": 4,
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
@@ -337,6 +310,113 @@
 		"oF": 2,
 		"sC": 1,
 		"tS": 1
+		},
+	"/javascript/lib/fuzzysort.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/lib/fuzzysort.min.js",
+		"oF": 2,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/lib/jquery.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 2,
+		"oAP": "/dist/js/lib/jquery.min.js",
+		"oF": 3,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/lib/mousetrap.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/lib/mousetrap.min.js",
+		"oF": 2,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/api.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/api.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/callout.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/callout.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/handler.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/handler.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/nifty.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/nifty.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/prefs.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/prefs.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/modules/util.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/dist/js/util.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/README.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/javascript/README.html",
+		"oF": 0
 		},
 	"/javascript/README.md": {
 		"cB": 0,
@@ -1951,7 +2031,7 @@
 	"externalServerAddress": "http://localhost:8888",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
-	"jsCheckerReservedNamesString": "",
+	"jsCheckerReservedNamesString": "$,fuzzysort,jQuery,Mousetrap",
 	"jsHintFlags2": {
 		"asi": {
 			"active": 0,

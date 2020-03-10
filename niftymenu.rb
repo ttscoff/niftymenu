@@ -83,8 +83,12 @@ def bitwise_to_html(int)
     "{ctrl}{cmd}"
   when 5
     "{ctrl}{shift}{cmd}"
+  when 6
+    "{ctrl}{opt}{cmd}"
   when 12
     "{ctrl}"
+  when 13
+    "{ctrl}{shift}"
   when 15
     "{ctrl}{opt}{shift}"
   else
@@ -260,7 +264,8 @@ __CONTENT__
     <li>Click to lock in place</li>
     <li>Double click to highlight</li>
     <li>Hold shift and double click to highlight hierarchy</li>
-    <li>Option-click to add arrow</li>
+    <li>Option-click item to add arrow</li>
+    <li>Option-click shortcut to highlight</li>
     <li>Use the help menu to (fuzzy) search menu items</li>
     <li>See the settings menu (lower right)</li>
   </ul>
@@ -278,9 +283,9 @@ __CONTENT__
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
-<script src="js/jquery.min.js"></script>
-<script src="js/fuzzysort.min.js"></script>
-<script src="js/mousetrap.min.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/fuzzysort.min.js"></script>
+<script src="js/lib/mousetrap.min.js"></script>
 <script src="js/nifty.min.js"></script>
 </body>
 </html>
