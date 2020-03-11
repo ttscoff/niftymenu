@@ -6971,3 +6971,6 @@ code {
     max-height: none;
   }
 }
+.signature-params {
+  color: #ccc;
+}

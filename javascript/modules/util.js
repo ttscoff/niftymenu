@@ -1,16 +1,14 @@
-import Prefs from 'prefs.js'
-import Callout from 'callout.js'
+import Prefs from 'prefs.js';
+import Callout from 'callout.js';
 
 /**
- * @namespace Nifty.util
+ * @namespace Util
  * @private
- * @memberof  Nifty
  * @description DOM/interface utilities
  */
  const Util = (function() {
   /**
    * Clear all active clicks (menu items held in place)
-   * @memberof   Nifty.util
    *
    * @param      {boolean}  persist  The help menu gets a special class to keep
    *                                 it open while other menus are active, even
@@ -30,7 +28,6 @@ import Callout from 'callout.js'
 
   /**
    * Sets the wallpaper image to use when bgImage is enabled
-   * @memberof   Nifty.util
    * @param      {string}  url    URL for background image
    */
   const setWallpaper = (url) => {
@@ -40,7 +37,6 @@ import Callout from 'callout.js'
 
   /**
    * Add a style rule for the defined wallpaper
-   * @memberof   Nifty.util
    * @private
    * @param      {string}  url    URL for background image
    */
@@ -59,7 +55,6 @@ import Callout from 'callout.js'
   /**
    * Add a style rule to main stylesheet
    * @private
-   * @memberof Nifty.util
    */
   const addStyleRule = (rule) => {
     var sheet = (function() {
@@ -74,7 +69,6 @@ import Callout from 'callout.js'
   /**
    * Sets the background image on or off. Use the boolean paramater to
    * determine which.
-   * @memberof   Nifty.util
    * @param      {boolean}  bool    true turns background image on,
    *                                false for off
    */
@@ -92,7 +86,6 @@ import Callout from 'callout.js'
 
   /**
    * Toggle background image
-   * @memberof   Nifty.util
    */
   const toggleBG = () => {
     let $body = $('body');
@@ -105,7 +98,6 @@ import Callout from 'callout.js'
 
   /**
    * Toggle Dark Mode
-   * @memberof   Nifty.util
    */
   const toggleDarkMode = () => {
     let test = $('body').hasClass('dark');
@@ -119,7 +111,6 @@ import Callout from 'callout.js'
 
   /**
    * Set Dark Mode
-   * @memberof   Nifty.util
    * @param {boolean} [bool=true] Dark Mode on or off
    */
   const setDarkMode = (bool=true) => {
@@ -135,7 +126,6 @@ import Callout from 'callout.js'
 
   /**
    * Force Expose on or off. Use the boolean paramater to determine which.
-   * @memberof   Nifty.util
    * @param      {boolean}  [bool=true]    true turns Expose on, false for off
    */
   const setExpose = (bool) => {
@@ -151,7 +141,6 @@ import Callout from 'callout.js'
 
   /**
    * Toggle Expose
-   * @memberof   Nifty.util
    */
   const toggleExpose = () => {
     let $body = $('body');
@@ -162,6 +151,102 @@ import Callout from 'callout.js'
     }
   };
 
+  /**
+   * Take a screenshot of selected menu item. Experimental, currently only works
+   * in Chrome. If called via NiftyAPI.shoot(), downloads immediately to
+   * Downloads folder, names file based on menu path.
+   *
+   * @param      {event}  e       If e is undefined, download immediately
+   */
+  const screenshot = (e) => {
+    $('body').addClass('screenshot');
+    let clicks = $('.clicked');
+    if (!clicks.length) {
+      throw("No menu items selected");
+    }
+    let title = [];
+    clicks.each((i,n) => {
+      title.push($(n).find('>strong').text());
+    });
+
+    let last = clicks.last();
+    if (last.children('.shortcut').length > 0) {
+      title.push(last.find('.menuitem').text());
+    } else {
+      title.push(last.text());
+    }
+
+    title = title.join('-').replace(/-+/g,'-').replace(/ +/g,'_');
+
+    let menus = clicks.parents('ul').not('body>ul'),
+      left = Math.floor(clicks.first().offset().left - 50),
+      width = 150,
+      height = 0;
+
+    menus.each((i,n) => {
+      width += $(n).width();
+      let ulTop = $(n).offset().top;
+      let ulHeight = $(n).height();
+      if (ulTop + ulHeight > height) {
+        height = ulTop + ulHeight;
+      }
+    });
+
+    html2canvas(document.querySelector("body"), {
+      x: left,
+      y: 0,
+      width: width,
+      height: height + 50,
+      useCORS: true
+    }).then(canvas => {
+      $('#screenshotHolder').empty();
+      $('#screenshotHolder').append(canvas);
+      clearClicks(true);
+      $('body').removeClass('screenshot');
+
+      // if called from a handler, display screenshot for download
+      if (e) {
+        let $controls = $('<div class=screenshot-controls>');
+        $('<button>Cancel</button>')
+          .addClass('screenshot-close')
+          .on('click', () => {
+            $('#screenshotHolder').empty();
+          })
+          .appendTo($controls);
+        $('<button>Save</button>')
+          .addClass('screenshot-dl')
+          .data('title', title)
+          .on('click', () => {
+            downloadScreenshot(title);
+          })
+          .appendTo($controls);
+        $controls.appendTo('#screenshotHolder');
+      // if called from API, download immediately
+      } else {
+        downloadScreenshot(title);
+      }
+
+    });
+  }
+
+  /**
+   * Download a screenshot (handler)
+   *
+   * @param      {string}  title   Filename to use
+   */
+  const downloadScreenshot = (title) => {
+    if (!title)
+      title = 'NiftyMenu_Screenshot';
+
+    let canvas = document.querySelector('#screenshotHolder canvas'),
+        link = document.createElement('a');
+
+    link.download = `${title}.png`;
+    link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    link.click();
+    $('#screenshotHolder').empty();
+  }
+
   return {
     setDarkMode,
     toggleDarkMode,
@@ -171,7 +256,9 @@ import Callout from 'callout.js'
     setWallpaper,
     loadWallpaper,
     toggleBG,
-    clearClicks
+    clearClicks,
+    screenshot,
+    downloadScreenshot
   }
 })();
 

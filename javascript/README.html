@@ -46,6 +46,13 @@ NiftyAPI.find('file/save').callout(true, true);
 
 <p>In the case of <code>callout()</code> a second boolean parameter determines whether parent items of the selected menu item will also receive callouts. This defaults to <code>false</code>.</p>
 
+<h1 id="screenshots">Screenshots</h1>
+
+<p><code>html2canvas</code> is built in, but the screenshot capability currently <strong><em>only works properly in Chrome</em></strong>. In Chrome you can use <code>.shoot()</code> to take a screenshot and immediately download it with a name based on the menu items path.</p>
+
+<pre><code>NiftyAPI.find('view/next tab').lock().shoot();
+</code></pre>
+
 </body>
 </html>
 

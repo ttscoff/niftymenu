@@ -35,7 +35,6 @@ const Nifty = (function() {
 
 
     $('body,li').on('click dblclick', Handler.itemClick);
-    // $('body,li').on('mouseup', Handler.updateStatus);
 
     $('span','.controls').on('click', Handler.controlsClick);
 
@@ -47,6 +46,10 @@ const Nifty = (function() {
       $('.persist').removeClass('persist');
     });
 
+    // $('body').on('click', () => {
+    //   $('#screenshotHolder').empty();
+    // });
+
     // Load demo overlay if viewed on GitHub
     if (window.location.host === 'ttscoff.github.io') { $('body').addClass('demo'); }
 
@@ -55,6 +58,7 @@ const Nifty = (function() {
     Mousetrap.bind('shift+/', Handler.focusSearch);
     Mousetrap.bind('shift+d', Util.toggleDarkMode);
     Mousetrap.bind('shift+e', Util.toggleExpose);
+    Mousetrap.bind('shift+s', Util.screenshot);
   };
 
   const itemForPath = (path) => {

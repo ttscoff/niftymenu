@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.spacelab.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.journal.css">
 
 </head>
 
@@ -155,7 +155,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".arrow"><span class="type-signature">&lt;static> </span>arrow( [bool])</h4>
+    <h4 class="name" id=".arrow">arrow(<span class="signature-params"> [bool]</span>)</h4>
     
     
 </dt>
@@ -163,7 +163,7 @@ should start with a .find('search string') call.</p></div>
 
     
     <div class="description">
-        <p>Set callout arrow for menu item</p>
+        <p>Set callout arrow for menu item. Equivalent to option-clicking a menu item.</p>
     </div>
     
 
@@ -297,11 +297,10 @@ should start with a .find('search string') call.</p></div>
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;view/merge&#x27;).arrow();</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;view/merge&#x27;).arrow(false); // remove arrow</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;view/merge&#x27;).arrow();
+NiftyAPI.find(&#x27;view/merge&#x27;).arrow(false); // remove arrow</pre>
 
 
     
@@ -311,7 +310,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".callout"><span class="type-signature">&lt;static> </span>callout( [bool] [, recurse])</h4>
+    <h4 class="name" id=".callout">callout(<span class="signature-params"> [bool] [, recurse]</span>)</h4>
     
     
 </dt>
@@ -319,7 +318,7 @@ should start with a .find('search string') call.</p></div>
 
     
     <div class="description">
-        <p>Add callout to menu item</p>
+        <p>Add callout to menu item. Equivalent to double clicking a menu item.</p>
     </div>
     
 
@@ -494,11 +493,11 @@ should start with a .find('search string') call.</p></div>
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/open&#x27;).callout();</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/open&#x27;).callout(false); // remove callout</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/open&#x27;).callout();
+NiftyAPI.find(&#x27;file/open&#x27;).callout(true, true); // add callout to item and parents
+NiftyAPI.find(&#x27;file/open&#x27;).callout(false); // remove callout</pre>
 
 
     
@@ -508,7 +507,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".clear"><span class="type-signature">&lt;static> </span>clear()</h4>
+    <h4 class="name" id=".clear">clear(<span class="signature-params"></span>)</h4>
     
     
 </dt>
@@ -592,7 +591,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".config"><span class="type-signature">&lt;static> </span>config(options)</h4>
+    <h4 class="name" id=".config">config(<span class="signature-params">options</span>)</h4>
     
     
 </dt>
@@ -722,7 +721,7 @@ should start with a .find('search string') call.</p></div>
   &#x27;expose&#x27;: false,
   &#x27;darkMode&#x27;: false,
   &#x27;wallpaper&#x27;: &#x27;default&#x27;
-})</pre>
+});</pre>
 
 
     
@@ -732,7 +731,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".darkMode"><span class="type-signature">&lt;static> </span>darkMode( [bool])</h4>
+    <h4 class="name" id=".darkMode">darkMode(<span class="signature-params"> [bool]</span>)</h4>
     
     
 </dt>
@@ -874,11 +873,10 @@ should start with a .find('search string') call.</p></div>
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.darkMode() // turn dark mode on</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.darkMode(false) // turn dark mode off</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.darkMode(); // turn dark mode on
+NiftyAPI.darkMode(false); // turn dark mode off</pre>
 
 
     
@@ -888,7 +886,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".expose"><span class="type-signature">&lt;static> </span>expose( [bool])</h4>
+    <h4 class="name" id=".expose">expose(<span class="signature-params"> [bool]</span>)</h4>
     
     
 </dt>
@@ -1030,11 +1028,10 @@ should start with a .find('search string') call.</p></div>
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.expose(); // turn expose on</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.expose(false); // turn expose off</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.expose(); // turn expose on
+NiftyAPI.expose(false); // turn expose off</pre>
 
 
     
@@ -1044,7 +1041,7 @@ should start with a .find('search string') call.</p></div>
             
 <hr>
 <dt>
-    <h4 class="name" id=".find"><span class="type-signature">&lt;static> </span>find(str)</h4>
+    <h4 class="name" id=".find">find(<span class="signature-params">str</span>)</h4>
     
     
 </dt>
@@ -1192,11 +1189,10 @@ other functions.</p>
         
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;insert/toc/section&#x27;)</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;insert/toc/section&#x27;).arrow()</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;insert/toc/section&#x27;);
+NiftyAPI.find(&#x27;insert/toc/section&#x27;).arrow();</pre>
 
 
     
@@ -1206,7 +1202,7 @@ other functions.</p>
             
 <hr>
 <dt>
-    <h4 class="name" id=".lock"><span class="type-signature">&lt;static> </span>lock()</h4>
+    <h4 class="name" id=".lock">lock(<span class="signature-params"></span>)</h4>
     
     
 </dt>
@@ -1214,7 +1210,8 @@ other functions.</p>
 
     
     <div class="description">
-        <p>Lock menu item. Removes any existing locks.</p>
+        <p>Lock menu item. Removes any existing locks. Equivalent to clicking a menu
+item.</p>
     </div>
     
 
@@ -1290,7 +1287,7 @@ other functions.</p>
             
 <hr>
 <dt>
-    <h4 class="name" id=".shortcut"><span class="type-signature">&lt;static> </span>shortcut( [bool])</h4>
+    <h4 class="name" id=".shoot">shoot(<span class="signature-params"></span>)</h4>
     
     
 </dt>
@@ -1298,7 +1295,93 @@ other functions.</p>
 
     
     <div class="description">
-        <p>Set shortcut callout for menu item</p>
+        <p>Take a screenshot of selected menu item. Currently experimental, only works
+in Chrome.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">NiftyAPI.shoot();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".shortcut">shortcut(<span class="signature-params"> [bool]</span>)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Set shortcut callout for menu item. Equivalent to option-clicking a
+shortcut on a menu item.</p>
     </div>
     
 
@@ -1432,11 +1515,10 @@ other functions.</p>
     
 
     
-        <h5>Examples</h5>
+        <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/save&#x27;).shortcut();</pre>
-
-    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/save&#x27;).shortcut(false); // remove arrow</pre>
+    <pre class="sunlight-highlight-javascript">NiftyAPI.find(&#x27;file/save&#x27;).shortcut();
+NiftyAPI.find(&#x27;file/save&#x27;).shortcut(false); // remove arrow</pre>
 
 
     
@@ -1490,13 +1572,13 @@ other functions.</p>
 
 
 	<span class="copyright">
-	&copy; Brett Terpstra 2020
+	NiftyMenu &copy; Brett Terpstra 2020, MIT License
 	</span>
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2020-03-10T18:04:43-05:00
+		on 2020-03-11T05:42:57-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

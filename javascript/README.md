@@ -34,3 +34,11 @@ Example:
 All callout functions can be passed a boolean parameter to enable/disable the callout. Running `NiftyAPI.clear()` will disable all callouts and clicks.
 
 In the case of `callout()` a second boolean parameter determines whether parent items of the selected menu item will also receive callouts. This defaults to `false`.
+
+# Screenshots
+
+`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use `.shoot()` to take a screenshot and immediately download it with a name based on the menu items path.
+
+    NiftyAPI.find('view/next tab').lock().shoot();
+
+

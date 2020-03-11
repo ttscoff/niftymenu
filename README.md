@@ -107,6 +107,10 @@ On your Mac you probably use ⌘? to open the Help menu's search field when look
 
 Escape will clear your search and hide the Help menu. Pressing return while a match is highlighted will scroll the screen to that match.
 
+### Built-in Screenshots
+
+`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use "Screenshot" in the tools menu to snap a cropped photo containing the currently-focused menu item, automatically named and ready to save to disk. This capability is also available [from the API](https://ttscoff.github.io/niftymenu/jsapi/index.html) for automation.
+
 ## Customizing
 
 The project uses Sass/Compass for styling and is configured to output your modifications to the right place, so styling is pretty easy.

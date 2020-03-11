@@ -257,7 +257,7 @@ template =<<ENDTEMPLATE
 </head>
 <body>
 __CONTENT__
-<div id="demotut">
+<div id="demotut" data-html2canvas-ignore>
   <h1>Tutorial</h1>
   <ul>
     <li>Hover to reveal menus</li>
@@ -271,21 +271,21 @@ __CONTENT__
   </ul>
   <!-- <span class="hidetut">Hide</span> -->
 </div>
-<aside class="status">
-  <span id="statusLocked"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" width="48"><circle cx="24" cy="30" r="2"/><path d="M24 38c-0.6 0-1-0.4-1-1v-6c0-0.6 0.4-1 1-1s1 0.4 1 1v6C25 37.6 24.6 38 24 38z"/><path d="M42 48H6V18h36V48zM8 46h32V20H8V46z"/><path d="M36 19h-2v-7c0-5.5-4.5-10-10-10S14 6.5 14 12v7h-2v-7c0-6.6 5.4-12 12-12s12 5.4 12 12V19z"/></svg>
-</span>
-</aside>
-<aside class="controls">
+<div id="screenshotHolder" data-html2canvas-ignore></div>
+<aside class="controls" data-html2canvas-ignore>
   <span id="darkModeToggle">Dark Mode (D)</span>
   <span id="exposeToggle">Expos&eacute; (E)</span>
+  <span id="screenshot">Screenshot (S)</span>
   <span id="backgroundToggle">Background Image</span>
   <span id="chooseWallpaper">Choose Wallpaper</span>
+  <span id="randomWallpaper">Random Wallpaper</span>
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/lib/fuzzysort.min.js"></script>
 <script src="js/lib/mousetrap.min.js"></script>
+<script src="js/lib/html2canvas.min.js"></script>
 <script src="js/nifty.min.js"></script>
 </body>
 </html>

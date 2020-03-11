@@ -92,7 +92,6 @@ const Handler = (function() {
           Callout.toggleArrow($this);
         }
       }
-      updateStatus();
       return false;
     }
 
@@ -123,7 +122,6 @@ const Handler = (function() {
 
           Callout.setArrow(false);
           Callout.setShortcut(false);
-          updateStatus();
         }
         return false;
       } else {
@@ -145,7 +143,6 @@ const Handler = (function() {
         }
       }
     }
-    updateStatus();
     return false;
   };
   /**
@@ -172,11 +169,17 @@ const Handler = (function() {
       case 'chooseWallpaper':
         chooseWallpaper();
         break;
+      case 'randomWallpaper':
+        randomWallpaper();
+        break;
       case 'resetWallpaper':
         Util.setWallpaper(false);
         break;
       case 'arrowStyle':
-        Util.toggleArrowStyle();
+        Callout.toggleArrowStyle();
+        break;
+      case 'screenshot':
+        Util.screenshot(e);
         break;
       default:
         throw('Element ID unrecognized');
@@ -186,34 +189,25 @@ const Handler = (function() {
   };
 
   /**
-   * Update the status bar
-   * @private
-   * @memberof   Nifty.handlers
-   * @param      {event}   e       Event
-   * @return     {boolean}  continue handling event
-   */
-  const updateStatus = () => {
-    setTimeout(() => {
-      if ($('.last').length) {
-        $('body').addClass('locked');
-      } else {
-        $('body').removeClass('locked');
-      }
-    }, 50);
-    return true;
-  };
-
-
-
-
-
-  /**
    * Allow entry of a url to load as wallpaper
    * @memberof Handlers
    * @private
    */
   const chooseWallpaper = () => {
-    var url = prompt("Enter URL for background image");
+    let url = prompt("Enter URL for background image");
+    Prefs.set('wallpaper', url);
+    Util.loadWallpaper();
+  };
+
+  /**
+   * Choose random unsplash wallpaper
+   * @memberof Handlers
+   * @private
+   */
+  const randomWallpaper = () => {
+    let keywords = prompt("Enter optional keywords (comma separated words)"),
+        url = 'https://source.unsplash.com/random/1900x1200?' + encodeURIComponent(keywords);
+
     Prefs.set('wallpaper', url);
     Util.loadWallpaper();
   };
@@ -243,8 +237,7 @@ const Handler = (function() {
     itemClick,
     controlsClick,
     liveSearch,
-    focusSearch,
-    updateStatus
+    focusSearch
   }
 }());
 

@@ -189,6 +189,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/dist/js/lib/html2canvas.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/dist/js/html2canvas.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/dist/js/lib/jquery.min.js": {
 		"bF": 0,
 		"ft": 64,
@@ -290,6 +301,17 @@
 		"oA": 0,
 		"oAP": "/dist/js/lib/fuzzysort.min.js",
 		"oF": 2,
+		"sC": 0,
+		"tS": 0
+		},
+	"/javascript/lib/html2canvas.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 2,
+		"oAP": "/dist/js/html2canvas.min.js",
+		"oF": 3,
 		"sC": 0,
 		"tS": 0
 		},
@@ -2016,7 +2038,7 @@
 	"externalServerAddress": "http://localhost:8888",
 	"gitIgnoreBuildFolder": 1,
 	"hideConfigFile": 0,
-	"jsCheckerReservedNamesString": "$,fuzzysort,jQuery,Mousetrap",
+	"jsCheckerReservedNamesString": "$,fuzzysort,jQuery,Mousetrap,html2canvas",
 	"jsHintFlags2": {
 		"asi": {
 			"active": 0,

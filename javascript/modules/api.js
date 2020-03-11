@@ -15,14 +15,16 @@ const NiftyAPI = {
 
   /**
    * Set multiple display options via a configuration object
+   *
    * @param      {Object}  options  object containing settings
-   * @example NiftyAPI.config({
+   * @example
+   *  NiftyAPI.config({
    *   'arrowStyle': 'arrow',
    *   'bgImage': true,
    *   'expose': false,
    *   'darkMode': false,
    *   'wallpaper': 'default'
-   * })
+   * });
    */
   config: function(options={}) {
     let defaults = Prefs.config;
@@ -42,9 +44,8 @@ const NiftyAPI = {
    * heirarchical menu search items. This function can be chained for use with
    * other functions.
    * @example
-   *   NiftyAPI.find('insert/toc/section')
-   * @example
-   *   NiftyAPI.find('insert/toc/section').arrow()
+   *   NiftyAPI.find('insert/toc/section');
+   * NiftyAPI.find('insert/toc/section').arrow();
    *
    * @param      {string}  str     The string to search for
    * @return     {jQuery}  single jQuery element or null
@@ -65,7 +66,8 @@ const NiftyAPI = {
   },
 
   /**
-   * Lock menu item. Removes any existing locks.
+   * Lock menu item. Removes any existing locks. Equivalent to clicking a menu
+   * item.
    * @example
    *  NiftyAPI.find('file/save').lock();
    */
@@ -77,15 +79,15 @@ const NiftyAPI = {
   },
 
   /**
-   * Add callout to menu item
+   * Add callout to menu item. Equivalent to double clicking a menu item.
    *
    * @param      {boolean}  [bool=true]      Callout on or off (default: true)
    * @param      {boolean}  [recurse=false]  Call out parent items (default:
    *                                         false)
    * @example
    *  NiftyAPI.find('file/open').callout();
-   * @example
-   *  NiftyAPI.find('file/open').callout(false); // remove callout
+   *NiftyAPI.find('file/open').callout(true, true); // add callout to item and parents
+   *NiftyAPI.find('file/open').callout(false); // remove callout
    */
   callout: function(bool, recurse=false) {
     if (bool === undefined) {
@@ -103,13 +105,12 @@ const NiftyAPI = {
   },
 
   /**
-   * Set callout arrow for menu item
+   * Set callout arrow for menu item. Equivalent to option-clicking a menu item.
    *
    * @param      {boolean}  [bool=true]  Arrow on or off
    * @example
    *  NiftyAPI.find('view/merge').arrow();
-   * @example
-   *  NiftyAPI.find('view/merge').arrow(false); // remove arrow
+   *NiftyAPI.find('view/merge').arrow(false); // remove arrow
    */
   arrow: function(bool) {
     if (bool === undefined) {
@@ -120,13 +121,13 @@ const NiftyAPI = {
   },
 
   /**
-   * Set shortcut callout for menu item
+   * Set shortcut callout for menu item. Equivalent to option-clicking a
+   * shortcut on a menu item.
    *
    * @param      {boolean}  [bool=true]  Shortcut callout on or off
    * @example
    *  NiftyAPI.find('file/save').shortcut();
-   * @example
-   *  NiftyAPI.find('file/save').shortcut(false); // remove arrow
+   *NiftyAPI.find('file/save').shortcut(false); // remove arrow
    */
   shortcut: function(bool) {
     if (bool === undefined) {
@@ -141,9 +142,8 @@ const NiftyAPI = {
    *
    * @param      {boolean}  [bool=true]  Dark Mode on or off
    * @example
-   *  NiftyAPI.darkMode() // turn dark mode on
-   * @example
-   *  NiftyAPI.darkMode(false) // turn dark mode off
+   *  NiftyAPI.darkMode(); // turn dark mode on
+   *NiftyAPI.darkMode(false); // turn dark mode off
    */
   darkMode: function(bool) {
     if (bool === undefined) {
@@ -159,14 +159,25 @@ const NiftyAPI = {
    * @param      {boolean}  [bool=true]  Expose on or off
    * @example
    *  NiftyAPI.expose(); // turn expose on
-   * @example
-   *  NiftyAPI.expose(false); // turn expose off
+   *NiftyAPI.expose(false); // turn expose off
    */
   expose: function(bool) {
     if (bool === undefined) {
       bool = true;
     }
     Util.setExpose(bool);
+    return this;
+  },
+
+  /**
+   * Take a screenshot of selected menu item. Currently experimental, only works
+   * in Chrome.
+   *
+   * @example
+   *  NiftyAPI.shoot();
+   */
+  shoot: function() {
+    Util.screenshot();
     return this;
   }
 };
