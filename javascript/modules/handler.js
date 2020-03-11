@@ -1,6 +1,7 @@
 import Util from 'util.js'
 import Callout from 'callout.js';
 import Prefs from 'prefs.js';
+import Search from 'search.js';
 
 /**
  * @namespace Nifty.handlers
@@ -42,11 +43,13 @@ const Handler = (function() {
       return true;
     }
 
-    let $item = find(string);
+    let $item = Search.find(string);
 
     if ($item) {
       Util.clearClicks(false);
-      $item.parents('li').addClass('clicked');
+      if ($item.parents('li')) {
+        $item.parents('li').addClass('clicked');
+      }
       $item.addClass('clicked last');
 
       if (shouldScroll) {

@@ -2,6 +2,7 @@ import Util from 'util.js';
 import Prefs from 'prefs.js';
 import Callout from 'callout.js';
 import Handler from 'handler.js';
+import Search from 'search.js'
 
 /**
  * @namespace Nifty
@@ -11,14 +12,12 @@ import Handler from 'handler.js';
 const Nifty = (function() {
   'use strict';
 
-  let orderedMenuItemTitles;
-
   /**
    * Setup function, cache menu items and init preferences
    * @memberof   Nifty
    */
   const init = () => {
-    getOrderedMenuItemTitles();
+    Search.getOrderedMenuItemTitles();
     if (Prefs.getBool('darkMode')) {
       Util.setDarkMode(true);
     }
@@ -61,40 +60,6 @@ const Nifty = (function() {
     Mousetrap.bind('shift+s', Util.screenshot);
   };
 
-  const itemForPath = (path) => {
-    return $('li').filter(function(i,n) {
-      if ($(n).data('path') === path) {
-        return true;
-      }
-      return false;
-    }).first();
-  };
-
-  /**
-   * Case insensitive string match for menu item search. Use / to separate
-   * heirarchical menu search items
-   * @memberof   Nifty
-   * @example  Nifty.find('insert/toc/section')
-   *
-   * @param      {string}  query   The string to search for
-   * @return     {jQuery}  single jQuery element or null
-   */
-  const find = (query) => {
-    if (/^\s*$/.test(query)) {
-      return null;
-    }
-
-    query = query.replace(/>/g,"/");
-
-    let titles = getOrderedMenuItemTitles();
-    let results = fuzzysort.go(query, titles);
-    if (results.length) {
-      return itemForPath(results[0].target);
-    } else {
-      return null;
-    }
-  };
-
   /**
    * search for a menu item by string and click
    * @memberof   Nifty
@@ -114,7 +79,7 @@ const Nifty = (function() {
       Util.clearClicks(true);
       return;
     }
-    let match = find(str);
+    let match = Search.find(str);
     if (match) {
       match.click();
       match.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
@@ -141,45 +106,18 @@ const Nifty = (function() {
       Util.clearClicks(true);
       return;
     }
-    let match = find(str);
+    let match = Search.find(str);
     if (match) {
       match.dblclick();
       match.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
     }
   };
 
-  /**
-   * Get an array of all item tiles with hierarchy
-   * @private
-   *
-   * @return     {array}  The menu item titles.
-   */
-  const getOrderedMenuItemTitles = () => {
-    if (orderedMenuItemTitles && orderedMenuItemTitles.length > 0) {
-      return orderedMenuItemTitles;
-    }
-    let titles = [];
-
-    $('li').each(function(i,n) {
-      let thisTitle = n.innerText.split(/\n/)[0].trim();
-      $(n).parents('li').each(function(i,n) {
-        if (n.innerText.length) {
-          thisTitle = n.innerText.split(/\n/)[0].trim() + "/" + thisTitle;
-        }
-      });
-      $(n).data('path',thisTitle);
-      titles.push(thisTitle);
-    });
-    orderedMenuItemTitles = titles;
-    return orderedMenuItemTitles;
-  };
-
   return {
     orderedMenuItemTitles: [],
     init,
     click,
-    dblClick,
-    find
+    dblClick
   }
 })();
 
