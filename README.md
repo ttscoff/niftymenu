@@ -113,7 +113,7 @@ Escape will clear your search and hide the Help menu. Pressing return while a ma
 
 ### Built-in Screenshots
 
-`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use "Screenshot" in the tools menu to snap a cropped photo containing the currently-focused menu item, automatically named and ready to save to disk. This capability is also available [from the API](https://ttscoff.github.io/niftymenu/jsapi/index.html) for automation.
+`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use "Screenshot" in the tools menu to snap a cropped photo containing the currently-focused menu item, automatically named and ready to save to disk. This capability is also available [from the API](https://ttscoff.github.io/niftymenu/jsapi/NiftyAPI.html#.shoot__anchor) for automation.
 
 ## Customizing
 
