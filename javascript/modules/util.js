@@ -122,6 +122,7 @@ import Callout from 'callout.js';
       $body.addClass('dark');
       Prefs.set('darkMode',1);
     }
+    loadWallpaper();
   };
 
   /**
@@ -132,10 +133,11 @@ import Callout from 'callout.js';
     let $body = $('body');
     if (bool) {
       $body.addClass('expose');
+      $('html,body').width($('body>ul').width());
       Prefs.set('expose',1);
     } else {
-      $body.removeClass('expose');
       Prefs.set('expose',0);
+      window.location.reload();
     }
   };
 

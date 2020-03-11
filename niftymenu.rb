@@ -275,12 +275,12 @@ __CONTENT__
 <aside class="controls" data-html2canvas-ignore>
   <span id="darkModeToggle">Dark Mode (D)</span>
   <span id="exposeToggle">Expos&eacute; (E)</span>
-  <span id="screenshot">Screenshot (S)</span>
   <span id="backgroundToggle">Background Image</span>
   <span id="chooseWallpaper">Choose Wallpaper</span>
   <span id="randomWallpaper">Random Wallpaper</span>
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
+  <span id="screenshot">Screenshot (S)</span>
 </aside>
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/lib/fuzzysort.min.js"></script>

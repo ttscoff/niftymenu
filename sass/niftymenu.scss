@@ -372,19 +372,19 @@ strong {
 
 // Dark mode
 
-body.dark {
+.dark {
   background: $dark-color-desktop-gradient-1;
   background: linear-gradient(180deg, $dark-color-desktop-gradient-1 0%, $dark-color-desktop-gradient-2 50%);
   color: $dark-color-foreground;
 
-  >ul {
+  > ul {
     &::before {
       background: transparentize($dark-color-background-toolbar,.1);
       border-bottom: 0;
       box-shadow: 0;
     }
 
-    >li {
+    > li {
       &:hover,
       &.clicked,
       &.persist {
@@ -397,16 +397,16 @@ body.dark {
       }
 
       > ul {
-        background: transparentize($dark-color-background-submenu,.1);
+        background: $dark-color-background-submenu;
       }
     }
   }
 
 
-  &>ul ul {
+  > ul ul {
     box-shadow: 0;
     border: solid 1px $dark-color-background-submenu;
-    background: transparentize($dark-color-background-submenu,.1);
+    background: $dark-color-background-submenu;
 
     li {
       &:hover,
