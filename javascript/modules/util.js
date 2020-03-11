@@ -49,7 +49,7 @@ import Callout from 'callout.js';
         url = 'images/background.jpg';
       }
     }
-    addStyleRule('body.bgimage {background-image: url('+url+')}');
+    addStyleRule('body.bgimage, body.dark.bgimage {background-image: url('+url+')}');
   };
 
   /**

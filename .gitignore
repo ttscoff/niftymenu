@@ -2,3 +2,4 @@
 /osatest.applescript
 dist/*.html
 node_modules
+.doingrc
