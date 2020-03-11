@@ -93,6 +93,10 @@ Yes, there's a utility menu at the bottom that lets you switch to Dark Mode, and
 
 Pressing __Shift-E__ or selecting Expos&eacute; from the utility menu will open all of the menus at once, spreading them out for easy visibility and scanning.
 
+### Custom Wallpaper
+
+Use the tools menu to select your own wallpaper, or to grab a random one (optionally based on a keyword search) from Unsplash.
+
 ### JavaScript API for automating
 
 Search and select menu items with simple API methods. Any automation method  that can interact with a web browser (AppleScript, browser testing platform...) will make it possible to script and capture a dozen screenshots with the click of a button. Even if those menu items move around. See the [API documentation.][jsapi]

@@ -37,7 +37,7 @@ In the case of `callout()` a second boolean parameter determines whether parent 
 
 # Screenshots
 
-`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use `.shoot()` to take a screenshot and immediately download it with a name based on the menu items path.
+`html2canvas` is built in, but the screenshot capability currently ***only works properly in Chrome***. In Chrome you can use `.shoot()` to take a screenshot and immediately download it with a name based on the menu items path. [See notes.](file:///Users/ttscoff/Desktop/Code/niftymenu/docs/jsapi/NiftyAPI.html#.shoot__anchor)
 
     NiftyAPI.find('view/next tab').lock().shoot();
 

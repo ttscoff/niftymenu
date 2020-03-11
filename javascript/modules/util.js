@@ -156,6 +156,9 @@ import Callout from 'callout.js';
    * in Chrome. If called via NiftyAPI.shoot(), downloads immediately to
    * Downloads folder, names file based on menu path.
    *
+   * Background images work if they're remote. Local images seem to taint the
+   * canvas, making it impossible to save with Chrome's security restrictions.
+   *
    * @param      {event}  e       If e is undefined, download immediately
    */
   const screenshot = (e) => {
@@ -192,17 +195,28 @@ import Callout from 'callout.js';
       }
     });
 
+    let useCors = false;
+    let hadBG = Prefs.getBool('bgImage');
+
+    if ((/url\("http/).test($('body').css('background-image'))) {
+      useCors = true;
+    } else if ((/url\("file/).test($('body').css('background-image'))) {
+      setBG(false);
+    }
+
     html2canvas(document.querySelector("body"), {
       x: left,
       y: 0,
       width: width,
       height: height + 50,
-      useCORS: true
+      useCORS: useCors,
+      allowTaint: false
     }).then(canvas => {
       $('#screenshotHolder').empty();
       $('#screenshotHolder').append(canvas);
       clearClicks(true);
       $('body').removeClass('screenshot');
+      setBG(hadBG);
 
       // if called from a handler, display screenshot for download
       if (e) {

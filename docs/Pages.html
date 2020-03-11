@@ -273,20 +273,8 @@ menu &#8220;Open Recent&#8221;</li>
 <li><span class='menuitem'>Comment</span> <span class='shortcut'>&#8679;&#8984;K</span></li>
 <li><span class='menuitem'>Bookmark</span> <span class='shortcut'>&#8997;&#8984;B</span></li>
 <li>Image Gallery</li>
-<li><strong><em>Import from iPhone or iPad</em></strong>
-
-<ul>
-<li>Brett&#8217;s iPhone</li>
-<li>Take Photo</li>
-<li>Scan Documents</li>
-<li>Add Sketch</li>
-<li><span class="divider"></span></li>
-<li>Brett&#8217;s iPad</li>
-<li>Take Photo</li>
-<li>Scan Documents</li>
-<li>Add Sketch</li>
-<li><span class="divider"></span></li>
-</ul></li>
+<li>Import From Device
+menu &#8220;Import From Device&#8221;</li>
 <li>Record Audio</li>
 <li><span class="divider"></span></li>
 <li><strong><em>Formula</em></strong>
@@ -744,6 +732,7 @@ menu &#8220;Open Recent&#8221;</li>
 <li>Move Tab to New Window</li>
 <li>Merge All Windows</li>
 <li><span class="divider"></span></li>
+<li><span class="divider"></span></li>
 <li>Bring All to Front</li>
 <li>Arrange in Front</li>
 <li><span class="divider"></span></li>
@@ -756,7 +745,6 @@ menu &#8220;Open Recent&#8221;</li>
 
 <ul>
 <li><span class="helpsearch"><label>Search <input type="text"></label></span></li>
-<li>Pages Help</li>
 <li>Keyboard Shortcuts</li>
 <li>Formulas and Functions Help</li>
 <li><span class="divider"></span></li>
@@ -766,7 +754,7 @@ menu &#8220;Open Recent&#8221;</li>
 <li>Service and Support</li>
 </ul></li>
 </ul>
-<div id="demotut">
+<div id="demotut" data-html2canvas-ignore>
   <h1>Tutorial</h1>
   <ul>
     <li>Hover to reveal menus</li>
@@ -780,21 +768,21 @@ menu &#8220;Open Recent&#8221;</li>
   </ul>
   <!-- <span class="hidetut">Hide</span> -->
 </div>
-<aside class="status">
-  <span id="statusLocked"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" width="48"><circle cx="24" cy="30" r="2"/><path d="M24 38c-0.6 0-1-0.4-1-1v-6c0-0.6 0.4-1 1-1s1 0.4 1 1v6C25 37.6 24.6 38 24 38z"/><path d="M42 48H6V18h36V48zM8 46h32V20H8V46z"/><path d="M36 19h-2v-7c0-5.5-4.5-10-10-10S14 6.5 14 12v7h-2v-7c0-6.6 5.4-12 12-12s12 5.4 12 12V19z"/></svg>
-</span>
-</aside>
-<aside class="controls">
+<div id="screenshotHolder" data-html2canvas-ignore></div>
+<aside class="controls" data-html2canvas-ignore>
   <span id="darkModeToggle">Dark Mode (D)</span>
   <span id="exposeToggle">Expos&eacute; (E)</span>
+  <span id="screenshot">Screenshot (S)</span>
   <span id="backgroundToggle">Background Image</span>
   <span id="chooseWallpaper">Choose Wallpaper</span>
+  <span id="randomWallpaper">Random Wallpaper</span>
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
 </aside>
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/lib/fuzzysort.min.js"></script>
 <script src="js/lib/mousetrap.min.js"></script>
+<script src="js/lib/html2canvas.min.js"></script>
 <script src="js/nifty.min.js"></script>
 </body>
 </html>
