@@ -1,4 +1,4 @@
-import Nifty from 'nifty.js';
+import Search from 'search.js';
 import Prefs from 'prefs.js';
 import Util from 'util.js';
 import Callout from 'callout.js';
@@ -51,7 +51,7 @@ const NiftyAPI = {
    * @return     {jQuery}  single jQuery element or null
    */
   find: function(str) {
-    this.targetEl = Nifty.find(str);
+    this.targetEl = Search.find(str);
     return this;
   },
 
