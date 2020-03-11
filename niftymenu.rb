@@ -125,9 +125,8 @@ def menus_to_markdown(input)
   input.gsub!(/\\"/,"''")
   # replace divider items
   input.gsub!(/menu item \d+/,'- <span class="divider"></span>')
-  # remove double dividers
-  input.gsub!(/(- <span class="divider"><\/span>\n)+/,"- <span class=\"divider\"></span>\n")
-
+  # remove any doubled dividers
+  input.gsub!(/(^(\t*)- <span class="divider"><\/span>\n)+/,"\\2- <span class=\"divider\"></span>\n")
   # Extract keyboard shortcuts
   input.gsub!(/>>(?<mod>\d+)\|(?<key>\S)<< menu item "(?<name>.*?)"/) {|match|
     m = Regexp.last_match
@@ -135,7 +134,7 @@ def menus_to_markdown(input)
 
     %Q{menu item "<span class='menuitem'>#{m['name']}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
   }
-  # Clean up botched shortcuts
+  # Clean up any botched shortcuts
   input.gsub!(/<<.*?>>/,'')
 
   input.gsub!(/menu bar item ".*?"/,'')

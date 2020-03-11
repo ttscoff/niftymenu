@@ -165,7 +165,7 @@ import Callout from 'callout.js';
    */
   const screenshot = (e) => {
     $('body').addClass('screenshot');
-    let clicks = $('.clicked');
+    let clicks = $('li.clicked');
     if (!clicks.length) {
       throw("No menu items selected");
     }
@@ -184,7 +184,7 @@ import Callout from 'callout.js';
     title = title.join('-').replace(/-+/g,'-').replace(/ +/g,'_');
 
     let menus = clicks.parents('ul').not('body>ul'),
-      left = Math.floor(clicks.first().offset().left - 50),
+      left = Math.floor(clicks.first().offset().left - 70),
       width = 150,
       height = 0;
 
@@ -196,6 +196,12 @@ import Callout from 'callout.js';
         height = ulTop + ulHeight;
       }
     });
+
+    // if the last item clicked has an open submenu,
+    // include it in screenshot
+    if (clicks.last().find('ul').length) {
+      width += clicks.last().find('ul').width();
+    }
 
     let useCors = false;
     let hadBG = Prefs.getBool('bgImage');
@@ -212,7 +218,7 @@ import Callout from 'callout.js';
       width: width,
       height: height + 50,
       useCORS: useCors,
-      allowTaint: false
+      imageTimeout: 60000
     }).then(canvas => {
       $('#screenshotHolder').empty();
       $('#screenshotHolder').append(canvas);
