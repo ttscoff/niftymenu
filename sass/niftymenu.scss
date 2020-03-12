@@ -54,7 +54,7 @@ body {
       font-size: 14px;
       height: 1rem;
       line-height: 1;
-      margin: 0 .3em;
+      margin: 0;
       padding: 4px;
 
       >strong {
@@ -365,6 +365,14 @@ strong {
     width: 11px;
 
     .dark & {
+      background-image: $dark-checkmark;
+    }
+  }
+
+  &.clicked,
+  &.persist,
+  &:hover {
+    &::before {
       background-image: $dark-checkmark;
     }
   }
