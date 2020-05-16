@@ -732,4 +732,36 @@ body.screenshot {
   }
 }
 
+#terminal {
+  left: 50%;
+  position: absolute;
+  top: 25%;
+
+  textarea {
+    background: rgba(25, 25, 25, .8);
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #b0f566;
+    font-family: menlo, courier, monospace;
+    font-size: 16px;
+    height: 300px;
+    line-height: 1.25;
+    margin-left: -40vw;
+    padding: 20px;
+    position: absolute;
+    width: 80vw;
+  }
+
+  input {
+    background: #666;
+    border: 0;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    right: -39vw;
+    top: 256px;
+  }
+}
+
 @import 'custom/custom';

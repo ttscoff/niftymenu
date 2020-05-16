@@ -184,6 +184,9 @@ const Handler = (function() {
       case 'screenshot':
         Util.screenshot(e);
         break;
+      case 'commandshell':
+        Util.terminal(e);
+        break;
       default:
         throw('Element ID unrecognized');
     }

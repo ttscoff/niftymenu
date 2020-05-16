@@ -37,7 +37,7 @@ const Nifty = (function() {
 
     $('span','.controls').on('click', Handler.controlsClick);
 
-    $('.helpsearch input').on('keydown', Handler.liveSearch);
+    $('.helpsearch input').on('keyup', Handler.liveSearch);
 
     $('.helpsearch').on('click', Handler.focusSearch);
 
@@ -58,6 +58,7 @@ const Nifty = (function() {
     Mousetrap.bind('shift+d', Util.toggleDarkMode);
     Mousetrap.bind('shift+e', Util.toggleExpose);
     Mousetrap.bind('shift+s', Util.screenshot);
+    Mousetrap.bind('$', Util.terminal);
   };
 
   /**

@@ -280,6 +280,7 @@ __CONTENT__
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
   <span id="screenshot">Screenshot (S)</span>
+  <span id="commandshell">Terminal ($)</span>
 </aside>
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/lib/fuzzysort.min.js"></script>

@@ -163,25 +163,32 @@ import Callout from 'callout.js';
    *
    * @param      {event}  e       If e is undefined, download immediately
    */
-  const screenshot = (e) => {
+  const screenshot = (e, filename) => {
     $('body').addClass('screenshot');
     let clicks = $('li.clicked');
     if (!clicks.length) {
       throw("No menu items selected");
     }
-    let title = [];
-    clicks.each((i,n) => {
-      title.push($(n).find('>strong').text());
-    });
 
-    let last = clicks.last();
-    if (last.children('.shortcut').length > 0) {
-      title.push(last.find('.menuitem').text());
+    let title;
+
+    if (filename) {
+      title = filename;
     } else {
-      title.push(last.text());
-    }
+      title = [];
+      clicks.each((i,n) => {
+        title.push($(n).find('>strong').text());
+      });
 
-    title = title.join('-').replace(/-+/g,'-').replace(/ +/g,'_');
+      let last = clicks.last();
+      if (last.children('.shortcut').length > 0) {
+        title.push(last.find('.menuitem').text());
+      } else {
+        title.push(last.text());
+      }
+
+      title = title.join('-').replace(/-+/g,'-').replace(/ +/g,'_');
+    }
 
     let menus = clicks.parents('ul').not('body>ul'),
       left = Math.floor(clicks.first().offset().left - 70),
@@ -269,6 +276,33 @@ import Callout from 'callout.js';
     $('#screenshotHolder').empty();
   }
 
+  /**
+   * Launch a shell for running automations
+   */
+  const terminal = (e) => {
+    e.preventDefault();
+    if ($('#terminal').length > 0) {
+      $('#terminal').toggle();
+      if ($('#terminal').is(':visible')) {
+        $('#terminal>textarea').focus();
+      }
+    } else {
+      $('<form id=terminal><textarea></textarea><input type=submit value=Run>').appendTo('body');
+      $('#terminal>input').on('click', (e) => {
+        e.preventDefault();
+        let code = $('#terminal textarea').val();
+        $('#terminal').hide();
+        code.trim().split(/;/).forEach((line) => {
+          let exec = line.trim();
+          if (exec.length > 0)
+            return Function('"use strict";return (' + exec + ')')();
+        });
+      });
+      $('#terminal>textarea').focus();
+    }
+    return false;
+  }
+
   return {
     setDarkMode,
     toggleDarkMode,
@@ -280,7 +314,8 @@ import Callout from 'callout.js';
     toggleBG,
     clearClicks,
     screenshot,
-    downloadScreenshot
+    downloadScreenshot,
+    terminal
   }
 })();
 

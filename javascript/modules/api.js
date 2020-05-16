@@ -21,18 +21,17 @@ const NiftyAPI = {
    *  NiftyAPI.config({
    *   'arrowStyle': 'arrow',
    *   'bgImage': true,
-   *   'expose': false,
    *   'darkMode': false,
    *   'wallpaper': 'default'
    * });
    */
+  getConfig: Prefs.get,
   config: function(options={}) {
     let defaults = Prefs.config;
 
     let config = $.extend({}, defaults, options);
 
     Util.setDarkMode(Prefs.truthy(config.darkMode));
-    Util.setExpose(Prefs.truthy(config.expose));
     Util.setBG(Prefs.truthy(config.bgImage));
     Util.setWallpaper(config.wallpaper);
     Callout.setArrowStyle(config.arrowStyle);
@@ -95,12 +94,16 @@ const NiftyAPI = {
     }
 
     Util.clearClicks(true);
-    this.targetEl.dblclick();
-    this.targetEl.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
 
-    if (recurse) {
-      this.targetEl.parents('.clicked').addClass('callout');
+    if (bool) {
+      this.targetEl.dblclick();
+      this.targetEl.get(0).scrollIntoView({behavior: "auto", block: "end", inline: "center"});
+
+      if (recurse) {
+        this.targetEl.parents('.clicked').addClass('callout');
+      }
     }
+
     return this;
   },
 
@@ -173,16 +176,18 @@ const NiftyAPI = {
    * Take a screenshot of selected menu item. Currently experimental, **only works
    * in Chrome**.
    *
-   * Background images work if they're remote (hosted). Local images seem to taint the
+   * Background images work if they're remote (hosted, with proper CORS headers). Local images seem to taint the
    * canvas, making it impossible to save with Chrome's security restrictions.
    * Thus, background images are disabled during screenshot if using a file:
    * protocol.
    *
+   * @params() {string} [title=null] Optional title for downloaded image
+   *
    * @example
    *  NiftyAPI.shoot();
    */
-  shoot: function() {
-    Util.screenshot();
+  shoot: function(title=null) {
+    Util.screenshot(false, title);
     return this;
   }
 };
