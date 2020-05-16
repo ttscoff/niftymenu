@@ -3,8 +3,8 @@
 ////// Light Mode //////
 
 // background gradient and default image
-$color-desktop-gradient-1: rgb(86, 118, 127);
-$color-desktop-gradient-2: rgb(120, 156, 165);
+$color-desktop-gradient-1: #00c2da;
+$color-desktop-gradient-2: #00618d;
 $desktop-image: '../images/background.jpg';
 
 // base colors
@@ -24,7 +24,7 @@ $color-divider: rgb(198, 198, 198) !default;
 // Color used for menu borders
 $color-border: rgb(168, 168, 168) !default;
 // glow around item when double clicking to color-accent
-$color-callout: rgb(98, 186, 70);
+$color-callout: #aeff00;
 
 // for the help menu item search field
 $color-background-help: rgb(189, 189, 190);

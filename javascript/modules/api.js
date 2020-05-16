@@ -173,18 +173,19 @@ const NiftyAPI = {
   },
 
   /**
-   * Take a screenshot of selected menu item. Currently experimental, **only works
-   * in Chrome**.
+   * Take a screenshot of selected menu item. Currently experimental, **only
+   * works in Chrome**.
    *
-   * Background images work if they're remote (hosted, with proper CORS headers). Local images seem to taint the
-   * canvas, making it impossible to save with Chrome's security restrictions.
-   * Thus, background images are disabled during screenshot if using a file:
-   * protocol.
+   * Background images work if they're remote (hosted, with proper CORS
+   * headers). Local images seem to taint the canvas, making it impossible to
+   * save with Chrome's security restrictions. Thus, background images are
+   * disabled during screenshot if using a file: protocol.
    *
-   * @params() {string} [title=null] Optional title for downloaded image
+   * @param      {string}  [title=null]  The title for downloaded image, no extension
    *
    * @example
-   *  NiftyAPI.shoot();
+   *  NiftyAPI.find('edit/paste as').arrow().shoot('filename');
+   *
    */
   shoot: function(title=null) {
     Util.screenshot(false, title);
