@@ -14,6 +14,11 @@ const NiftyAPI = {
   targetEl: null,
 
   /**
+   * Show current configuration options
+   */
+  getConfig: Prefs.get,
+
+  /**
    * Set multiple display options via a configuration object
    *
    * @param      {Object}  options  object containing settings
@@ -25,7 +30,6 @@ const NiftyAPI = {
    *   'wallpaper': 'default'
    * });
    */
-  getConfig: Prefs.get,
   config: function(options={}) {
     let defaults = Prefs.config;
 
