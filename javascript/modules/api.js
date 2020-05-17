@@ -15,6 +15,8 @@ const NiftyAPI = {
 
   /**
    * Show current configuration options
+   *
+   * @return     {object}  The configuration.
    */
   getConfig: function() {
     return Prefs.get();
