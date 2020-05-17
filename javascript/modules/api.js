@@ -16,7 +16,9 @@ const NiftyAPI = {
   /**
    * Show current configuration options
    */
-  getConfig: Prefs.get,
+  getConfig: function() {
+    return Prefs.get();
+  },
 
   /**
    * Set multiple display options via a configuration object
