@@ -1,7 +1,4 @@
-import Search from 'search.js';
-import Prefs from 'prefs.js';
-import Util from 'util.js';
-import Callout from 'callout.js';
+import { Callout, Prefs, Search, Util } from 'modules.js';
 
 /**
  * @namespace NiftyAPI

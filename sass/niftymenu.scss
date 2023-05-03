@@ -216,7 +216,7 @@ body {
 .divider {
   border-bottom: 2px solid $color-divider;
   display: block;
-  margin: 4px 0;
+  margin: 4px 7px 4px 1.6em;
   position: relative;
 }
 
@@ -265,15 +265,16 @@ strong {
     font-style: normal;
 
     &::after {
-      border-bottom: 5px solid transparent;
-      border-left: 8px solid $color-foreground;
-      border-top: 5px solid transparent;
-      content: ' ';
+      content: '›';
       display: block;
       float: right;
+      font-size: 22px;
       height: 0;
-      margin: 5px 4px 0 0;
-      text-align: right;
+      margin: 5px 4px 0 0px;
+      position: relative;
+      position: relative;
+      right: 36px;
+      top: -7px;
       width: 0;
     }
   }

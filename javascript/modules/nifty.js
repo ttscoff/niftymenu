@@ -1,8 +1,4 @@
-import Util from 'util.js';
-import Prefs from 'prefs.js';
-import Callout from 'callout.js';
-import Handler from 'handler.js';
-import Search from 'search.js'
+import { Util, Prefs, Callout, Handler, Search } from 'modules.js';
 
 /**
  * @namespace Nifty
