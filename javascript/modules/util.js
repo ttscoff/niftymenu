@@ -294,8 +294,9 @@ import Callout from 'callout.js';
         $('#terminal').hide();
         code.trim().split(/;/).forEach((line) => {
           let exec = line.trim();
-          if (exec.length > 0)
-            return Function('"use strict";return (' + exec + ')')();
+          if (exec.length > 0) {
+            return Function(`"use strict";return (${exec})`)();
+          }
         });
       });
       $('#terminal>textarea').focus();
