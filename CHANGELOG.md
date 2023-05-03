@@ -1,3 +1,13 @@
+### 1.0.9
+
+2023-05-03 12:05
+
+#### IMPROVED
+
+- Update submenu indicator for Ventura styling
+- Reduce font size for Ventura visible compatibility
+- Better font stack for macOS system font
+
 ### 1.0.8
 
 - Update submenu indicator
