@@ -591,6 +591,295 @@
       "oAP" : "\/osatest.applescript",
       "oF" : 0
     },
+    "\/out\/fonts\/OpenSans-Bold-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Bold-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Bold-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-Bold-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-Bold-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Bold-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-BoldItalic-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-BoldItalic-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-BoldItalic-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-BoldItalic-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-BoldItalic-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-BoldItalic-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Italic-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Italic-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Italic-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-Italic-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-Italic-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Italic-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Light-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Light-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Light-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-Light-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-Light-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Light-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-LightItalic-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-LightItalic-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-LightItalic-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-LightItalic-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-LightItalic-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-LightItalic-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Regular-webfont.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Regular-webfont.eot",
+      "oF" : 0
+    },
+    "\/out\/fonts\/OpenSans-Regular-webfont.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/out\/fonts\/OpenSans-Regular-webfont.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 3758088159,
+      "prP" : 0
+    },
+    "\/out\/fonts\/OpenSans-Regular-webfont.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/fonts\/OpenSans-Regular-webfont.woff",
+      "oF" : 0
+    },
+    "\/out\/index.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/index.html",
+      "oF" : 0
+    },
+    "\/out\/lib_mousetrap.js.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/lib_mousetrap.js.html",
+      "oF" : 0
+    },
+    "\/out\/modules_api.js.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/modules_api.js.html",
+      "oF" : 0
+    },
+    "\/out\/modules_callout.js.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/modules_callout.js.html",
+      "oF" : 0
+    },
+    "\/out\/modules_handler.js.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/modules_handler.js.html",
+      "oF" : 0
+    },
+    "\/out\/modules_nifty.js.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/modules_nifty.js.html",
+      "oF" : 0
+    },
+    "\/out\/NiftyAPI.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/NiftyAPI.html",
+      "oF" : 0
+    },
+    "\/out\/scripts\/linenumber.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/dist\/js\/linenumber.min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/out\/scripts\/prettify\/Apache-License-2.0.txt" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/scripts\/prettify\/Apache-License-2.0.txt",
+      "oF" : 0
+    },
+    "\/out\/scripts\/prettify\/lang-css.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/dist\/js\/lang-css.min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/out\/scripts\/prettify\/prettify.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/dist\/js\/prettify.min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/out\/styles\/jsdoc-default.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/styles\/jsdoc-default-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/out\/styles\/prettify-jsdoc.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/styles\/prettify-jsdoc-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/out\/styles\/prettify-tomorrow.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/out\/styles\/prettify-tomorrow-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
     "\/package-lock.json" : {
       "ft" : 524288,
       "oA" : 1,
