@@ -37,7 +37,8 @@ const Callout = (function() {
       const style = Prefs.get('arrowStyle') || 'arrow';
       const direction = el.find('ul').length ? 'left' : 'right';
       $('.clicked').removeClass('clicked');
-      el.addClass('arrow arrow-'+style+' clicked '+direction).append('<b><i></i></b>');
+      $('.last').removeClass('last');
+      el.addClass('arrow arrow-'+style+' clicked '+direction+' last').append('<b><i></i></b>');
       el.parents('li').addClass('clicked');
     } else {
       el.removeClass('arrow arrow-arrow arrow-circle').find('b').remove();
@@ -99,7 +100,8 @@ const Callout = (function() {
       setShortcut(false);
       setArrow(false);
       $('.clicked').removeClass('clicked');
-      el.addClass('clicked').find('.shortcut').addClass('shortcut-callout');
+      $('.last').removeClass('last');
+      el.addClass('clicked last').find('.shortcut').addClass('shortcut-callout');
       el.parents('li').addClass('clicked');
     } else {
       el.find('.shortcut').removeClass('shortcut-callout');

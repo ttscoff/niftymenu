@@ -180,7 +180,7 @@ def menus_to_markdown(input)
   # input.sub!(/(?mi)menu bar 1 of application process "[\s\S]*?"[\s\S]*(?=\tmenu bar item)/,"- &#63743;\n")
 
   # replace Help Search Item
-  input.gsub!( /(?mi)(?<=menu "Help"\n)(\s+)[\s\S]*?(\s+)(?=menu item)/, '\1- <span class="helpsearch"><label>Search <input type="text"></label></span>\2' )
+  input.gsub!( /(?mi)(?<=menu "Help"\n)(\s+)[\s\S]*?(\s+)(?=menu item)/, '\1- <span class="helpsearch"><label><input type="search" placeholder="Search…"></label></span>\2' )
   # reduce indent
   input.gsub!(/^\t\t/,'')
 
@@ -352,7 +352,7 @@ __CONTENT__
   <span id="exposeToggle">Expos&eacute; (E)</span>
   <span id="backgroundToggle">Background Image</span>
   <span id="chooseWallpaper">Choose Wallpaper</span>
-  <span id="randomWallpaper">Random Wallpaper</span>
+  <span id="randomWallpaper">Picsum Wallpaper</span>
   <span id="resetWallpaper">Reset Wallpaper</span>
   <span id="arrowStyle">Arrow style: Arrow</span>
   <span id="screenshot">Screenshot (S)</span>

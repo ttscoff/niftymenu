@@ -56,11 +56,11 @@ There are settings available in a slide-in menu in the lower right.
 
 Use keyboard shortcuts for quick toggles:
 
-| Key   | Function  | 
-| ---   | --------  | 
-| Shift-D   | Toggle Dark Mode  | 
-| Shift-E   | Toggle Expos&eacute;  | 
-| ? | Toggle the Help Search    | 
+| Key   | Function  |
+| ---   | --------  |
+| Shift-D   | Toggle Dark Mode  |
+| Shift-E   | Toggle Expos&eacute;  |
+| ? | Toggle the Help Search    |
 
 
 ## Features
@@ -77,7 +77,7 @@ Hovering will open up submenus, but once you click an item the submenu will stay
 
 If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it. Shift-double-click to highlight the entire hierarchy of clicks to that menu item.
 
-You can add an arrow to the right of the selected item by Command-Option-clicking it. Add a callout to a keyboard shortcut by Command-Option-clicking on the shortcut. Hold Option to reveal alternate menu items (e.g., "Quit and Keep Windows" instead of "Quit"). 
+You can add an arrow to the right of the selected item by Command-Option-clicking it. Add a callout to a keyboard shortcut by Command-Option-clicking on the shortcut. Hold Option to reveal alternate menu items (e.g., "Quit and Keep Windows" instead of "Quit").
 
 You can also toggle the standard OS checkmark on the left of the item using Command-click. The arrow style (circle or arrow) can be toggled using the preference controls.
 
@@ -95,7 +95,7 @@ Pressing __Shift-E__ or selecting Expos&eacute; from the utility menu will open 
 
 ### Custom Wallpaper
 
-Use the tools menu to select your own wallpaper, or to grab a random one (optionally based on a keyword search) from Unsplash.
+Use the tools menu to select your own wallpaper, or choose a 2400×1350 (16:9) image from [Lorem Picsum](https://picsum.photos/) with optional seed (to keep the same image), blur, and grayscale.
 
 ### JavaScript API for automating
 

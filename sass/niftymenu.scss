@@ -50,12 +50,12 @@ body {
     color: white;
 
     &::before {
-      background: $desktop-image-overlay;
+      background: hsla(0, 0%, 100%, 0.45);
       box-shadow: 0 0 4px color.adjust($color-foreground, $alpha: -0.75);
+      mix-blend-mode: hard-light;
       content: " ";
       display: block;
       height: 1.6rem;
-      mix-blend-mode: overlay;
       padding: 4px 0;
       left: 0;
       position: absolute;
@@ -74,6 +74,7 @@ body {
 
       > strong {
         padding: 4px 8px;
+        color: #111;
       }
 
       &:nth-of-type(1) {
@@ -81,7 +82,8 @@ body {
         text-align: center;
         font-size: 1.2rem;
         line-height: 1;
-        margin-top: -0.1rem;
+        margin-top: 0;
+        color: #111;
       }
 
       &:nth-of-type(2) > strong {
@@ -92,7 +94,7 @@ body {
       &.clicked,
       &.persist {
         background: rgba(255, 255, 255, 0.2);
-        color: $color-foreground-inverted;
+        color: #111;
         border-radius: 14px;
 
         > ul {
@@ -142,6 +144,14 @@ body {
     position: relative;
     white-space: nowrap;
   }
+}
+
+.dark > ul > li:nth-of-type(1) {
+  color: #fff;
+}
+
+.dark > ul > li > strong {
+  color: #fff;
 }
 
 // Alternate menu items (Option-held): hidden by default, only visible when Option is held
@@ -229,6 +239,10 @@ body.option-held li:has(.menuitem.alternate-only) {
 body {
   &.dark > ul ul {
     border: solid 1px #656382;
+
+    li {
+      color: #fff;
+    }
   }
 
   > ul {
@@ -247,6 +261,11 @@ body {
         width: auto;
         z-index: 10;
         margin: 0;
+        color: #111;
+
+        .dark & {
+          color: #fff;
+        }
       }
 
       li {
@@ -256,6 +275,7 @@ body {
         padding: 2px 0;
         width: 100%;
         line-height: 1.4rem;
+        color: #111;
 
         &:hover,
         &.clicked,
@@ -314,7 +334,6 @@ li:has(> .divider) {
 }
 
 .helpsearch {
-  background: $color-background-help;
   display: block;
   margin-top: -0.3rem;
   padding: 0.2rem 0 0.4rem;
@@ -322,25 +341,38 @@ li:has(> .divider) {
 
   label {
     color: $color-foreground;
+    position: relative;
+    display: block;
+  }
+
+  label::before {
+    content: "\1f50d"; // magnifying glass (U+1F50D)
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px;
+    opacity: 0.6;
   }
 
   input {
-    background: $color-background-help-search;
     border: 0;
-    border-radius: 3px;
     font-size: 14px;
-    margin-left: 5px;
-    margin-right: -13px;
     outline: 0;
-    padding: 4px;
-    width: 200px;
+    border-radius: 16px;
+    margin: 7px 0 0 0;
+    padding: 7px 7px 7px 32px;
+    width: 90%;
   }
 
   .dark & {
-    background: $dark-color-background-help;
-
     label {
       color: $dark-color-foreground;
+    }
+
+    label::before {
+      opacity: 0.7;
     }
 
     input {
@@ -491,7 +523,7 @@ strong {
       background: $dark-desktop-image-overlay;
       border-bottom: 0;
       box-shadow: 0;
-      mix-blend-mode: overlay;
+      mix-blend-mode: multiply;
     }
 
     > li {
@@ -708,7 +740,6 @@ body.bgimage {
 body.expose {
   > ul > li {
     height: 100%;
-    background: rgba(222, 223, 220, 0.5);
     background-clip: content-box;
     margin-bottom: 2em;
 
@@ -821,6 +852,7 @@ body.expose {
 
     &.screenshot-close {
       background: $color-background-submenu;
+      color: #333;
     }
   }
 }
