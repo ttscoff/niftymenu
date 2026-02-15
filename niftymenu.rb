@@ -56,6 +56,8 @@ def replace_with_entity(char)
     "&#8999;"
   when /gear/
     "&#9881;"
+  when /(globe|fn)/
+    "&#127760;"
   else
     char
   end
@@ -67,6 +69,28 @@ def render_mods(string)
     m = Regexp.last_match
     replace_with_entity(m[1].strip)
   }
+end
+
+# macOS virtual key codes when AXMenuItemCmdChar returns numeric instead of character
+MAC_KEY_CODE = {
+  3 => 'F'  # 3 = kVK_ANSI_F
+}.freeze
+
+# Special keys: backspace=0x08, forward delete=0x7F - AXMenuItemCmdChar returns these as characters
+SPECIAL_KEY = {
+  8 => '&#9003;',   # backspace (delete left)
+  127 => '&#8998;'  # forward delete
+}.freeze
+
+def key_to_char(key)
+  str = key.to_s
+  return key if str.empty?
+  # Numeric string - check key code map
+  return MAC_KEY_CODE[str.to_i] || key if str =~ /^\d+$/
+  # Single character - check for special keys (backspace, forward delete)
+  ord = str.ord
+  return SPECIAL_KEY[ord] if SPECIAL_KEY.key?(ord)
+  key
 end
 
 def bitwise_to_html(int)
@@ -85,12 +109,20 @@ def bitwise_to_html(int)
     "{ctrl}{shift}{cmd}"
   when 6
     "{ctrl}{opt}{cmd}"
+  when 8
+    "{ctrl}"
+  when 10
+    "{opt}{cmd}"
   when 12
     "{ctrl}"
   when 13
     "{ctrl}{shift}"
   when 15
     "{ctrl}{opt}{shift}"
+  when 24
+    "{globe}"
+  when 28
+    "{ctrl}{opt}{cmd}"
   else
     int.to_s
   end
@@ -130,10 +162,14 @@ def menus_to_markdown(input)
   # Extract keyboard shortcuts
   input.gsub!(/>>(?<mod>\d+)\|(?<key>\S)<< menu item "(?<name>.*?)"/) {|match|
     m = Regexp.last_match
-    key_string = bitwise_to_html(m['mod'].to_i) + m['key']
+    key_char = key_to_char(m['key'])
+    key_string = bitwise_to_html(m['mod'].to_i) + key_char.to_s
 
     %Q{menu item "<span class='menuitem'>#{m['name']}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
   }
+  # Clean up orphaned shortcut markers (>>mod| or >>mod|<< with empty key) - these cause block quotes in markdown
+  input.gsub!(/>>\d+\|\s*<<\s*/,'')
+  input.gsub!(/^[ \t]*>>\d+\|?\s*\n/,'')
   # Clean up any botched shortcuts
   input.gsub!(/<<.*?>>/,'')
 
@@ -190,6 +226,9 @@ def menus_to_markdown(input)
   input.sub!(/\t- Open Recent.*?Clear Menu\n/m,"\t- Open Recent\n\t\t- Empty\n")
   # highlight menu items with submenus
   input.gsub!( /^(\t+)(?:- (.+?)\n)(?=\1\t-)/, "\\1- **_\\2_**\n" )
+
+  # remove consecutive duplicate menu items
+  input.gsub!(/(^(\t*- .+)\n)(\1\n)+/m, '\1')
 
   input
 end

@@ -119,7 +119,7 @@ Escape will clear your search and hide the Help menu. Pressing return while a ma
 
 The project uses Sass/Compass for styling and is configured to output your modifications to the right place, so styling is pretty easy.
 
-You can modify Sass variables in the custom folder (`sass/custom/_variables.scss`) to change any of the colors and the Desktop images. There's an empty `_custom.scss` file that Compass will import automatically, so you can override anything you want without breaking your ability to update. Just install Compass (`gem install compass`) and then use `compass compile` from the base folder (or `compass watch` with LiveReload  to see your changes instantly).
+You can modify Sass variables in the custom folder (`sass/custom/_variables.scss`) to change any of the colors and the Desktop images. There's an empty `_custom.scss` file that gets imported automatically. Run `npm run build:css` to compile (or `npm run watch:css` to watch for changes).
 
 Editing the JavaScript is more difficult. I'm using CodeKit for development, so there's currently no build system (`gulp`, `webpack`, or the like) included. The CodeKit config file is there if you happen to have it installed. If you want to tweak the JavaScript, feel free, but you're on your own. Pull requests are welcome if you do dig into it.
 

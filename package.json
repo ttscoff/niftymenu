@@ -1,0 +1,12 @@
+{
+  "name": "niftymenu",
+  "version": "1.0.0",
+  "description": "HTML menu playground for documentation screenshots",
+  "scripts": {
+    "build:css": "sass sass/niftymenu.scss dist/css/niftymenu.css --style=compressed --no-source-map",
+    "watch:css": "sass sass/niftymenu.scss dist/css/niftymenu.css --style=compressed --no-source-map --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
