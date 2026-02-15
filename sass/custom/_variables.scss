@@ -17,6 +17,8 @@ c.$color-drop-shadow: rgba(0, 0, 0, 0.25);
 c.$color-accent: #1d7bf0;
 c.$color-background-toolbar: hsl(193, 31%, 94%);
 c.$color-callout: hsl(92, 97%, 66%);
+c.$color-background-submenu: color.adjust(#e1f4ff, $alpha: -0.1);
+c.$color-divider: #ccdde4;
 
 c.$color-background-help: rgb(189, 189, 190);
 c.$color-background-help-search: rgb(168, 170, 171);
@@ -27,15 +29,15 @@ c.$dark-color-desktop-gradient-1: color.adjust(
   color.adjust(c.$color-desktop-gradient-1, $hue: 90deg),
   $lightness: -15%
 );
-c.$dark-color-desktop-gradient-2: #333;
+c.$dark-color-desktop-gradient-2: #3c2460;
 c.$dark-desktop-image: "../images/darkbackground.jpg";
 
 c.$dark-color-foreground: #fff;
 c.$dark-color-foreground-inverted: #000;
-c.$dark-color-accent: c.$accent-purple;
+c.$dark-color-accent: c.$color-accent;
 c.$dark-color-background-toolbar: rgba(29, 28, 28, 0.85);
-c.$dark-color-background-submenu: rgba(104, 106, 107, 0.7);
-c.$dark-color-divider: rgba(38, 39, 37, 1);
+c.$dark-color-background-submenu: hsla(199, 36%, 14%, 0.7);
+c.$dark-color-divider: rgba(130, 130, 130, 0.2);
 c.$dark-color-border: rgba(38, 39, 37, 1);
 c.$dark-color-callout: color.adjust(
   color.adjust(c.$color-callout, $hue: 85deg),

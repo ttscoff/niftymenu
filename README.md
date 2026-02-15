@@ -50,7 +50,7 @@ You can play with [a hosted demo from the above command][demo].
 
 Load the page in any browser. The menus work exactly like what you're used to, expanding on hover as you navigate. But when you click an item, you lock the expanded menus in position. Clicking again (or clicking anywhere else) releases them.
 
-Add callouts by double clicking to highlight an item, or hold Option and click to add an arrow. If you option-click on a keyboard shortcut instead of the menu title, it will add a callout to the shortcut instead of an arrow. AppleScript didn't provide NiftyMenu with any indications about whether the element had a checkmark originally, so if you need to add those in for your screenshot, use Command-click to toggle them.
+Add callouts by double clicking to highlight an item, or hold Command-Option and click to add an arrow. If you Command-Option-click on a keyboard shortcut instead of the menu title, it will add a callout to the shortcut instead of an arrow. Hold Option to reveal alternate menu items (e.g., "Quit and Keep Windows" instead of "Quit"). AppleScript didn't provide NiftyMenu with any indications about whether the element had a checkmark originally, so if you need to add those in for your screenshot, use Command-click to toggle them.
 
 There are settings available in a slide-in menu in the lower right.
 
@@ -77,7 +77,7 @@ Hovering will open up submenus, but once you click an item the submenu will stay
 
 If you double-click a menu item, it gets highlighted as the selected item with an additional contrasting halo around it. Shift-double-click to highlight the entire hierarchy of clicks to that menu item.
 
-You can add an arrow to the right of the selected item by Option-clicking it. Add a callout to a keyboard shortcut by Option-clicking on the shortcut. 
+You can add an arrow to the right of the selected item by Command-Option-clicking it. Add a callout to a keyboard shortcut by Command-Option-clicking on the shortcut. Hold Option to reveal alternate menu items (e.g., "Quit and Keep Windows" instead of "Quit"). 
 
 You can also toggle the standard OS checkmark on the left of the item using Command-click. The arrow style (circle or arrow) can be toggled using the preference controls.
 

@@ -73,28 +73,37 @@ const Handler = (function() {
   const itemClick = (e) => {
     e.preventDefault();
 
+    if ($(e.target).hasClass('divider')) {
+      return false;
+    }
+
     let $this,
         shortcutClicked = false;
 
     if (e.target.tagName === 'SPAN') {
       $this = $(e.target).closest('li');
-      if ($(e.target).hasClass('shortcut')) {
+      // Option-click on shortcut or any child (e.g. .globe-icon) → shortcut callout
+      if ($(e.target).hasClass('shortcut') || $(e.target).closest('.shortcut').length) {
         shortcutClicked = true;
       }
     } else {
       $this = $(e.target);
     }
 
-    if (e.metaKey || e.altKey) {
-      if (e.metaKey) {
-        Callout.toggleCheckmark($this);
-      } else if (e.altKey) {
-        if (shortcutClicked) {
-          Callout.toggleShortcut($this);
-        } else {
-          Callout.toggleArrow($this);
-        }
+    if ($this.length && $this.children().length === 1 && $this.find('.divider').length) {
+      return false;
+    }
+
+    if (e.altKey) {
+      if (shortcutClicked) {
+        Callout.toggleShortcut($this);
+      } else {
+        Callout.toggleArrow($this);
       }
+      return false;
+    }
+    if (e.metaKey) {
+      Callout.toggleCheckmark($this);
       return false;
     }
 

@@ -31,8 +31,8 @@
 <ul>
 <li><code>lock()</code> (equivalent to a click)</li>
 <li><code>callout()</code> (equivalent to a double click)</li>
-<li><code>arrow()</code> (equivalent to an Option-click)</li>
-<li><code>shortcut()</code> (equivalent to Option-clicking a keyboard shortcut)</li>
+<li><code>arrow()</code> (equivalent to Command-Option-click)</li>
+<li><code>shortcut()</code> (equivalent to Command-Option-clicking a keyboard shortcut)</li>
 </ul>
 
 <p>Example:</p>
@@ -48,7 +48,7 @@ NiftyAPI.find('file/save').callout(true, true);
 
 <h1 id="screenshots">Screenshots</h1>
 
-<p><code>html2canvas</code> is built in, but the screenshot capability currently <strong><em>only works properly in Chrome</em></strong>. In Chrome you can use <code>.shoot()</code> to take a screenshot and immediately download it with a name based on the menu items path. <a href="https://ttscoff.github.io/niftymenu/jsapi/NiftyAPI.html#.shoot__anchor">See notes.</a></p>
+<p><code>html2canvas</code> is built in, but the screenshot capability currently <strong><em>only works properly in Chrome</em></strong>. In Chrome you can use <code>.shoot()</code> to take a screenshot and immediately download it with a name based on the menu items path. If an argument is passed with <code>shoot</code> it will be used as the filename. <a href="https://ttscoff.github.io/niftymenu/jsapi/NiftyAPI.html#.shoot__anchor">See notes.</a></p>
 
 <pre><code>NiftyAPI.find('view/next tab').lock().shoot();
 </code></pre>

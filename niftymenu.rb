@@ -1,11 +1,47 @@
 #!/usr/bin/env ruby
 require 'shellwords'
+require 'cgi'
 
 DEFAULT_APP = "Marked 2"
 
 $appname = DEFAULT_APP
 if ARGV[0] && ARGV[0].length > 1
   $appname = ARGV.join(' ')
+end
+
+# Progress output to STDERR (step 1..total, message, optional progress bar)
+def progress_step(step, total, message)
+  bar_width = 20
+  filled = (step.to_f / total * bar_width).round.clamp(0, bar_width)
+  bar = '=' * filled + '>' * (filled < bar_width ? 1 : 0) + ' ' * (bar_width - filled - (filled < bar_width ? 1 : 0))
+  $stderr.print "\r  [#{bar}] #{step}/#{total} #{message}    "
+  $stderr.puts if step == total
+  $stderr.flush
+end
+
+# Progress during an iteration: same step bar but message includes (current/iter_total). Use for merge step.
+def progress_step_iteration(step, step_total, current, iter_total, message)
+  bar_width = 20
+  filled = (step.to_f / step_total * bar_width).round.clamp(0, bar_width)
+  bar = '=' * filled + '>' * (filled < bar_width ? 1 : 0) + ' ' * (bar_width - filled - (filled < bar_width ? 1 : 0))
+  $stderr.print "\r  [#{bar}] #{step}/#{step_total} #{message} (#{current}/#{iter_total})    "
+  $stderr.puts if current == iter_total
+  $stderr.flush
+end
+
+def progress_message(message)
+  $stderr.puts "  #{message}"
+  $stderr.flush
+end
+
+# Count menu items (and dividers) in raw AppleScript output
+def count_menu_items(raw)
+  raw.scan(/menu item /).size
+end
+
+# Extract top-level menu names from raw AppleScript output for progress display
+def menu_names_from_raw(raw)
+  raw.scan(/menu "([^"]+)"/).flatten.uniq
 end
 
 def replace_with_entity(char)
@@ -57,7 +93,7 @@ def replace_with_entity(char)
   when /gear/
     "&#9881;"
   when /(globe|fn)/
-    "&#127760;"
+    "&#127760;"  # replaced with globe-icon span in final HTML (avoids escaping in pipeline)
   else
     char
   end
@@ -131,9 +167,7 @@ end
 
 def get_menus
   scpt = DATA.read.force_encoding('utf-8')
-
-  scpt.gsub!(/_APPNAME_/,$appname)
-
+  scpt.gsub!(/_APPNAME_/, $appname)
   res = %x{osascript <<'APPLESCRIPT'
   #{scpt}
   APPLESCRIPT}.strip.force_encoding('utf-8')
@@ -155,6 +189,8 @@ def menus_to_markdown(input)
 
   # replace escaped quotes temporarily
   input.gsub!(/\\"/,"''")
+  # replace shortcut+divider (>>mod|key<< menu item N) - bogus shortcut on divider causes blockquotes
+  input.gsub!(/>>\d+\|\S<<\s*menu item \d+/,'- <span class="divider"></span>')
   # replace divider items
   input.gsub!(/menu item \d+/,'- <span class="divider"></span>')
   # remove any doubled dividers
@@ -162,10 +198,11 @@ def menus_to_markdown(input)
   # Extract keyboard shortcuts
   input.gsub!(/>>(?<mod>\d+)\|(?<key>\S)<< menu item "(?<name>.*?)"/) {|match|
     m = Regexp.last_match
+    name = m['name'].to_s
     key_char = key_to_char(m['key'])
     key_string = bitwise_to_html(m['mod'].to_i) + key_char.to_s
 
-    %Q{menu item "<span class='menuitem'>#{m['name']}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
+    %Q{menu item "<span class='menuitem'>#{name}</span> <span class='shortcut'>#{key_string.gsub('\\') { '\\\\\\' }}</span>"}
   }
   # Clean up orphaned shortcut markers (>>mod| or >>mod|<< with empty key) - these cause block quotes in markdown
   input.gsub!(/>>\d+\|\s*<<\s*/,'')
@@ -175,7 +212,7 @@ def menus_to_markdown(input)
 
   input.gsub!(/menu bar item ".*?"/,'')
   # format menu items
-  input.gsub!(/menu item "(.*?)"/,'- \1')
+  input.gsub!(/menu item "(.*?)"/) { "- #{Regexp.last_match[1]}" }
   # format main menu items
   input.gsub!(/^menu "(.*?)"/,'- **\1**')
   # remove items too deeply nested to work with
@@ -330,18 +367,31 @@ __CONTENT__
 </html>
 ENDTEMPLATE
 
-menus = get_menus
-menus = menus_to_markdown(menus)
+PROGRESS_TOTAL = 4
+
+progress_step(1, PROGRESS_TOTAL, "Gathering menu items (#{$appname})...")
+raw = get_menus
+
+item_count = count_menu_items(raw)
+progress_step(2, PROGRESS_TOTAL, "Processing menus (#{item_count} items)...")
+menus = menus_to_markdown(raw)
+menu_names = menu_names_from_raw(raw)
+progress_message("  Menus: #{menu_names.join(', ')}") if menu_names.any?
 
 unless menus.strip.length > 0
   $stderr.puts "Failed to get application menus. Is the app running?"
   Process.exit 1
 end
 
+progress_step(3, PROGRESS_TOTAL, "Converting to HTML...")
 output = %x{echo #{Shellwords.escape(menus)}| multimarkdown}.strip
+# Replace globe entity with span so CSS can show PNG (entity survives pipeline; raw span would be escaped)
+output.gsub!('&#127760;', '<span class="globe-icon"></span>')
 
 target = $appname.gsub(/[^a-z0-9]/i,'-') + '.html'
 target = File.join('dist',target)
+
+progress_step(4, PROGRESS_TOTAL, "Writing #{target}...")
 File.open(target,'w') do |f|
   f.puts template.sub(/__CONTENT__/,output)
   $stdout.puts "HTML written to #{target}"

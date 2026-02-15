@@ -113,7 +113,7 @@ const NiftyAPI = {
   },
 
   /**
-   * Set callout arrow for menu item. Equivalent to option-clicking a menu item.
+   * Set callout arrow for menu item. Equivalent to Option-clicking a menu item.
    *
    * @param      {boolean}  [bool=true]  Arrow on or off
    * @example
@@ -129,7 +129,7 @@ const NiftyAPI = {
   },
 
   /**
-   * Set shortcut callout for menu item. Equivalent to option-clicking a
+   * Set shortcut callout for menu item. Equivalent to Option-clicking a
    * shortcut on a menu item.
    *
    * @param      {boolean}  [bool=true]  Shortcut callout on or off

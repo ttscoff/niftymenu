@@ -22,8 +22,8 @@ All chainable functions should start with `find` (or a variable containing the r
     
 - `lock()` (equivalent to a click)
 - `callout()` (equivalent to a double click)
-- `arrow()` (equivalent to an Option-click)
-- `shortcut()` (equivalent to Option-clicking a keyboard shortcut)
+- `arrow()` (equivalent to Command-Option-click)
+- `shortcut()` (equivalent to Command-Option-clicking a keyboard shortcut)
 
 Example:
 

@@ -23,6 +23,8 @@ $disabled: rgba(150, 150, 150, .5);
 $color-desktop-gradient-1: rgb(86, 118, 127) !default;
 $color-desktop-gradient-2: rgb(120, 156, 165) !default;
 $desktop-image: '../images/background.jpg' !default;
+// Brightening overlay on desktop image (use transparent to disable): rgba(255,255,255,0.35)
+$desktop-image-overlay: rgba(255, 255, 255, 0.35) !default;
 
 // base colors
 $color-foreground: #000 !default;
@@ -53,6 +55,7 @@ $color-background-help-search: rgb(168, 170, 171) !default;
 $dark-color-desktop-gradient-1: color.adjust(color.adjust($color-desktop-gradient-1, $hue: 90deg), $lightness: -15%) !default;
 $dark-color-desktop-gradient-2: #333 !default;
 $dark-desktop-image: '../images/darkbackground.jpg' !default;
+$dark-desktop-image-overlay: rgba(255, 255, 255, 0.15) !default;
 
 $dark-color-foreground: #fff !default;
 $dark-color-foreground-inverted: #000 !default;

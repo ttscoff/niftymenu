@@ -6,6 +6,9 @@
 $checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAVFJREFUOBGtlDFLA0EQhU+jCAmCndgESSRBIViIjZ2dv8HSMiktBO1MpU3A0lZBUExnZ6VWiiSNjSAqiqUQEEREzTeQgeHIHVl3Bx77dvfNt8ked1EUroZA1dAxKofDRtEmsL+eLkKBK4C+QoNHAbYM9Bu/iLxrG4JegYx1byKABSS/UMFtvPwDrxqj+w4pVO543ovYa941UIFvhYAuAfkx4Gt8xhecBXBvoJ/4WV+o9O8hvVcZ12XRt5YB/CIFX+KHk6BzbBygjbQQe+PoCSn0A19EiXXDjoYP8UkPYd/kJF9FqXXFroJlPEIjsY6VWOacuXzNUks+cW/Iwk+YK3wC/2r2O/g8GqhKpGyzHNJE8nrK/dtD15g71QzpF2Qht7H5mRPRhAv45xhMD3pnfcpkne00HY9IgTquOpP6NMjDeTDw0z6Zfy9N0tlAOyjnSukCoDVsyZZDCJAAAAAASUVORK5CYII=);
 $dark-checkmark: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAV9JREFUOBGtlDFLA0EQhS/GIEQCdmITxIghgliIjZ2dvyGlZSwtBO200kawtFUQFO3srNRKEdPYCBKDYhkICCKi5zfRhWGzdxzsDjz2zc68j+UCiaJAFcdxDq2gY1QNhI0iYOvI1GUQMLQZ9GmonP5gIAV0r6Bf+HnvFwPZVFCxWyGgc4DkhaaamIIXGMAQejBETvnGs15QCQPZUVCxGyGgC4C+FfgGn/cCAyiiRwX9wNe8oBIGsqegYldDQBcB/SjwFX7ACWYwjQ7QWuLS30tLzJ+RqXdMxQmVS4a3ZpPzEDl/BO731Z7YRiL0H3xtBY7oB3WIfsnauaDP6Z0+z0IVvVnBE/oenHMEvap5F1/uA7kuWJyywsI5Q/IHI99f17KLkXhHchK9aAL+zurPEwFpAyATqG3BTNvBjKXlU2eEx1EL2VVPDWYZQiyjJ0U+zZLLtAN0FO2ibTScKaSWfgExxT8T22KA2gAAAABJRU5ErkJggg==);
 
+// Inline base64 SVG so globe icon loads reliably (no path/CORS); white fill = opaque for mask
+$globe-icon-url: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjIwNCA2NzEgMzIgMzIiPiA8cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIzMS41OTYsNjk0LjgyOSBDMjI5LjY4MSw2OTQuMTkyIDIyNy42MjIsNjkzLjcxNiAyMjUuNDU1LDY5My40MDggQzIyNS43NSw2OTEuNjc1IDIyNS45MDcsNjg5Ljg1OSAyMjUuOTU3LDY4OCBMMjMzLjk2Miw2ODggQzIzMy43ODMsNjkwLjUyMSAyMzIuOTM2LDY5Mi44NTQgMjMxLjU5Niw2OTQuODI5IEwyMzEuNTk2LDY5NC44MjkgWiBNMjIzLjQzNCw3MDAuNTU5IEMyMjQuMSw2OTguOTUgMjI0LjY0NSw2OTcuMjExIDIyNS4wNjQsNjk1LjM3OSBDMjI2Ljg2Miw2OTUuNjQ1IDIyOC41ODYsNjk2LjAzOCAyMzAuMjE5LDY5Ni41NTQgQzIyOC40MTUsNjk4LjQ3NyAyMjYuMDczLDY5OS44OTIgMjIzLjQzNCw3MDAuNTU5IEwyMjMuNDM0LDcwMC41NTkgWiBNMjIwLjk3MSw3MDAuOTUxIEMyMjAuNjQ5LDcwMC45NzQgMjIwLjMyOCw3MDEgMjIwLDcwMSBDMjE5LjY3Miw3MDEgMjE5LjM1Miw3MDAuOTc0IDIxOS4wMjksNzAwLjk1MSBDMjE4LjE3OCw2OTkuMTc5IDIxNy40ODksNjk3LjIwNyAyMTYuOTc5LDY5NS4xMTQgQzIxNy45NzMsNjk1LjAyNyAyMTguOTgsNjk0Ljk3NiAyMjAsNjk0Ljk3NiBDMjIxLjAyLDY5NC45NzYgMjIyLjAyNyw2OTUuMDI3IDIyMy4wMjIsNjk1LjExNCBDMjIyLjUxMSw2OTcuMjA3IDIyMS44MjIsNjk5LjE3OSAyMjAuOTcxLDcwMC45NTEgTDIyMC45NzEsNzAwLjk1MSBaIE0yMDkuNzgxLDY5Ni41NTQgQzIxMS40MTQsNjk2LjAzOCAyMTMuMTM4LDY5NS42NDUgMjE0LjkzNiw2OTUuMzc5IEMyMTUuMzU1LDY5Ny4yMTEgMjE1LjksNjk4Ljk1IDIxNi41NjYsNzAwLjU1OSBDMjEzLjkyNyw2OTkuODkyIDIxMS41ODYsNjk4LjQ3NyAyMDkuNzgxLDY5Ni41NTQgTDIwOS43ODEsNjk2LjU1NCBaIE0yMDguNDA0LDY5NC44MjkgQzIwNy4wNjQsNjkyLjg1NCAyMDYuMjE3LDY5MC41MjEgMjA2LjAzOCw2ODggTDIxNC4wNDMsNjg4IEMyMTQuMDkzLDY4OS44NTkgMjE0LjI1LDY5MS42NzUgMjE0LjU0NSw2OTMuNDA4IEMyMTIuMzc4LDY5My43MTYgMjEwLjMxOSw2OTQuMTkyIDIwOC40MDQsNjk0LjgyOSBMMjA4LjQwNCw2OTQuODI5IFogTTIwOC40MDQsNjc5LjE3MSBDMjEwLjMxOSw2NzkuODA4IDIxMi4zNzgsNjgwLjI4NSAyMTQuNTQ1LDY4MC41OTIgQzIxNC4yNSw2ODIuMzI1IDIxNC4wOTMsNjg0LjE0MSAyMTQuMDQzLDY4NiBMMjA2LjAzOCw2ODYgQzIwNi4yMTcsNjgzLjQ3OSAyMDcuMDY0LDY4MS4xNDYgMjA4LjQwNCw2NzkuMTcxIEwyMDguNDA0LDY3OS4xNzEgWiBNMjE2LjU2Niw2NzMuNDQxIEMyMTUuOSw2NzUuMDUgMjE1LjM1NSw2NzYuNzg5IDIxNC45MzYsNjc4LjYyMSBDMjEzLjEzOCw2NzguMzU2IDIxMS40MTQsNjc3Ljk2MiAyMDkuNzgxLDY3Ny40NDYgQzIxMS41ODYsNjc1LjUyMyAyMTMuOTI3LDY3NC4xMDggMjE2LjU2Niw2NzMuNDQxIEwyMTYuNTY2LDY3My40NDEgWiBNMjE5LjAyOSw2NzMuMDQ5IEMyMTkuMzUyLDY3My4wMjcgMjE5LjY3Miw2NzMgMjIwLDY3MyBDMjIwLjMyOCw2NzMgMjIwLjY0OSw2NzMuMDI3IDIyMC45NzEsNjczLjA0OSBDMjIxLjgyMiw2NzQuODIxIDIyMi41MTEsNjc2Ljc5NCAyMjMuMDIyLDY3OC44ODYgQzIyMi4wMjcsNjc4Ljk3MyAyMjEuMDIsNjc5LjAyNCAyMjAsNjc5LjAyNCBDMjE4Ljk4LDY3OS4wMjQgMjE3Ljk3Myw2NzguOTczIDIxNi45NzksNjc4Ljg4NiBDMjE3LjQ4OSw2NzYuNzk0IDIxOC4xNzgsNjc0LjgyMSAyMTkuMDI5LDY3My4wNDkgTDIxOS4wMjksNjczLjA0OSBaIE0yMjMuOTU0LDY4OCBDMjIzLjksNjg5Ljc2MSAyMjMuNzQsNjkxLjQ5MyAyMjMuNDM5LDY5My4xNTYgQzIyMi4zMTMsNjkzLjA1OCAyMjEuMTY4LDY5MyAyMjAsNjkzIEMyMTguODMyLDY5MyAyMTcuNjg3LDY5My4wNTggMjE2LjU2Miw2OTMuMTU2IEMyMTYuMjYsNjkxLjQ5MyAyMTYuMSw2ODkuNzYxIDIxNi4wNDcsNjg4IEwyMjMuOTU0LDY4OCBMMjIzLjk1NCw2ODggWiBNMjE2LjA0Nyw2ODYgQzIxNi4xLDY4NC4yMzkgMjE2LjI2LDY4Mi41MDcgMjE2LjU2Miw2ODAuODQ0IEMyMTcuNjg3LDY4MC45NDIgMjE4LjgzMiw2ODEgMjIwLDY4MSBDMjIxLjE2OCw2ODEgMjIyLjMxMyw2ODAuOTQyIDIyMy40MzgsNjgwLjg0NCBDMjIzLjc0LDY4Mi41MDcgMjIzLjksNjg0LjIzOSAyMjMuOTU0LDY4NiBMMjE2LjA0Nyw2ODYgTDIxNi4wNDcsNjg2IFogTTIzMC4yMTksNjc3LjQ0NiBDMjI4LjU4Niw2NzcuOTYyIDIyNi44NjIsNjc4LjM1NiAyMjUuMDY0LDY3OC42MjEgQzIyNC42NDUsNjc2Ljc4OSAyMjQuMSw2NzUuMDUgMjIzLjQzNCw2NzMuNDQxIEMyMjYuMDczLDY3NC4xMDggMjI4LjQxNSw2NzUuNTIzIDIzMC4yMTksNjc3LjQ0NiBMMjMwLjIxOSw2NzcuNDQ2IFogTTIzMS41OTYsNjc5LjE3MSBDMjMyLjkzNiw2ODEuMTQ2IDIzMy43ODMsNjgzLjQ3OSAyMzMuOTYyLDY4NiBMMjI1Ljk1Nyw2ODYgQzIyNS45MDcsNjg0LjE0MSAyMjUuNzUsNjgyLjMyNSAyMjUuNDU1LDY4MC41OTIgQzIyNy42MjIsNjgwLjI4NSAyMjkuNjgxLDY3OS44MDggMjMxLjU5Niw2NzkuMTcxIEwyMzEuNTk2LDY3OS4xNzEgWiBNMjIwLDY3MSBDMjExLjE2NCw2NzEgMjA0LDY3OC4xNjMgMjA0LDY4NyBDMjA0LDY5NS44MzcgMjExLjE2NCw3MDMgMjIwLDcwMyBDMjI4LjgzNiw3MDMgMjM2LDY5NS44MzcgMjM2LDY4NyBDMjM2LDY3OC4xNjMgMjI4LjgzNiw2NzEgMjIwLDY3MSBMMjIwLDY3MSBaIi8+IDwvc3ZnPg==");
+
 html {
   width: auto;
   height: 100%;
@@ -18,12 +21,13 @@ body {
     $color-desktop-gradient-1 0%,
     $color-desktop-gradient-2 50%
   );
+  background-attachment: fixed;
   color: $color-foreground;
   font-family:
     -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   height: 100%;
   margin: 0;
   overflow: hidden;
@@ -40,18 +44,19 @@ body {
     float: left;
     margin: 0;
     min-width: 100%;
-    padding: 0 !important;
+    padding: 4px 0 0 0 !important;
     position: relative;
     width: auto;
     color: white;
 
     &::before {
-      background: transparent;
-      border-bottom: solid 1px $color-background-submenu;
+      background: $desktop-image-overlay;
       box-shadow: 0 0 4px color.adjust($color-foreground, $alpha: -0.75);
       content: " ";
       display: block;
-      height: 1.4rem;
+      height: 1.6rem;
+      mix-blend-mode: overlay;
+      padding: 4px 0;
       left: 0;
       position: absolute;
       right: 0;
@@ -64,8 +69,8 @@ body {
       font-size: 14px;
       height: 1rem;
       line-height: 1;
-      margin: 0;
-      padding: 4px;
+      margin: 3px 0;
+      padding: 3px 7px;
 
       > strong {
         padding: 4px 8px;
@@ -86,8 +91,9 @@ body {
       &:hover,
       &.clicked,
       &.persist {
-        background: $color-accent;
+        background: rgba(255, 255, 255, 0.2);
         color: $color-foreground-inverted;
+        border-radius: 14px;
 
         > ul {
           display: block;
@@ -104,13 +110,13 @@ body {
       }
 
       > ul {
-        background: color.adjust($color-background-submenu, $alpha: -0.1);
+        background: $color-background-submenu;
         border-radius: 14px;
         display: none;
         font-size: 13px;
         line-height: 1.4;
         position: absolute;
-        top: 1.2rem;
+        top: 1.6rem;
       }
     }
   }
@@ -118,7 +124,7 @@ body {
   ul {
     list-style-type: none;
     margin-left: 0;
-    padding: 4px 0 0.3rem;
+    padding: 4px 0.5em 0.3rem 0;
 
     .clicked,
     .persist {
@@ -138,9 +144,63 @@ body {
   }
 }
 
+// Alternate menu items (Option-held): hidden by default, only visible when Option is held
+// Merged structure: .menuitem > .default and .alternate spans
+.menuitem .alternate {
+  display: none !important;
+}
+
+.menuitem .default {
+  display: inline;
+}
+
+body.option-held .menuitem .default {
+  display: none !important;
+}
+
+body.option-held .menuitem .alternate {
+  display: inline !important;
+}
+
+// Fallback when merge produced two list items: hide/show the whole <li>
+li:has(.menuitem.alternate-only) {
+  display: none !important;
+}
+
+body.option-held li:has(.menuitem.default-only) {
+  display: none !important;
+}
+
+body.option-held li:has(.menuitem.alternate-only) {
+  display: list-item !important;
+}
+
+// Globe key icon (replaces emoji in shortcuts); mask uses luminance so white = visible
+.shortcut .globe-icon {
+  background-color: currentColor;
+  color: inherit;
+  display: inline-block;
+  height: 1.1em;
+  mask-image: $globe-icon-url;
+  mask-mode: luminance;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  vertical-align: -0.2em;
+  width: 1.1em;
+  -webkit-mask-image: $globe-icon-url;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-type: luminance;
+  mask-type: luminance;
+  margin-right: 2px;
+}
+
 .shortcut {
   position: absolute;
   right: 8px;
+  color: #888;
 
   &.shortcut-callout {
     background: $color-shortcut-callout;
@@ -150,7 +210,7 @@ body {
     box-sizing: border-box;
     color: $color-foreground-inverted;
     padding: 1px 5px;
-    right: 5px;
+    right: -4px;
     text-align: center;
     text-indent: 0;
     top: -2px;
@@ -167,10 +227,13 @@ body {
 }
 
 body {
+  &.dark > ul ul {
+    border: solid 1px #656382;
+  }
+
   > ul {
     ul {
       background: color.adjust($color-background-submenu, $alpha: -0.1);
-      border: solid 1px $color-border;
       box-shadow: color.adjust($color-foreground, $alpha: -0.8) 0 5px 9px;
       margin-left: -4px;
       margin-top: 4px;
@@ -189,15 +252,29 @@ body {
       li {
         box-sizing: border-box;
         text-indent: 1.6em;
-        margin: 0 5.2em 0 0;
+        margin: 0 5.2em 0 3px;
+        padding: 2px 0;
         width: 100%;
         line-height: 1.4rem;
 
         &:hover,
         &.clicked,
         &.persist {
-          background: $color-accent;
-          color: $color-foreground-inverted;
+          background: rgba(180, 180, 180, 0.5);
+          border-radius: 8px;
+
+          &.last {
+            background: $color-accent;
+            color: $color-foreground-inverted;
+
+            > .shortcut {
+              color: #fff !important;
+
+              .dark & {
+                color: #000;
+              }
+            }
+          }
 
           > strong em::after {
             border-left-color: $color-foreground-inverted;
@@ -219,10 +296,21 @@ body {
 }
 
 .divider {
-  border-bottom: 2px solid $color-divider;
+  border-bottom: 2px solid color.adjust($color-divider, $alpha: -0.1);
   display: block;
-  margin: 4px 7px 4px 1.6em;
   position: relative;
+  margin: 4px 8px 4px 1.6em;
+  pointer-events: none;
+}
+
+// Divider rows: no hover highlight, not interactive (click ignored in JS)
+li:has(> .divider) {
+  &:hover,
+  &.clicked,
+  &.persist {
+    background: transparent !important;
+    color: inherit;
+  }
 }
 
 .helpsearch {
@@ -293,7 +381,7 @@ strong {
     height: 46px;
     position: absolute;
     right: -55px;
-    top: -13px;
+    top: -10px;
     width: 46px;
 
     i {
@@ -302,7 +390,8 @@ strong {
       display: inline-block;
       padding: 5px;
       transform: rotate(-45deg) translate(-15px, 5px);
-      left: 2px;
+      left: 3px;
+      top: 1px;
       position: relative;
     }
 
@@ -367,9 +456,9 @@ strong {
     content: " ";
     display: block;
     height: 11px;
-    left: 7px;
+    left: 4px;
     position: absolute;
-    top: 0.4em;
+    top: 8px;
     width: 11px;
 
     .dark & {
@@ -377,9 +466,8 @@ strong {
     }
   }
 
-  &.clicked,
-  &.persist,
-  &:hover {
+  &.clicked.last,
+  &.persist.last {
     &::before {
       background-image: $dark-checkmark;
     }
@@ -395,20 +483,21 @@ strong {
     $dark-color-desktop-gradient-1 0%,
     $dark-color-desktop-gradient-2 50%
   );
+  background-attachment: fixed;
   color: $dark-color-foreground;
 
   > ul {
     &::before {
-      background: color.adjust($dark-color-background-toolbar, $alpha: -0.1);
+      background: $dark-desktop-image-overlay;
       border-bottom: 0;
       box-shadow: 0;
+      mix-blend-mode: overlay;
     }
 
     > li {
       &:hover,
       &.clicked,
       &.persist {
-        background: $dark-color-accent;
         color: $dark-color-foreground;
 
         ul {
@@ -424,15 +513,18 @@ strong {
 
   > ul ul {
     box-shadow: 0;
-    border: solid 1px $dark-color-background-submenu;
+    // border: solid 1px $dark-color-background-submenu;
     background: $dark-color-background-submenu;
 
     li {
       &:hover,
       &.clicked,
       &.persist {
-        background: $dark-color-accent;
         color: $dark-color-foreground;
+
+        &.last {
+          background: $dark-color-accent;
+        }
 
         > strong em::after {
           border-left-color: $dark-color-foreground;
@@ -452,7 +544,7 @@ strong {
   }
 
   .divider {
-    border-bottom-color: $dark-color-background-submenu;
+    border-bottom-color: $dark-color-divider;
   }
 
   strong em {
@@ -593,12 +685,23 @@ strong {
 }
 
 body.bgimage {
-  background-image: url($desktop-image);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-attachment: fixed;
+  // Overlay layer (top) blended with image: brightens the image beneath
+  background-blend-mode: overlay;
+  background-image:
+    linear-gradient($desktop-image-overlay, $desktop-image-overlay),
+    url($desktop-image);
+  background-position:
+    0 0,
+    0 0;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
 
   &.dark {
-    background-image: url($dark-desktop-image);
+    background-blend-mode: overlay;
+    background-image:
+      linear-gradient($dark-desktop-image-overlay, $dark-desktop-image-overlay),
+      url($dark-desktop-image);
   }
 }
 
@@ -641,7 +744,7 @@ body.expose {
   left: 0;
   bottom: 0;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   opacity: 0.5;
 
   h1 {
